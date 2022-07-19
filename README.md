@@ -1,8 +1,6 @@
-- Create table
-- Populate table
-- Be able to hit end point and retrieve item from database
+In client, run these commands:
+- npm install -D tailwindcss postcss autoprefixer
+- npx tailwindcss init -p
 
-For meeting tomorrow:
-- Figure out what endpoints (for the back-end) that we're going to have 
-(types of operations needed)
-- Write queries (don't worry about making it look nice, will be refactored later)
+To run the app:
+- npm start
