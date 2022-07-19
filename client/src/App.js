@@ -13,11 +13,13 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+
         <Route path="/dashboard" element={<Dashboard />}>
         </Route>
 
         <Route path="/reguserinfo" element={<RegUserInfo />}>
         </Route>
+        
       </Routes>
     </BrowserRouter>
   )
