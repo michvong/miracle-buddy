@@ -29,6 +29,8 @@ export default function Search() {
             Axios.get('http://localhost:3001/locations').then((response) => { setCategory(response.data)});
             return;
         }
+
+        console.log(service1);
         Axios.post('http://localhost:3001/sort-services', {
             service: service1
         }).then((response)=>{
