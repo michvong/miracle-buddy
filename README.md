@@ -11,6 +11,7 @@ In server folder, run these commands:
 - npm install axios
 - npm install cors
 - npm install -g express
+- npm install body-parser
 
 Run the server in server/database with this command:
 - node index.js

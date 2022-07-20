@@ -10,8 +10,7 @@ exports.getAllServicesNames = (req, res) => {
 
 exports.showBySortedServices = (req, res) => {
     const service = req.body.service;
-    console.log(service);
-
+    
     connection.query("SELECT Location.address, Location.postal_code, Location.hours_of_operation, Location.name FROM Location INNER JOIN Service ON Service.service_id=Location.service_id WHERE Service.name = (?)",
         [service],
         (err, results) => {
