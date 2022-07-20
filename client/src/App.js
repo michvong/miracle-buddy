@@ -8,6 +8,8 @@ import {
 
 import Dashboard from './components/regUser/Dashboard'
 import RegUserInfo from './components/regUser/RegUserInfo'
+import Bookmarks from './components/regUser/Bookmarks'
+import Search from './components/regUser/Search'
 
 function App() {
   return (
@@ -18,6 +20,12 @@ function App() {
         </Route>
 
         <Route path="/reguserinfo" element={<RegUserInfo />}>
+        </Route>
+
+        <Route path="/bookmarks" element={<Bookmarks />}>
+        </Route>
+
+        <Route path="/search" element={<Search />}>
         </Route>
         
       </Routes>
