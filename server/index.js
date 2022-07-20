@@ -7,6 +7,8 @@ const errorHandler = require("./utils/errorHandler");
 const locationRouter = require("./routes/location-route");
 const serviceRouter = require("./routes/service-route")
 
+app.use(cors());
+
 app.use(locationRouter);
 app.use(serviceRouter);
 
