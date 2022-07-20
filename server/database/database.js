@@ -1,9 +1,3 @@
-// node index.js
-
-// npm install axios
-// npm install cors
-// npm install -g express
-
 var express = require('express');  
 var app = express();
 const cors = require("cors");
@@ -61,10 +55,8 @@ app.post('/sort-services', (req, res)=> {
 });
 
 app.listen(3001, ()=>{
-  console.log("running server");
+  console.log("Running server");
 })
-
-
 
 // const mysql = require("mysql");
 
