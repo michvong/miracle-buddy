@@ -1,6 +1,17 @@
 In client folder, run these commands:
 - npm install -D tailwindcss postcss autoprefixer
 - npx tailwindcss init -p
+- npm install axios
+- npm install react-bootstrap bootstrap
+- npm i --save bootstrap
 
 Run the app in client folder with this command:
 - npm start
+
+In server folder, run these commands:
+- npm install axios
+- npm install cors
+- npm install -g express
+
+Run the server in server/database with this command:
+- node database.js
