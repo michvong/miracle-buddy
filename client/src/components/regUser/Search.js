@@ -11,14 +11,14 @@ export default function Search() {
     let [Services, setServices] = useState([]);
 
     useEffect(()=>{
-        Axios.get('http://localhost:3001/posts').then((response) => { setCategory(response.data)});
+        Axios.get('http://localhost:3001/locations').then((response) => { setCategory(response.data)});
         Axios.get('http://localhost:3001/services').then((response) => { setServices(response.data)});
     }, []);
 
     const reactButton = (service1) => {
         if (service1 === 'All'){
             Location = {};
-            Axios.get('http://localhost:3001/posts').then((response) => { setCategory(response.data)});
+            Axios.get('http://localhost:3001/locations').then((response) => { setCategory(response.data)});
             return;
         }
         Axios.post('http://localhost:3001/sort-services', {

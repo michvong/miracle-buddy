@@ -1,6 +1,5 @@
 In client folder, run these commands:
 - npm install -D tailwindcss postcss autoprefixer
-- npx tailwindcss init -p
 - npm install axios
 - npm install react-bootstrap bootstrap
 - npm i --save bootstrap
@@ -14,7 +13,7 @@ In server folder, run these commands:
 - npm install -g express
 
 Run the server in server/database with this command:
-- node database.js
+- node index.js
 
 Notes:
 - You may need to change 'password' in database.js to run database
