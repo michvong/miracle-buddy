@@ -9,7 +9,6 @@ exports.getAllLocations = (req, res) => {
   });
 };
 
-// idk why i wrote this lol feel free to fix it or whatever
 // exports.updateLocationAddress = (req, res) => {
 //   const address = req.body.address;
 //   const id = req.body.id;

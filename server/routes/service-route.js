@@ -3,6 +3,6 @@ const controllers = require("../controllers/service-controller");
 const router = express.Router();
 
 router.get('/services', controllers.getAllServicesNames);
-// router.route("/sort-services").get(controllers.getSortedServiceNames);
+router.post('/sort-services', controllers.showBySortedServices);
 
 module.exports = router;
