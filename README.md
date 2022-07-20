@@ -15,3 +15,6 @@ In server folder, run these commands:
 
 Run the server in server/database with this command:
 - node database.js
+
+Notes:
+- You may need to change 'password' in database.js to run database
