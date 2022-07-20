@@ -16,4 +16,4 @@ Run the server in server/database with this command:
 - node index.js
 
 Notes:
-- You may need to change 'password' in database.js to run database
+- You may need to change 'password' in db-config.js to run database
