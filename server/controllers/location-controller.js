@@ -3,6 +3,7 @@ const connection = require("../services/db");
 
 exports.getAllLocations = (req, res) => {
   connection.query("SELECT * FROM Location", (err, results) => {
+    console.log(results);
     if (err) throw err;
     res.send(results);
   });

@@ -2,7 +2,7 @@ const express = require("express");
 const controllers = require("../controllers/location-controller");
 const router = express.Router();
 
-router.route("/locations").get(controllers.getAllLocations);
+router.get('/locations', controllers.getAllLocations);
 // router
 //  .route("/:id")
 //  .get(controllers.getTodo)

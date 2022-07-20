@@ -1,10 +1,4 @@
-// const express = require('express');  
-// const app = express();
-// const cors = require("cors");
 const dbConfig = require("../config/db-config.js");
-
-// app.use(cors());
-// app.use(express.json());
 
 var mysql = require('mysql');
 var connection = mysql.createConnection({

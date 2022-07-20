@@ -8,22 +8,11 @@ exports.getAllServicesNames = (req, res) => {
   });
 };
 
-exports.getSortedServiceNames = (req, res) => {
-    connection.query("SELECT Location.address, Location.postal_code, Location.hours_of_operation, Location.name FROM Location INNER JOIN Service ON Service.service_id=Location.service_id WHERE Service.name = (?)",
-        [service],
-        (err, results) => {
-            if (err) throw err;
-            res.send(results);
-    });
-};
-
-// app.post('/sort-services', (req, res)=> {
-    //   const service = req.body.service;
-    
-    //   connection.query("SELECT Location.address, Location.postal_code, Location.hours_of_operation, Location.name FROM Location INNER JOIN Service ON Service.service_id=Location.service_id WHERE Service.name = (?)",
-    //       [service],
-    //       (err,result)=>{
-    //         console.log(err);
-    //         res.send(result);
-    //       });
-    // });
+// exports.getSortedServiceNames = (req, res) => {
+//     connection.query("SELECT Location.address, Location.postal_code, Location.hours_of_operation, Location.name FROM Location INNER JOIN Service ON Service.service_id=Location.service_id WHERE Service.name = (?)",
+//         [service],
+//         (err, results) => {
+//             if (err) throw err;
+//             res.send(results);
+//     });
+// };

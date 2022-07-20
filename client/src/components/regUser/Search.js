@@ -10,9 +10,17 @@ export default function Search() {
     let [Location, setCategory] = useState([]);
     let [Services, setServices] = useState([]);
 
+
     useEffect(()=>{
-        Axios.get('http://localhost:3001/locations').then((response) => { setCategory(response.data)});
-        Axios.get('http://localhost:3001/services').then((response) => { setServices(response.data)});
+        Axios.get('http://localhost:3001/locations')
+            .then((response) => { 
+            setCategory(response.data);
+        });
+
+        Axios.get('http://localhost:3001/services')
+            .then((response) => { 
+                setServices(response.data);
+            });
     }, []);
 
     const reactButton = (service1) => {
