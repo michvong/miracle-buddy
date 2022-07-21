@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 import {useEffect, useState} from "react";
 import Axios from "axios";
 import Table from "react-bootstrap/Table";
@@ -9,6 +9,7 @@ import Stack from 'react-bootstrap/Stack';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import Button from 'react-bootstrap/Button';
 
 
 export default function Search() {
@@ -16,7 +17,6 @@ export default function Search() {
     let [Location, setCategory] = useState([]);
     let [Services, setServices] = useState([]);
     let [Cities, setCity] = useState([]);
-
 
     useEffect(()=>{
         Axios.get('http://localhost:3001/locations')
@@ -36,10 +36,7 @@ export default function Search() {
 
     }, []);
 
-    const reactButton = (service1, type1) => {
-
-        console.log(service1);
-        console.log(type1);
+    const reactButton = (service1, filter1) => {
 
         if (service1 === 'All'){
             Location = {};
@@ -48,7 +45,7 @@ export default function Search() {
         }
 
         Axios.post('http://localhost:3001/sort-services', {
-            type: type1, service: service1
+            filter: filter1, service: service1
         }).then((response)=>{
             console.log(response);
             Location = {};
@@ -66,14 +63,10 @@ export default function Search() {
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto">
-                                <Nav.Link href="#home">Home</Nav.Link>
-                                <Nav.Link href="#link">Link</Nav.Link>
+                                <Nav.Link href="#home">Dashboard</Nav.Link>
                                 <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                                     <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                                    <NavDropdown.Item href="#action/3.2">
-                                        Another action
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                                    <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                                     <NavDropdown.Divider />
                                     <NavDropdown.Item href="#action/3.4">
                                         Separated link
@@ -93,7 +86,7 @@ export default function Search() {
                                 <Dropdown.Item onClick={()=>{reactButton('All')} }>All</Dropdown.Item>
                                 {Cities.map((val) => {
                                     return (
-                                        <Dropdown.Item onClick={()=>{reactButton(val.city, 'city')} }>{val.city}</Dropdown.Item>
+                                        <Dropdown.Item onClick={()=>{reactButton(val.city, 'c.city')} }>{val.city}</Dropdown.Item>
                                     );
                                 })}
                             </DropdownButton>
@@ -103,7 +96,7 @@ export default function Search() {
                                 <Dropdown.Item onClick={()=>{reactButton('All')} }>All</Dropdown.Item>
                                 {Services.map((val) => {
                                     return (
-                                        <Dropdown.Item onClick={()=>{reactButton(val.name, 'service_name')} }>{val.name}</Dropdown.Item>
+                                        <Dropdown.Item onClick={()=>{reactButton(val.name, 'b.name')} }>{val.name}</Dropdown.Item>
                                     );
                                 })}
                             </DropdownButton>
@@ -131,7 +124,8 @@ export default function Search() {
                                     <td>{val.city}</td>
                                     <td>{val.hours_of_operation}</td>
                                     <td>{val.service_name}</td>
-                                    <td><button>more</button></td>
+                                    <td><Button variant="secondary" size="sm">More</Button>
+                                    </td>
                                 </tr>
                             );
                         })}
