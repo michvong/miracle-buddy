@@ -15,6 +15,7 @@ export default function Search() {
 
     let [Location, setCategory] = useState([]);
     let [Services, setServices] = useState([]);
+    let [Cities, setCity] = useState([]);
 
 
     useEffect(()=>{
@@ -27,17 +28,27 @@ export default function Search() {
             .then((response) => { 
                 setServices(response.data);
             });
+
+        Axios.get('http://localhost:3001/city')
+            .then((response) => {
+                setCity(response.data);
+            });
+
     }, []);
 
-    const reactButton = (service1) => {
+    const reactButton = (service1, type1) => {
+
+        console.log(service1);
+        console.log(type1);
+
         if (service1 === 'All'){
             Location = {};
             Axios.get('http://localhost:3001/locations').then((response) => { setCategory(response.data)});
             return;
         }
-        
+
         Axios.post('http://localhost:3001/sort-services', {
-            service: service1
+            type: type1, service: service1
         }).then((response)=>{
             console.log(response);
             Location = {};
@@ -73,13 +84,16 @@ export default function Search() {
                     </Navbar>
                 </div>
                 <div>
+                    <h2>Services</h2>
+                </div>
+                <div>
                     <Stack direction={"horizontal"} gap={2}>
                         <div>
-                            <DropdownButton id="dropdown-basic-button" title="Find By City">
+                            <DropdownButton id="dropdown-basic-button2" title="Find By City">
                                 <Dropdown.Item onClick={()=>{reactButton('All')} }>All</Dropdown.Item>
-                                {Services.map((val) => {
+                                {Cities.map((val) => {
                                     return (
-                                        <Dropdown.Item onClick={()=>{reactButton(val.name)} }>{val.name}</Dropdown.Item>
+                                        <Dropdown.Item onClick={()=>{reactButton(val.city, 'city')} }>{val.city}</Dropdown.Item>
                                     );
                                 })}
                             </DropdownButton>
@@ -89,7 +103,7 @@ export default function Search() {
                                 <Dropdown.Item onClick={()=>{reactButton('All')} }>All</Dropdown.Item>
                                 {Services.map((val) => {
                                     return (
-                                        <Dropdown.Item onClick={()=>{reactButton(val.name)} }>{val.name}</Dropdown.Item>
+                                        <Dropdown.Item onClick={()=>{reactButton(val.name, 'service_name')} }>{val.name}</Dropdown.Item>
                                     );
                                 })}
                             </DropdownButton>
@@ -100,20 +114,24 @@ export default function Search() {
                     <Table striped bordered hover>
                         <thead>
                         <tr>
-                            <th>address</th>
-                            <th>postal code</th>
-                            <th>hours of operation</th>
-                            <th>name</th>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>City</th>
+                            <th>Hours of Operation</th>
+                            <th>Service</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
                         {Location.map((val, key) => {
                             return (
                                 <tr key={key}>
-                                    <td>{val.address}</td>
-                                    <td>{val.postal_code}</td>
-                                    <td>{val.hours_of_operation}</td>
                                     <td>{val.name}</td>
+                                    <td>{val.address}</td>
+                                    <td>{val.city}</td>
+                                    <td>{val.hours_of_operation}</td>
+                                    <td>{val.service_name}</td>
+                                    <td><button>more</button></td>
                                 </tr>
                             );
                         })}
