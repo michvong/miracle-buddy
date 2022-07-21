@@ -6,10 +6,15 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Container from 'react-bootstrap/Container';
 import Stack from 'react-bootstrap/Stack';
-import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from 'react-bootstrap/Button';
+import {useNavigate} from "react-router-dom";
+import Col from 'react-bootstrap/Col';
+import Nav from 'react-bootstrap/Nav';
+import Row from 'react-bootstrap/Row';
+import Tab from 'react-bootstrap/Tab';
+
 
 
 export default function Search() {
@@ -17,6 +22,12 @@ export default function Search() {
     let [Location, setCategory] = useState([]);
     let [Services, setServices] = useState([]);
     let [Cities, setCity] = useState([]);
+
+    const navigate = useNavigate();
+
+    const handleDashboardClick = () => {
+        navigate('/dashboard');
+    }
 
     useEffect(()=>{
         Axios.get('http://localhost:3001/locations')
@@ -55,6 +66,8 @@ export default function Search() {
     };
 
     return (
+
+
         <Container>
             <Stack gap={3}>
                 <div>
@@ -63,7 +76,7 @@ export default function Search() {
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto">
-                                <Nav.Link href="#home">Dashboard</Nav.Link>
+                                <Nav.Link onClick={handleDashboardClick}>Dashboard</Nav.Link>
                                 <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                                     <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                                     <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -134,5 +147,6 @@ export default function Search() {
                 </div>
             </Stack>
         </Container>
+
     );
 }
