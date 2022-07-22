@@ -11,10 +11,10 @@ import Dashboard from './Dashboard';
 // class RegUserInfo extends Component {
 const RegUserInfo = (props) => {
 
-    let [user_id, setUser] = useState([]);
+    let [currentUser, setUser] = useState([]);
 
     useEffect(() => {
-        Axios.get(`http://localhost:3001/user/${user_id}`)
+        Axios.get(`http://localhost:3001/user/${props.user_id}`)
             .then((response) => {
                 setUser(response.data);
             });
