@@ -30,6 +30,8 @@ export default function Search() {
     let [CompanyService, setCompanyServices] = useState([]);
     let [CompanyInventory, setCompanyInventory] = useState([]);
     let [CompanyEvent, setCompanyEvent] = useState([]);
+    let [CompanyInfo, setCompanyInfo] = useState([]);
+
 
     const navigate = useNavigate();
 
@@ -101,6 +103,13 @@ export default function Search() {
             console.log(response);
             CompanyEvent = {};
             setCompanyEvent(response.data);
+        });
+        Axios.post('http://localhost:3001/org', {
+            id: companyID,
+        }).then((response)=>{
+            console.log(response);
+            CompanyInfo = {};
+            setCompanyInfo(response.data);
         });
     };
 
@@ -277,6 +286,17 @@ export default function Search() {
                                                         </DropdownButton>
                                                     </div>
                                                 </Stack>
+                                            </div>
+                                            <div className={"display-linebreak"}>
+                                            {CompanyInfo.map((val, key) => {
+                                                return (
+                                                    <tr key={key}>
+                                                        <h3>{val.name}{"\n"}</h3>
+                                                        <text >Phone Number: {val.phone_number}{"\n"}</text>
+                                                        <text>Email: {val.email}</text>
+                                                    </tr>
+                                                );
+                                            })}
                                             </div>
                                             <div>
                                                 <h3>Services</h3>
