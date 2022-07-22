@@ -29,6 +29,7 @@ export default function Search() {
     let [Companies, setCompany] = useState([]);
     let [CompanyService, setCompanyServices] = useState([]);
     let [CompanyInventory, setCompanyInventory] = useState([]);
+    let [CompanyEvent, setCompanyEvent] = useState([]);
 
     const navigate = useNavigate();
 
@@ -93,6 +94,13 @@ export default function Search() {
             console.log(response);
             CompanyInventory = {};
             setCompanyInventory(response.data);
+        });
+        Axios.post('http://localhost:3001/sort-event', {
+            id: companyID,
+        }).then((response)=>{
+            console.log(response);
+            CompanyEvent = {};
+            setCompanyEvent(response.data);
         });
     };
 
@@ -335,22 +343,20 @@ export default function Search() {
                                                 <Table striped bordered hover>
                                                     <thead>
                                                     <tr>
-                                                        <th>Name</th>
-                                                        <th>Address</th>
-                                                        <th>City</th>
-                                                        <th>Hours of Operation</th>
-                                                        <th>Service</th>
+                                                        <th>Event Name</th>
+                                                        <th>Description</th>
+                                                        <th>Location</th>
+                                                        <th>Date</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    {Location.map((val, key) => {
+                                                    {CompanyEvent.map((val, key) => {
                                                         return (
                                                             <tr key={key}>
-                                                                <td>{val.name}</td>
-                                                                <td>{val.address}</td>
-                                                                <td>{val.city}</td>
-                                                                <td>{val.hours_of_operation}</td>
-                                                                <td>{val.service_name}</td>
+                                                                <td>{val.event_name}</td>
+                                                                <td>{val.description}</td>
+                                                                <td>{val.location}</td>
+                                                                <td>{val.date}</td>
                                                             </tr>
                                                         );
                                                     })}

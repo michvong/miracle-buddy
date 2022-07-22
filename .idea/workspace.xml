@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0b80115-895d-474a-a8f8-7230843621b7" name="Changes" comment="Add Event &amp; Warehouse Controller">
-      <change afterPath="$PROJECT_DIR$/server/controllers/company-controller.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/routes/company-route.js" afterDir="false" />
+    <list default="true" id="c0b80115-895d-474a-a8f8-7230843621b7" name="Changes" comment="Add Company Controller">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/regUser/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/regUser/Search.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/location-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/location-controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/service-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/service-controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/warehouse-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/warehouse-controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/warehouse-route.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/warehouse-route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/event-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/event-controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/event-route.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/event-route.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +71,7 @@
       <updated>1658371757944</updated>
       <workItem from="1658371759023" duration="37807000" />
       <workItem from="1658467757164" duration="1720000" />
-      <workItem from="1658469507684" duration="7661000" />
+      <workItem from="1658469507684" duration="8750000" />
     </task>
     <task id="LOCAL-00001" summary="ui improvements">
       <created>1658383912185</created>
@@ -128,7 +122,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658461301074</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Add Company Controller">
+      <created>1658478122436</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1658478122436</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,6 +154,7 @@
     <MESSAGE value="Update Button Links" />
     <MESSAGE value="Add Tab Layout" />
     <MESSAGE value="Add Event &amp; Warehouse Controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Event &amp; Warehouse Controller" />
+    <MESSAGE value="Add Company Controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Company Controller" />
   </component>
 </project>
