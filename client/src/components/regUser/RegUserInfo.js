@@ -20,22 +20,28 @@ class RegUserInfo extends Component {
     // }, []);
     constructor(props){
         super(props)
+        const currentUser = {};
+        Axios.get(`http://localhost:3001/user/${this.state.user_id}`)
+            .then((response) => {
+                currentUser(response.data);
+            });
+
         this.state = {
-            user_id: "2",
-            currentUser: [],
+            user_id: this.props.user_id,
+            currentUser: currentUser,
         }
     }
 
     user_info()  {
-        const currentUser = [];
-        Axios.get(`http://localhost:3001/user/${this.props.user_id}`)
+        const currentUser = {};
+        Axios.get(`http://localhost:3001/user/${this.state.user_id}`)
             .then((response) => {
                 currentUser(response.data);
             });
 
         this.setState({
             currentUser: currentUser,
-            user_id: this.user_id,
+            user_id: this.state.user_id,
         })
     }
 
@@ -43,15 +49,15 @@ class RegUserInfo extends Component {
         return (
             <Accordion>
                 <Accordion.Item eventKey='0'>
-                    <Accordion.Header>{this.currentUser.name}</Accordion.Header>
+                    <Accordion.Header>{this.state.user_id}</Accordion.Header>
                     <Accordion.Body></Accordion.Body>
                 </Accordion.Item>
                 <Accordion.Item eventKey='1'>
-                    <Accordion.Header>{this.currentUser.name}</Accordion.Header>
+                    <Accordion.Header>{this.state.currentUser.name}</Accordion.Header>
                     <Accordion.Body></Accordion.Body>
                 </Accordion.Item>
                 <Accordion.Item eventKey='2'>
-                    <Accordion.Header>{this.currentUser.name}</Accordion.Header>
+                    <Accordion.Header>{this.state.currentUser.name}</Accordion.Header>
                     <Accordion.Body></Accordion.Body>
                 </Accordion.Item>
             </Accordion>
