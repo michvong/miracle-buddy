@@ -41,11 +41,20 @@ class RegUserInfo extends Component {
 
     render(){
         return (
-            <Card style={{ width: '68rem' }}>
-                <Card.Body>
-                    <Card.Title></Card.Title>
-                </Card.Body>
-            </Card>
+            <Accordion>
+                <Accordion.Item eventKey='0'>
+                    <Accordion.Header>{this.currentUser.name}</Accordion.Header>
+                    <Accordion.Body></Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item eventKey='1'>
+                    <Accordion.Header>{this.currentUser.name}</Accordion.Header>
+                    <Accordion.Body></Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item eventKey='2'>
+                    <Accordion.Header>{this.currentUser.name}</Accordion.Header>
+                    <Accordion.Body></Accordion.Body>
+                </Accordion.Item>
+            </Accordion>
         );
     }
 }
