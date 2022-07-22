@@ -14,6 +14,8 @@ import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
 import {useNavigate} from "react-router-dom";
+import {Accordion, Card} from "react-bootstrap";
+import {responsivePropType} from "react-bootstrap/createUtilityClasses";
 
 
 
@@ -22,6 +24,8 @@ export default function Search() {
     let [Location, setCategory] = useState([]);
     let [Services, setServices] = useState([]);
     let [Cities, setCity] = useState([]);
+    let [Products, setProducts] = useState([]);
+    let [Event, setEvent] = useState([]);
 
     const navigate = useNavigate();
 
@@ -45,6 +49,15 @@ export default function Search() {
                 setCity(response.data);
             });
 
+        Axios.get('http://localhost:3001/products')
+            .then((response) => {
+                setProducts(response.data);
+            });
+
+        Axios.get('http://localhost:3001/event')
+            .then((response) => {
+                setEvent(response.data);
+            });
     }, []);
 
     const reactButton = (service1, filter1) => {
@@ -65,8 +78,17 @@ export default function Search() {
 
     };
 
+    const availability = (sum) => {
+
+        if (sum>0) {
+            return <text>In Stock. {sum} available{"\n"}<Button variant="secondary" size="sm">Search</Button></text>
+        }
+        return <text>Out of Stock. {sum} available{"\n"}<Button variant="secondary" size="sm" disabled>Search</Button></text>
+
+    };
+
     return (
-        <Container>
+        <Container fluid="xxl">
             <Stack gap={3}>
                 <div>
                     <Navbar expand="lg">
@@ -171,63 +193,50 @@ export default function Search() {
                                                 <h2>Warehouse</h2>
                                             </div>
                                             <div>
-                                                <Stack direction={"horizontal"} gap={2}>
-                                                    <div>
-                                                        <DropdownButton id="dropdown-basic-button2" title="Find By City">
-                                                            <Dropdown.Item onClick={()=>{reactButton('All')} }>All</Dropdown.Item>
-                                                            {Cities.map((val) => {
-                                                                return (
-                                                                    <Dropdown.Item onClick={()=>{reactButton(val.city, 'c.city')} }>{val.city}</Dropdown.Item>
-                                                                );
-                                                            })}
-                                                        </DropdownButton>
-                                                    </div>
-                                                    <div>
-                                                        <DropdownButton id="dropdown-basic-button" title="Find By Service">
-                                                            <Dropdown.Item onClick={()=>{reactButton('All')} }>All</Dropdown.Item>
-                                                            {Services.map((val) => {
-                                                                return (
-                                                                    <Dropdown.Item onClick={()=>{reactButton(val.name, 'b.name')} }>{val.name}</Dropdown.Item>
-                                                                );
-                                                            })}
-                                                        </DropdownButton>
-                                                    </div>
-                                                </Stack>
-                                            </div>
-                                            <div>
-                                                <Table striped bordered hover>
-                                                    <thead>
-                                                    <tr>
-                                                        <th>Name</th>
-                                                        <th>Address</th>
-                                                        <th>City</th>
-                                                        <th>Hours of Operation</th>
-                                                        <th>Service</th>
-                                                        <th>Actions</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    {Location.map((val, key) => {
+                                                <Accordion>
+                                                    {Products.map((val) => {
                                                         return (
-                                                            <tr key={key}>
-                                                                <td>{val.name}</td>
-                                                                <td>{val.address}</td>
-                                                                <td>{val.city}</td>
-                                                                <td>{val.hours_of_operation}</td>
-                                                                <td>{val.service_name}</td>
-                                                                <td><Button variant="secondary" size="sm">More</Button>
-                                                                </td>
-                                                            </tr>
+                                                            <Accordion.Item eventKey={val.name}>
+                                                                <Accordion.Header>Item #{val.item_id} {val.name} - {val.description}</Accordion.Header>
+                                                                <Accordion.Body>
+                                                                    <text className={"display-linebreak"}>
+                                                                        {availability(val.inventory_sum)}
+                                                                    </text>
+                                                                </Accordion.Body>
+                                                            </Accordion.Item>
                                                         );
                                                     })}
-                                                    </tbody>
-                                                </Table>
+                                                </Accordion>
                                             </div>
                                         </Stack>
                                     </Tab.Pane>
 
                                     <Tab.Pane eventKey = "third">
-                                        <h2>Events</h2>
+                                        <Row>
+
+
+
+                                            {Event.map((val) => {
+                                                return (
+                                                    <Col md="auto">
+
+                                                        <Card style={{ width: '300px' }}>
+                                                            <Card.Body>
+                                                                <Card.Title>{val.event_name}</Card.Title>
+                                                                <Card.Subtitle className="mb-2 text-muted">{val.location}</Card.Subtitle>
+                                                                <Card.Text>
+                                                                    {val.description}
+                                                                </Card.Text>
+                                                                <Card.Link href="#">Card Link</Card.Link>
+                                                            </Card.Body>
+                                                        </Card>
+
+                                                    </Col>
+                                                );
+                                            })}
+
+
+                                        </Row>
                                     </Tab.Pane>
 
                                 </Tab.Content>

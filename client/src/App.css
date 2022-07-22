@@ -35,6 +35,7 @@
 .row{
   margin-top: 20px;
   margin-bottom: 20px;
+
 }
 
 .col{
@@ -50,7 +51,15 @@
   padding-left: 15px;
 }
 
+.card{
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-top: 5px;
+}
 
+.display-linebreak {
+  white-space: pre-line;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

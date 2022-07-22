@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0b80115-895d-474a-a8f8-7230843621b7" name="Changes" comment="Update Button Links">
+    <list default="true" id="c0b80115-895d-474a-a8f8-7230843621b7" name="Changes" comment="Add Tab Layout">
+      <change afterPath="$PROJECT_DIR$/server/controllers/event-controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/controllers/warehouse-controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/routes/event-route.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/routes/warehouse-route.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/regUser/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/regUser/Search.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +49,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager" selected="Node.js.index.js">
     <configuration name="index.js" type="NodeJSConfigurationType" nameIsGenerated="true" path-to-js-file="server/index.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
@@ -68,7 +73,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1658371757944</updated>
-      <workItem from="1658371759023" duration="23383000" />
+      <workItem from="1658371759023" duration="37691000" />
     </task>
     <task id="LOCAL-00001" summary="ui improvements">
       <created>1658383912185</created>
@@ -105,7 +110,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658437736174</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Add Tab Layout">
+      <created>1658441867345</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1658441867345</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -128,6 +140,7 @@
     <MESSAGE value="Removed unnecessary queries" />
     <MESSAGE value="Update package.json" />
     <MESSAGE value="Update Button Links" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update Button Links" />
+    <MESSAGE value="Add Tab Layout" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Tab Layout" />
   </component>
 </project>
