@@ -20,18 +20,6 @@ const RegUserInfo = (props) => {
             });
     }, []);
 
-    // user_info()  {
-    //     const currentUser = {};
-    //     Axios.get(`http://localhost:3001/user/${this.state.user_id}`)
-    //         .then((response) => {
-    //             currentUser(response.data);
-    //         });
-
-    //     this.setState({
-    //         currentUser: currentUser,
-    //         user_id: this.state.user_id,
-    //     })
-    // }
 
     return (
         <Accordion>
