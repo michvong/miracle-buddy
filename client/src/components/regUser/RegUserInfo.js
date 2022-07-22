@@ -23,24 +23,30 @@ const RegUserInfo = (props) => {
 
     return (
         <Accordion>
-            <Accordion.Item eventKey='0'>
-                <Accordion.Header>NAME</Accordion.Header>
-                <Accordion.Body>
-                    tmp empty body
-                </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey='1'>
-                <Accordion.Header>NAME</Accordion.Header>
-                <Accordion.Body>
-                    tmp empty body
-                </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey='2'>
-                <Accordion.Header>NAME</Accordion.Header>
-                <Accordion.Body>
-                    tmp empty body
-                </Accordion.Body>
-            </Accordion.Item>
+            {currentUser.map((val, key) => {
+                return(
+                    <div key={key}>
+                        <Accordion.Item eventKey='0'>
+                            <Accordion.Header>Current Name: {val.name}</Accordion.Header>
+                            <Accordion.Body>
+                                tmp empty body
+                            </Accordion.Body>
+                        </Accordion.Item>
+                        <Accordion.Item eventKey='1'>
+                            <Accordion.Header>Current Language: {val.language}</Accordion.Header>
+                            <Accordion.Body>
+                                tmp empty body
+                            </Accordion.Body>
+                        </Accordion.Item>
+                        <Accordion.Item eventKey='2'>
+                            <Accordion.Header>Current email: {val.email}</Accordion.Header>
+                            <Accordion.Body>
+                                tmp empty body
+                            </Accordion.Body>
+                        </Accordion.Item>
+                    </div>
+                );
+            })}
         </Accordion>
     );
 }
