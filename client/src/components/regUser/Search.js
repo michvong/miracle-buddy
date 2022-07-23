@@ -13,7 +13,7 @@ import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {Accordion, Card} from "react-bootstrap";
 import {responsivePropType} from "react-bootstrap/createUtilityClasses";
 
@@ -31,7 +31,7 @@ export default function Search() {
     let [CompanyInventory, setCompanyInventory] = useState([]);
     let [CompanyEvent, setCompanyEvent] = useState([]);
     let [CompanyInfo, setCompanyInfo] = useState([]);
-
+    let [userID, setUserID] = useState("");
 
     const navigate = useNavigate();
 
@@ -39,7 +39,13 @@ export default function Search() {
         navigate('/dashboard');
     }
 
+    const info = useLocation();
+    const {infoState} = info
+
+
     useEffect(()=>{
+
+
 
         Axios.get('http://localhost:3001/locations')
             .then((response) => { 
@@ -65,6 +71,7 @@ export default function Search() {
             .then((response) => {
                 setCompany(response.data);
             });
+        fetchInput();
     }, []);
 
     const sortServicesButton = (service1, filter1) => {
@@ -119,6 +126,14 @@ export default function Search() {
         return <text>Out of Stock. {sum} available{"\n"}<Button variant="secondary" size="sm" disabled>Search</Button></text>
     };
 
+    const fetchInput = () => {
+        try{
+            return info.state.user_id
+        } catch (e) {
+            return "Guest"
+        }
+    };
+
     return (
         <Container fluid="xxl" >
             <Stack gap={3}>
@@ -126,17 +141,23 @@ export default function Search() {
                     <Navbar expand="lg">
                         <Navbar.Brand href="#home">miracle-buddy</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                        <Navbar.Collapse id="basic-navbar-nav">
+                        <Navbar.Collapse id="basic-navbar-nav" >
                             <Nav className="me-auto">
                                 <Nav.Link onClick={handleDashboardClick}>Dashboard</Nav.Link>
                                 <NavDropdown title="Account" id="basic-nav-dropdown">
-                                    <NavDropdown.Item href="#action/3.1">My Profile</NavDropdown.Item>
-                                    <NavDropdown.Item href="#action/3.2">Settings</NavDropdown.Item>
+                                    <NavDropdown.Item >Account</NavDropdown.Item>
+                                    <NavDropdown.Item >Settings</NavDropdown.Item>
                                     <NavDropdown.Divider />
-                                    <NavDropdown.Item href="#action/3.4">Log Out</NavDropdown.Item>
+                                    <NavDropdown.Item >Log Out</NavDropdown.Item>
                                 </NavDropdown>
                             </Nav>
                         </Navbar.Collapse>
+                        <Navbar.Collapse className="justify-content-end right-marg">
+                            <Navbar.Text>
+                                Logged In As: #{fetchInput()}
+                            </Navbar.Text>
+                        </Navbar.Collapse>
+
                     </Navbar>
                 </div>
                 <div>
@@ -145,16 +166,16 @@ export default function Search() {
                             <Col sm={20} md={2} lg={2}>
                                 <Nav variant="pills" className="flex-column">
                                     <Nav.Item>
-                                        <Nav.Link eventKey="first" href="#">Services</Nav.Link>
+                                        <Nav.Link eventKey="first" >Services</Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
-                                        <Nav.Link eventKey="second" href="#">Warehouse</Nav.Link>
+                                        <Nav.Link eventKey="second" >Warehouse</Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
-                                        <Nav.Link eventKey="third" href="#">Events</Nav.Link>
+                                        <Nav.Link eventKey="third" >Events</Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item className={"minimum-width"}>
-                                        <Nav.Link eventKey="forth" href="#">Organizations</Nav.Link>
+                                        <Nav.Link eventKey="forth" >Organizations</Nav.Link>
                                     </Nav.Item>
                                 </Nav>
                             </Col>

@@ -74,9 +74,8 @@
   padding-bottom: 15px;
 }
 
-.span{
-  font-weight: normal;
-}
+.right-marg{
+padding-right: 10px}
 
 @keyframes App-logo-spin {
   from {

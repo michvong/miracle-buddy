@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0b80115-895d-474a-a8f8-7230843621b7" name="Changes" comment="Add Ability to Search By Organization">
+    <list default="true" id="c0b80115-895d-474a-a8f8-7230843621b7" name="Changes" comment="Display Company Information">
+      <change afterPath="$PROJECT_DIR$/client/src/components/regUser/Forward.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/regUser/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/regUser/Search.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/company-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/company-controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/company-route.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/company-route.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -72,7 +80,8 @@
       <updated>1658371757944</updated>
       <workItem from="1658371759023" duration="37807000" />
       <workItem from="1658467757164" duration="1720000" />
-      <workItem from="1658469507684" duration="10004000" />
+      <workItem from="1658469507684" duration="10246000" />
+      <workItem from="1658519680132" duration="7393000" />
     </task>
     <task id="LOCAL-00001" summary="ui improvements">
       <created>1658383912185</created>
@@ -137,7 +146,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658479407611</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Display Company Information">
+      <created>1658480392200</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1658480392200</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -164,6 +180,7 @@
     <MESSAGE value="Add Event &amp; Warehouse Controller" />
     <MESSAGE value="Add Company Controller" />
     <MESSAGE value="Add Ability to Search By Organization" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Ability to Search By Organization" />
+    <MESSAGE value="Display Company Information" />
+    <option name="LAST_COMMIT_MESSAGE" value="Display Company Information" />
   </component>
 </project>
