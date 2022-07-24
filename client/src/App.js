@@ -12,6 +12,8 @@ import RegUserInfo from './components/regUser/RegUserInfo'
 import Bookmarks from './components/regUser/Bookmarks'
 import Search from './components/regUser/Search'
 
+import CompDashboard from './components/companyAuthUser/CompDashboard'
+
 function App() {
   return (
     <BrowserRouter>
@@ -26,7 +28,9 @@ function App() {
         <Route path="/search" element={<Search />}>
         </Route>
 
-        {/* ... pages */}
+        {/* companyAuthUser pages */}
+        <Route path="/compdashboard" element={<CompDashboard />}>
+        </Route>
         
       </Routes>
     </BrowserRouter>
