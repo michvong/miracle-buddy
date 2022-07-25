@@ -14,7 +14,7 @@ export default function LoginLanding() {
     }
 
     return (
-        <div className="md:pt-60 md:pb-60 bg-cityscape bg-contain bg-center bg-no-repeat">
+        <div className="p-60 bg-cityscape bg-cover bg-center bg-no-repeat">
             <div className="text-center pb-12 md:pb-16">
                 <h1 className="pt-12 text-7xl md:text-8xl font-extrabold leading-tighter tracking-tighter mb-4" data-aos="zoom-y-out">Miracle<span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-yellow-200 to-blue-500 animate-text">Buddy</span></h1>
                 <div className="max-w-3xl mx-auto">
