@@ -37,7 +37,7 @@ export default function Dashboard() {
                 <Card className="mt-6 w-96">
                     <button onClick={handlePersonalInfoClick}>
 
-                        <CardHeader color="blue" className="relative h-56 flex justify-center items-center">
+                        <CardHeader color="blue" variant="gradient" className="relative h-56 flex justify-center items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" 
                                 className="h-20 w-20" viewBox="0 0 24 24" fill="currentColor">
                                 <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" 
@@ -63,7 +63,7 @@ export default function Dashboard() {
             <div class="px-4">
                 <Card className="mt-6 w-96">
                     <button onClick={handleBookmarksClick}>
-                        <CardHeader color="blue" className="relative h-56 flex justify-center items-center">
+                        <CardHeader color="blue" variant="gradient" className="relative h-56 flex justify-center items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" 
                                 className="h-20 w-20" fill="none" viewBox="0 0 24 24" 
                                 stroke="currentColor" strokeWidth={2}>
@@ -89,7 +89,7 @@ export default function Dashboard() {
             <div class="px-4">
                 <Card className="mt-6 w-96">
                     <button onClick={handleSearchClick}>
-                        <CardHeader color="blue" className="relative h-56 flex justify-center items-center">
+                        <CardHeader color="blue" variant="gradient" className="relative h-56 flex justify-center items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" 
                                 className="h-20 w-20" fill="none" 
                                 viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
