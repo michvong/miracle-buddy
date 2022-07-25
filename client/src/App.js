@@ -13,6 +13,8 @@ import Bookmarks from './components/regUser/Bookmarks'
 import Search from './components/regUser/Search'
 import Forward from './components/regUser/Forward'
 
+import CompDashboard from './components/companyAuthUser/CompDashboard'
+
 function App() {
   return (
     <BrowserRouter>
@@ -29,7 +31,9 @@ function App() {
         <Route path="/forward" element={<Forward />}>
         </Route>
 
-        {/* ... pages */}
+        {/* companyAuthUser pages */}
+        <Route path="/compdashboard" element={<CompDashboard />}>
+        </Route>
         
       </Routes>
     </BrowserRouter>
