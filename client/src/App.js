@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginLanding from './components/landing/LoginLanding';
 import RegUserLogin from './components/landing/RegUserLogin';
 import CompanyAuthLogin from './components/landing/CompanyAuthLogin';
+import RegUserRegister from './components/landing/RegUserRegister';
 
 import Dashboard from './components/regUser/Dashboard'
 import RegUserInfo from './components/regUser/RegUserInfo'
@@ -28,6 +29,8 @@ function App() {
         <Route path="/reguserlogin" element={<RegUserLogin />}>
         </Route>
         <Route path="/companyauthlogin" element={<CompanyAuthLogin />}>
+        </Route>
+        <Route path="/reguserregister" element={<RegUserRegister />}>
         </Route>
 
         {/* regUser pages */}
