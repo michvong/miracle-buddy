@@ -16,6 +16,7 @@ import Tab from 'react-bootstrap/Tab';
 import {useLocation, useNavigate} from "react-router-dom";
 import {Accordion, Card} from "react-bootstrap";
 import {responsivePropType} from "react-bootstrap/createUtilityClasses";
+import {map} from "react-bootstrap/ElementChildren";
 
 
 
@@ -31,7 +32,7 @@ export default function Search() {
     let [CompanyInventory, setCompanyInventory] = useState([]);
     let [CompanyEvent, setCompanyEvent] = useState([]);
     let [CompanyInfo, setCompanyInfo] = useState([]);
-    let [userID, setUserID] = useState("");
+    let [userID, setUserID] = useState(new Map());
 
     const navigate = useNavigate();
 
@@ -47,7 +48,9 @@ export default function Search() {
 
 
 
-        Axios.get('http://localhost:3001/locations')
+        Axios.post('http://localhost:3001/locations',{
+            user_id: fetchInput()
+        })
             .then((response) => { 
             setCategory(response.data);
         });
@@ -71,19 +74,21 @@ export default function Search() {
             .then((response) => {
                 setCompany(response.data);
             });
-        fetchInput();
     }, []);
 
     const sortServicesButton = (service1, filter1) => {
         if (service1 === 'All'){
             Location = {};
-            Axios.get('http://localhost:3001/locations').then((response) => { setCategory(response.data)});
+            Axios.post('http://localhost:3001/locations',{
+                user_id: fetchInput()
+            }).then((response) => {
+                setCategory(response.data)
+            });
             return;
         }
         Axios.post('http://localhost:3001/sort-services', {
             filter: filter1, service: service1
         }).then((response)=>{
-            console.log(response);
             Location = {};
             setCategory(response.data);
         });
@@ -93,31 +98,29 @@ export default function Search() {
         Axios.post('http://localhost:3001/sort-services', {
             filter: filter1, service: companyID
         }).then((response)=>{
-            console.log(response);
             CompanyService = {};
             setCompanyServices(response.data);
         });
         Axios.post('http://localhost:3001/sort-products', {
             id: companyID,
         }).then((response)=>{
-            console.log(response);
             CompanyInventory = {};
             setCompanyInventory(response.data);
         });
         Axios.post('http://localhost:3001/sort-event', {
             id: companyID,
         }).then((response)=>{
-            console.log(response);
             CompanyEvent = {};
             setCompanyEvent(response.data);
         });
         Axios.post('http://localhost:3001/org', {
             id: companyID,
         }).then((response)=>{
-            console.log(response);
             CompanyInfo = {};
             setCompanyInfo(response.data);
         });
+
+        updateBookmarkButton();
     };
 
     const availability = (sum) => {
@@ -134,6 +137,14 @@ export default function Search() {
         }
     };
 
+
+    const updateBookmarkButton = async (userid, serviceid) => {
+
+    };
+
+    const updateBookmark = () => {
+
+    };
     return (
         <Container fluid="xxl" >
             <Stack gap={3}>
@@ -232,7 +243,7 @@ export default function Search() {
                                                                 <td>{val.city}</td>
                                                                 <td>{val.hours_of_operation}</td>
                                                                 <td>{val.service_name}</td>
-                                                                <td><Button variant="secondary" size="sm">More</Button>
+                                                                <td><Button variant="secondary" size="sm"> {val.relation}</Button>
                                                                 </td>
                                                             </tr>
                                                         );

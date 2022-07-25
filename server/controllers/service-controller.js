@@ -17,7 +17,6 @@ exports.showBySortedServices = (req, res) => {
         "WHERE a.service_id = b.service_id AND c.postal_code = a.postal_code AND d.company_id=b.company_id AND "+filter+" = (?)",
         [service],
         (err, results) => {
-            console.log(results);
             res.send(results);
         });
 

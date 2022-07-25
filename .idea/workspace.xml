@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0b80115-895d-474a-a8f8-7230843621b7" name="Changes" comment="Display Company Information">
-      <change afterPath="$PROJECT_DIR$/client/src/components/regUser/Forward.js" afterDir="false" />
+    <list default="true" id="c0b80115-895d-474a-a8f8-7230843621b7" name="Changes" comment="Add Ability to see Bookmarks">
+      <change afterPath="$PROJECT_DIR$/server/controllers/bookmark-controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/routes/bookmark-route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/14411a9c-968d-48aa-ae45-056db94d9b71.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/14411a9c-968d-48aa-ae45-056db94d9b71.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/regUser/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/regUser/Search.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/company-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/company-controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/event-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/event-controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/location-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/location-controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/service-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/service-controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/location-route.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/location-route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/CREATE_script.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/CREATE_script.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +52,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/mich&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/hclim/WebstormProjects/miracle-buddy&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
@@ -81,7 +89,9 @@
       <workItem from="1658371759023" duration="37807000" />
       <workItem from="1658467757164" duration="1720000" />
       <workItem from="1658469507684" duration="10246000" />
-      <workItem from="1658519680132" duration="7393000" />
+      <workItem from="1658519680132" duration="9450000" />
+      <workItem from="1658603995859" duration="713000" />
+      <workItem from="1658621025716" duration="29000" />
     </task>
     <task id="LOCAL-00001" summary="ui improvements">
       <created>1658383912185</created>
@@ -153,7 +163,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658480392200</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Set Navigate Parameters">
+      <created>1658544930563</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1658544930563</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,6 +198,8 @@
     <MESSAGE value="Add Company Controller" />
     <MESSAGE value="Add Ability to Search By Organization" />
     <MESSAGE value="Display Company Information" />
-    <option name="LAST_COMMIT_MESSAGE" value="Display Company Information" />
+    <MESSAGE value="Set Navigate Parameters" />
+    <MESSAGE value="Add Ability to see Bookmarks" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Ability to see Bookmarks" />
   </component>
 </project>
