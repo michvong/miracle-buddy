@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="c0b80115-895d-474a-a8f8-7230843621b7" name="Changes" comment="Refactored Code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/regUser/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/regUser/Search.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/company-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/company-controller.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +55,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager" selected="Node.js.index.js">
     <configuration name="index.js" type="NodeJSConfigurationType" nameIsGenerated="true" path-to-js-file="server/index.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>

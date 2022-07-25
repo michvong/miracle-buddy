@@ -9,9 +9,10 @@ exports.getAllCompany = (req, res) => {
 };
 
 exports.getCompany = (req, res) => {
+    const user_id = req.body.userID;
     const id = req.body.id;
-    connection.query("SELECT * FROM Company WHERE company_id = (?)",
-        [id],
+    connection.query("SELECT company_id, name, phone_number, email, (SELECT COUNT(user_id) FROM Bookmarks WHERE user_id = (?) AND Bookmarks.company_id = Company.company_id) AS bookmark FROM Company WHERE company_id = (?)",
+        [user_id,id],
         (err, results) => {
         if (err) throw err;
         res.send(results);

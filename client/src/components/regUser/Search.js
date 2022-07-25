@@ -114,7 +114,7 @@ export default function Search() {
             setCompanyEvent(response.data);
         });
         Axios.post('http://localhost:3001/org', {
-            id: companyID,
+            userID: fetchInput(), id: companyID,
         }).then((response)=>{
             CompanyInfo = {};
             setCompanyInfo(response.data);
@@ -293,7 +293,6 @@ export default function Search() {
                                                                 <Card.Text>
                                                                     {val.description}
                                                                 </Card.Text>
-                                                                <Card.Link href="#">Card Link</Card.Link>
                                                             </Card.Body>
                                                         </Card>
                                                     </Col>
@@ -327,8 +326,10 @@ export default function Search() {
                                                 return (
                                                     <tr key={key}>
                                                         <h3>{val.name}{"\n"}</h3>
-                                                        <text >Phone Number: {val.phone_number}{"\n"}</text>
-                                                        <text>Email: {val.email}</text>
+                                                        <text >Phone Number: {val.phone_number}</text>
+                                                        <Button size="sm" className={"keep-right"}>{updateBookmarkButton(val.bookmark)}</Button>
+                                                        <text>{"\n"}Email: {val.email}{"          "}</text>
+
                                                     </tr>
                                                 );
                                             })}
