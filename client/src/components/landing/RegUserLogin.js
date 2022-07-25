@@ -23,7 +23,7 @@ export default function RegUserLogin() {
 
     return (
         <>
-        <div className="flex justify-center mt-20">
+        <div className="flex justify-center mt-20 pt-20">
         </div>
 
         <div className="flex justify-center pt-20 pb-6">
