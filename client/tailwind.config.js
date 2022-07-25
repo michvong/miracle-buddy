@@ -7,6 +7,10 @@ module.exports = {
 
   theme: {
     extend: {
+      backgroundImage: {
+        'cityscape': "url('images/cityscape.png')",
+      },
+
       fontSize: {
         '3xl': '3rem',
         // '4xl': '10rem',
