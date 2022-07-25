@@ -14,6 +14,7 @@ import Search from './components/regUser/Search'
 import Forward from './components/regUser/Forward'
 
 import CompDashboard from './components/companyAuthUser/CompDashboard'
+import CompEdit from './components/companyAuthUser/CompEdit'
 
 function App() {
   return (
@@ -33,6 +34,8 @@ function App() {
 
         {/* companyAuthUser pages */}
         <Route path="/compdashboard" element={<CompDashboard />}>
+        </Route>
+        <Route path="/compedit" element={<CompEdit />}>
         </Route>
         
       </Routes>
