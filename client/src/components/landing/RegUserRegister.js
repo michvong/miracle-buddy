@@ -58,28 +58,27 @@ export default function RegUserLogin() {
                         <div className="flex flex-wrap -mx-3 mb-4">
                             <div className="w-full px-3">
                                 <label className="text-sm font-medium mb-1" htmlFor="name">Name</label>
-                                <Input id="name" type="text" className="form-input w-full text-gray-800" placeholder="Enter your name" required />
+                                <input id="name" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your name" required />
                             </div>
                         </div>
 
                         <div className="flex flex-wrap -mx-3 mb-4">
                             <div className="w-full px-3">
                                 <label className="text-sm font-medium mb-1" htmlFor="email">Email</label>
-                                <Input id="email" type="email" className="form-input w-full text-gray-800" placeholder="Enter your email address" required />
+                                <input id="email" type="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your email address" required />
                             </div>
                         </div>
 
                         <div className="flex flex-wrap -mx-3 mb-4">
                             <div className="w-full px-3">
                                 <label className="text-sm font-medium mb-1" htmlFor="language">Language</label>
-                                <Input id="language" type="language" className="form-input w-full text-gray-800" placeholder="Enter your preferred language" required />
+                                <input id="language" type="language" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your preferred language" required />
                             </div>
                         </div>
 
                         <div className="flex flex-wrap -mx-3 mt-6">
                             <div className="flex justify-center w-full px-3">
-                                <Button className="btn-blue mr-2 w-full" size="md" variant="gradient">Sign up</Button>
-                                {/* <button className="btn text-black hover:bg-blue-700 w-full">Sign up</button> */}
+                                <button className="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-full px-5 py-2.5 text-center dark:bg-blue-100 dark:hover:bg-blue-300 dark:focus:ring-blue-500">Sign up</button>
                             </div>
                         </div>
                     </form>
