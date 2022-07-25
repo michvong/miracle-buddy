@@ -8,7 +8,7 @@ import {
 } from "@material-tailwind/react";
 import { useLocation } from "react-router-dom";
 
-export default function Dashboard() {
+export default function CompDashboard() {
     const navigate = useNavigate();
     const location = useLocation();
 
