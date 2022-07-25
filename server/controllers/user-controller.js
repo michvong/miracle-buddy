@@ -13,3 +13,16 @@ exports.getUserInfo = (req, res) => {
             res.send(results);
         });
 };
+
+exports.changeUserName = (req, res) => {
+
+    const user_id = req.params.user_id;
+    const new_name =  req.params.new_name;
+
+    connection.query("UPDATE RegularUser SET name=? WHERE user_id=?",
+        [new_name, user_id],
+        (err, results) => {
+            console.log(err);
+            res.send(results);
+        });
+};

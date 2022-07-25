@@ -12,22 +12,32 @@ import Dashboard from './Dashboard';
 const RegUserInfo = (props) => {
 
     let [currentUser, setUser] = useState([]);
-    let [currentName, setName] = useState("");
+    let [nameTextField, setName] = useState("");
     let [currentLang, setLang] = useState("");
     let [currentEmail, setEmail] = useState("");
 
     useEffect(() => {
         Axios.get(`http://localhost:3001/user/${props.user_id}`)
             .then((response) => {
-                setUser(response.data);
+                if(response.status === 200) {
+                    setUser(response.data);
+                }
             });
     }, []);
 
-    const handleSubmit= ((event) => {
+    const handleSubmitName= ((event, nameTextField) => {
         event.preventDefault();
-
-
-        setName("");
+        if(nameTextField === ""){
+            return; //no action, just return
+        }
+        //otherwise, update value
+        Axios.put(`http://localhost:3001/user/edit-name/${props.user_id}/${nameTextField}`)
+            .then((response) => {
+                if(response.status===200) {
+                    setUser([{...currentUser[0], "name":nameTextField}]);
+                    setName("");
+                }
+            });
     });
 
     return (
@@ -38,11 +48,11 @@ const RegUserInfo = (props) => {
                         <Accordion.Item eventKey='0'>
                             <Accordion.Header>Current Name: {val.name}</Accordion.Header>
                             <Accordion.Body>
-                                <form onSubmit={handleSubmit}>
+                                <form onSubmit={(e) => handleSubmitName(e, nameTextField)}>
                                     <label>
                                         Enter new Name:
                                         <input type="text"
-                                        value={currentName}
+                                        value={nameTextField}
                                         onChange={(e) => setName(e.target.value)}
                                         />
                                     </label>
