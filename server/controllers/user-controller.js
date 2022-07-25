@@ -26,3 +26,15 @@ exports.changeUserName = (req, res) => {
             res.send(results);
         });
 };
+
+exports.changeUserLang = (req, res) => {
+    const user_id = req.params.user_id;
+    const new_lang = req.params.new_lang;
+
+    connection.query("UPDATE RegularUser SET language=? WHERE user_id=?",
+        [new_lang, user_id],
+        (err, results) => {
+            console.log(err);
+            res.send(results);
+        });
+};

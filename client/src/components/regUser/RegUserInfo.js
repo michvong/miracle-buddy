@@ -40,6 +40,24 @@ const RegUserInfo = (props) => {
             });
     });
 
+    const handleSubmitLang = ((event, langTextField) => {
+        event.preventDefault();
+        if(langTextField === ""){
+            return; // no action, just return
+        }
+        Axios.put(`http://localhost:3001/user/edit-lang/${props.user_id}/${langTextField}`)
+            .then((response) => {
+                if(response.status === 200) {
+                    setUser([{...currentUser[0], "language":langTextField}]);
+                    setLang("");
+                }
+            });
+    });
+
+    const handleSubmitEmail = ((event, emailTextField) => {
+        event.preventDefault();
+    })
+
     return (
         <Accordion>
             {currentUser.map((val, key) => {
