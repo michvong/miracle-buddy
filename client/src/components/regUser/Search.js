@@ -289,10 +289,9 @@ export default function Search() {
                                                         <Card style={{ width: '322px' }}>
                                                             <Card.Body>
                                                                 <Card.Title>{val.event_name}</Card.Title>
-                                                                <Card.Subtitle className="mb-2 text-muted">{val.location}</Card.Subtitle>
-                                                                <Card.Text>
-                                                                    {val.description}
-                                                                </Card.Text>
+                                                                <Card.Subtitle className="mb-2 text-muted">{val.location} {val.date}</Card.Subtitle>
+                                                                <Card.Subtitle className="mb-2 text-muted">Hosted By: {val.company_name}</Card.Subtitle>
+                                                                <Card.Text>{val.description}</Card.Text>
                                                             </Card.Body>
                                                         </Card>
                                                     </Col>

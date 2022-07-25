@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0b80115-895d-474a-a8f8-7230843621b7" name="Changes" comment="Refactored Code">
+    <list default="true" id="c0b80115-895d-474a-a8f8-7230843621b7" name="Changes" comment="Add Organization Bookmark Button">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/regUser/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/regUser/Search.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/company-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/company-controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/event-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/event-controller.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,7 +183,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658735715124</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Add Organization Bookmark Button">
+      <created>1658787966779</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1658787966779</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,6 +222,7 @@
     <MESSAGE value="Add Ability to see Bookmarks" />
     <MESSAGE value="Merged with Main" />
     <MESSAGE value="Refactored Code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored Code" />
+    <MESSAGE value="Add Organization Bookmark Button" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Organization Bookmark Button" />
   </component>
 </project>
