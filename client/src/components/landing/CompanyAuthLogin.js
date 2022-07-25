@@ -6,13 +6,13 @@ import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { Button } from "@material-tailwind/react";
 
 export default function RegUserLogin() {
-    const [Users, setUsers] = useState([]);
+    const [Users, setUser] = useState([]);
     const [selected, setSelected] = useState({});
 
     useEffect(() => {
         Axios.get('http://localhost:3001/companyauthusers')
             .then((response) => { 
-                setUsers(response.data);
+                setUser(response.data);
                 setSelected(response.data[0]);
             });
     }, []);

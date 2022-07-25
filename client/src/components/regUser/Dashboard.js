@@ -5,10 +5,12 @@ import {
     CardHeader,
     CardBody,
     Typography,
-  } from "@material-tailwind/react";
+} from "@material-tailwind/react";
+import { useLocation } from "react-router-dom";
    
 export default function Dashboard() {
     const navigate = useNavigate();
+    const location = useLocation();
 
     const handlePersonalInfoClick = () => {
         navigate('/reguserinfo');
@@ -26,7 +28,7 @@ export default function Dashboard() {
         <>
         <div class="flex justify-center pt-32 pb-8">
             <p class="welcome-message text-3xl font-sans">
-                Welcome, [name]!
+                Welcome, {location.state.name}!
             </p>
         </div>
 

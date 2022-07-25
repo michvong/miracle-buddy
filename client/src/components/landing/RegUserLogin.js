@@ -1,13 +1,16 @@
+import React from 'react';
 import {useEffect, useState} from "react";
 import Axios from "axios";
 import { Fragment } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { Button } from "@material-tailwind/react";
+import { useNavigate } from 'react-router-dom';
 
 export default function RegUserLogin() {
     const [Users, setUsers] = useState([]);
     const [selected, setSelected] = useState({});
+    const navigate = useNavigate();
 
     useEffect(() => {
         Axios.get('http://localhost:3001/regusers')
@@ -21,14 +24,20 @@ export default function RegUserLogin() {
         setSelected({ name: userName });
     }
 
+    const handleLoginClick = (userName, userId) => {
+        navigate('/dashboard', { state: {name: selected.name, user_id: selected.user_id } });
+    }
+
     return (
         <>
         <div className="flex justify-center mt-20 pt-20">
         </div>
 
-        <div className="flex justify-center pt-20 pb-6">
-            <h2 className="text-center text-3xl font-extrabold text-gray-900">Sign in to your <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-300">account</span></h2>
+        <div className="flex justify-center pt-20">
+            <h2 className="text-center text-3xl font-extrabold text-gray-900">Customer Login</h2>
         </div>
+
+        <h2 className="text-center text-2xl font-extrabold text-gray-900">Sign in to your <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-300">account</span></h2>
 
         <div className="flex justify-center">
             
@@ -51,9 +60,9 @@ export default function RegUserLogin() {
                             leaveTo="opacity-0">
 
                             <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                {Users.map((val, personIdx) => (
+                                {Users.map((val) => (
                                     <Listbox.Option
-                                        key={personIdx}
+                                        key={val.user_id}
                                         className={({ active }) => `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'bg-amber-100 text-amber-900' : 'text-gray-900'}`}
                                         value={val.name}>
 
@@ -80,7 +89,7 @@ export default function RegUserLogin() {
                 
                 <div className="text-sm text-center m-3">If you are logging in as a company user, please click <a href="/companyauthlogin">here!</a></div>
                 <div className="flex justify-center">
-                    <Button className="btn-blue m-0" size="sm" variant="gradient">Login</Button>
+                    <Button className="btn-blue m-0" size="sm" variant="gradient" onClick={handleLoginClick}>Login</Button>
                 </div>
             </div>
         </div>
