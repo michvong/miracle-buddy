@@ -1,9 +1,7 @@
 import React from 'react';
 import {useEffect, useState} from "react";
 import Axios from "axios";
-import { Fragment } from 'react'
-import { Listbox, Transition } from '@headlessui/react'
-import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
+import { Input } from "@material-tailwind/react";
 import { Button } from "@material-tailwind/react";
 import { useNavigate } from 'react-router-dom';
 
@@ -48,7 +46,7 @@ export default function RegUserLogin() {
             <div className="flex justify-center pt-40">
             </div>
 
-            <div className="flex justify-center pt-8 pb-4">
+            <div className="flex justify-center pb-2">
                 <h2 className="text-center text-3xl font-extrabold text-gray-900">Customer Registration</h2>
             </div>
 
@@ -59,28 +57,29 @@ export default function RegUserLogin() {
                     <form>
                         <div className="flex flex-wrap -mx-3 mb-4">
                             <div className="w-full px-3">
-                                <label className="block text-gray-800 text-sm font-medium mb-1" htmlFor="name">Name</label>
-                                <input id="name" type="text" className="form-input w-full text-gray-800" placeholder="Enter your name" required />
+                                <label className="text-sm font-medium mb-1" htmlFor="name">Name</label>
+                                <Input id="name" type="text" className="form-input w-full text-gray-800" placeholder="Enter your name" required />
                             </div>
                         </div>
 
                         <div className="flex flex-wrap -mx-3 mb-4">
                             <div className="w-full px-3">
-                                <label className="block text-gray-800 text-sm font-medium mb-1" htmlFor="email">Email</label>
-                                <input id="email" type="email" className="form-input w-full text-gray-800" placeholder="Enter your email address" required />
+                                <label className="text-sm font-medium mb-1" htmlFor="email">Email</label>
+                                <Input id="email" type="email" className="form-input w-full text-gray-800" placeholder="Enter your email address" required />
                             </div>
                         </div>
 
                         <div className="flex flex-wrap -mx-3 mb-4">
                             <div className="w-full px-3">
-                                <label className="block text-gray-800 text-sm font-medium mb-1" htmlFor="language">Language</label>
-                                <input id="language" type="language" className="form-input w-full text-gray-800" placeholder="Enter your preferred language" required />
+                                <label className="text-sm font-medium mb-1" htmlFor="language">Language</label>
+                                <Input id="language" type="language" className="form-input w-full text-gray-800" placeholder="Enter your preferred language" required />
                             </div>
                         </div>
 
                         <div className="flex flex-wrap -mx-3 mt-6">
-                            <div className="w-full px-3 pb-4">
-                                <button className="btn text-white bg-blue-600 hover:bg-blue-700 w-full">Sign up</button>
+                            <div className="flex justify-center w-full px-3">
+                                <Button className="btn-blue mr-2 w-full" size="md" variant="gradient">Sign up</Button>
+                                {/* <button className="btn text-black hover:bg-blue-700 w-full">Sign up</button> */}
                             </div>
                         </div>
                     </form>
