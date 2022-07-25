@@ -11,6 +11,9 @@ const warehouseRouter = require("./routes/warehouse-route");
 const eventRouter = require("./routes/event-route")
 const companyRouter = require("./routes/company-route");
 const bookmarkRouter = require("./routes/bookmark-route");
+const serviceRouter = require("./routes/service-route");
+const regUserRouter = require("./routes/regUser-route");
+const companyUserRouter = require("./routes/companyUser-route");
 
 // app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(bodyParser.json());
@@ -20,6 +23,8 @@ app.use(cors());
 
 app.use(locationRouter);
 app.use(serviceRouter);
+app.use(regUserRouter);
+app.use(companyUserRouter);
 app.use(warehouseRouter);
 app.use(eventRouter);
 app.use(companyRouter);
