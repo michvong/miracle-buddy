@@ -117,7 +117,7 @@ export default function Dashboard() {
                             </Typography>
                         </button>
                         <Typography>
-                            View and edit the company's location(s) information
+                            View and edit the company's location(s) information.
                         </Typography>
                     </CardBody>
                 </Card>
@@ -141,7 +141,7 @@ export default function Dashboard() {
                             </Typography>
                         </button>
                         <Typography>
-                            View and edit the company's warehouse(s) information
+                            View and edit the company's warehouse(s) information.
                         </Typography>
                     </CardBody>
                 </Card>
@@ -167,7 +167,7 @@ export default function Dashboard() {
                             </Typography>
                         </button>
                         <Typography>
-                            View and edit the company's event(s) information
+                            View and edit the company's event(s) information.
                         </Typography>
                     </CardBody>
                 </Card>
