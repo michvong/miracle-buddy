@@ -11,8 +11,9 @@ import { useLocation } from "react-router-dom";
 export default function Dashboard() {
     const navigate = useNavigate();
     const location = useLocation();
-
+    
     const handlePersonalInfoClick = () => {
+        console.log(location.state.name);
         navigate('/reguserinfo');
     }
 

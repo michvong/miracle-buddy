@@ -1,34 +1,36 @@
 import React from 'react';
 import {useEffect, useState} from "react";
 import Axios from "axios";
-import { Input } from "@material-tailwind/react";
-import { Button } from "@material-tailwind/react";
 import { useNavigate } from 'react-router-dom';
 
 export default function RegUserLogin() {
-    const [Users, setUsers] = useState([]);
-    const [selected, setSelected] = useState({});
+    const [Name, setName] = useState([]);
+    const [Email, setEmail] = useState({});
+    const [Language, setLanguage] = useState({});
     const navigate = useNavigate();
 
-    useEffect(() => {
-        Axios.get('http://localhost:3001/regusers')
-            .then((response) => { 
-                setUsers(response.data);
-                setSelected(response.data[0]);
-            });
-    }, []);
-
-    const handleUserSelect = (userName) => {
-        setSelected({ name: userName });
+    const handleSetNewUser = (Name, Email, Language) => {
+        Axios.put(`http://localhost:3001/user/add-user/`)
+            .then((response) => {
+                if (response.status === 200) {
+                    // if id exists, just keep incrementing by 1?
+                    setName([{ "name": Name }]);
+                    setEmail([{ "email": Email }]);
+                    setLanguage([{ "language": Language }]);
+                }
+        });
     }
+    // useEffect(() => {
+    //     Axios.get('http://localhost:3001/regusers')
+    //         .then((response) => { 
+    //             setUsers(response.data);
+    //             setSelected(response.data[0]);
+    //         });
+    // }, []);
 
-    const handleLoginClick = () => {
-        navigate('/dashboard', { state: {name: selected.name, user_id: selected.user_id } });
-    }
-
-    const handleRegisterClick = () => {
-        navigate('/reguserregister');
-    }
+    // const handleUserSelect = (userName) => {
+    //     setSelected({ name: userName });
+    // }
 
     const handleBackClick = () => {
         navigate('/reguserlogin');
@@ -77,7 +79,7 @@ export default function RegUserLogin() {
                         </div>
 
                         <div className="flex flex-wrap -mx-3 mt-6">
-                            <div className="flex justify-center w-full px-3">
+                            <div className="flex justify-center w-full px-3 pb-2">
                                 <button className="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-full px-5 py-2.5 text-center dark:bg-blue-100 dark:hover:bg-blue-300 dark:focus:ring-blue-500">Sign up</button>
                             </div>
                         </div>
