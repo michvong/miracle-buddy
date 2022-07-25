@@ -120,7 +120,6 @@ export default function Search() {
             setCompanyInfo(response.data);
         });
 
-        updateBookmarkButton();
     };
 
     const availability = (sum) => {
@@ -138,13 +137,17 @@ export default function Search() {
     };
 
 
-    const updateBookmarkButton = async (userid, serviceid) => {
-
+    const updateBookmarkButton =  (relation) => {
+        if (parseInt(relation)>0){
+            return "Delete"
+        }
+        return "Bookmark"
     };
 
     const updateBookmark = () => {
 
     };
+
     return (
         <Container fluid="xxl" >
             <Stack gap={3}>
@@ -243,7 +246,7 @@ export default function Search() {
                                                                 <td>{val.city}</td>
                                                                 <td>{val.hours_of_operation}</td>
                                                                 <td>{val.service_name}</td>
-                                                                <td><Button variant="secondary" size="sm"> {val.relation}</Button>
+                                                                <td><Button variant="secondary" size="sm"> {updateBookmarkButton(val.relation)}</Button>
                                                                 </td>
                                                             </tr>
                                                         );
