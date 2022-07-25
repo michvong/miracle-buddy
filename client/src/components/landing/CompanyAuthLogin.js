@@ -4,10 +4,12 @@ import { Fragment } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { Button } from "@material-tailwind/react";
+import { useNavigate } from 'react-router-dom';
 
 export default function RegUserLogin() {
     const [Users, setUser] = useState([]);
     const [selected, setSelected] = useState({});
+    const navigate = useNavigate();
 
     useEffect(() => {
         Axios.get('http://localhost:3001/companyauthusers')
@@ -19,6 +21,10 @@ export default function RegUserLogin() {
 
     const handleUserSelect = (userName) => {
         setSelected({ name: userName });
+    }
+
+    const handleLoginClick = (userName, userId) => {
+        navigate('/compdashboard', { state: {name: selected.name, user_id: selected.user_id } });
     }
 
     return (
@@ -82,7 +88,7 @@ export default function RegUserLogin() {
                 
                 <div className="text-sm text-center m-3">If you are logging in as a regular user, please click <a href="/reguserlogin">here!</a></div>
                 <div className="flex justify-center">
-                    <Button className="btn-blue m-0" size="sm" variant="gradient">Login</Button>
+                    <Button className="btn-blue m-0" size="sm" variant="gradient" onClick={handleLoginClick}>Login</Button>
                 </div>
             </div>
         </div>
