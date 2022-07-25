@@ -23,7 +23,7 @@ export default function RegUserLogin() {
         setSelected({ name: userName });
     }
 
-    const handleLoginClick = (userName, userId) => {
+    const handleLoginClick = () => {
         navigate('/compdashboard', { state: {name: selected.name, user_id: selected.user_id } });
     }
     

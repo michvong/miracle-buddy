@@ -24,7 +24,7 @@ export default function RegUserLogin() {
         setSelected({ name: userName });
     }
 
-    const handleLoginClick = (userName, userId) => {
+    const handleLoginClick = () => {
         navigate('/dashboard', { state: {name: selected.name, user_id: selected.user_id } });
     }
 
