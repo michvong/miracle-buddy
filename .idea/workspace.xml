@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0b80115-895d-474a-a8f8-7230843621b7" name="Changes" comment="Add Ability to see Bookmarks">
-      <change afterPath="$PROJECT_DIR$/server/controllers/bookmark-controller.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/routes/bookmark-route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/14411a9c-968d-48aa-ae45-056db94d9b71.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/14411a9c-968d-48aa-ae45-056db94d9b71.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/regUser/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/regUser/Search.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/company-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/company-controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/event-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/event-controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/location-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/location-controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/service-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/service-controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/location-route.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/location-route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/CREATE_script.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/CREATE_script.sql" afterDir="false" />
-    </list>
+    <list default="true" id="c0b80115-895d-474a-a8f8-7230843621b7" name="Changes" comment="Add Ability to see Bookmarks" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,7 +47,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected="Node.js.index.js">
+  <component name="RunManager" selected="npm.start">
     <configuration name="index.js" type="NodeJSConfigurationType" nameIsGenerated="true" path-to-js-file="server/index.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
@@ -170,7 +155,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658544930563</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Add Ability to see Bookmarks">
+      <created>1658735241412</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1658735241412</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
