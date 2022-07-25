@@ -6,7 +6,7 @@ import {
     CardBody,
     Typography,
   } from "@material-tailwind/react";
-   
+
 export default function Dashboard() {
     const navigate = useNavigate();
 
@@ -95,7 +95,7 @@ export default function Dashboard() {
             </div>
         </div>
         
-        <div class="flex flex-row justify-center">
+        <div class="flex flex-row justify-center pb-32">
             <div class="px-4">
                 <Card className="mt-6 w-96">
                     <button onClick={handleLocationsClick}>
