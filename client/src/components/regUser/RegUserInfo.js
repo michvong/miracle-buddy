@@ -13,8 +13,8 @@ const RegUserInfo = (props) => {
 
     let [currentUser, setUser] = useState([]);
     let [nameTextField, setName] = useState("");
-    let [currentLang, setLang] = useState("");
-    let [currentEmail, setEmail] = useState("");
+    let [langTextField, setLang] = useState("");
+    let [emailTextField, setEmail] = useState("");
 
     useEffect(() => {
         Axios.get(`http://localhost:3001/user/${props.user_id}`)
@@ -63,13 +63,31 @@ const RegUserInfo = (props) => {
                         <Accordion.Item eventKey='1'>
                             <Accordion.Header>Current Language: {val.language}</Accordion.Header>
                             <Accordion.Body>
-                                tmp empty body
+                                <form onSubmit={(e) => handleSubmitLang(e,langTextField)}>
+                                    <label>
+                                        Enter new Language:
+                                        <input type="text"
+                                        value={langTextField}
+                                        onChange={(e) => setLang(e.target.value)}
+                                        />
+                                    </label>
+                                    <Button color= "blue" type="submit">Submit</Button>
+                                </form>
                             </Accordion.Body>
                         </Accordion.Item>
                         <Accordion.Item eventKey='2'>
                             <Accordion.Header>Current email: {val.email}</Accordion.Header>
                             <Accordion.Body>
-                                tmp empty body
+                                <form onSubmit={(e) => handleSubmitEmail(e, emailTextField)}>
+                                    <label>
+                                        Enter new Email:
+                                        <input type="text"
+                                        value={emailTextField}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        />
+                                    </label>
+                                    <Button color= "blue" type="submit">Submit</Button>
+                                </form>
                             </Accordion.Body>
                         </Accordion.Item>
                     </div>
