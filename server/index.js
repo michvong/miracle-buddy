@@ -6,7 +6,11 @@ const errorHandler = require("./utils/errorHandler");
 // const bodyParser = require('body-parser');
 
 const locationRouter = require("./routes/location-route");
-const serviceRouter = require("./routes/service-route")
+const serviceRouter = require("./routes/service-route");
+const warehouseRouter = require("./routes/warehouse-route");
+const eventRouter = require("./routes/event-route")
+const companyRouter = require("./routes/company-route");
+const bookmarkRouter = require("./routes/bookmark-route");
 
 // app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(bodyParser.json());
@@ -16,6 +20,10 @@ app.use(cors());
 
 app.use(locationRouter);
 app.use(serviceRouter);
+app.use(warehouseRouter);
+app.use(eventRouter);
+app.use(companyRouter);
+app.use(bookmarkRouter);
 
 app.all("*", (req, res, next) => {
   next(new AppError(`The URL ${req.originalUrl} does not exists`, 404));
