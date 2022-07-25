@@ -7,6 +7,8 @@ import {
 } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import LoginLanding from './components/landing/LoginLanding';
+
 import Dashboard from './components/regUser/Dashboard'
 import RegUserInfo from './components/regUser/RegUserInfo'
 import Bookmarks from './components/regUser/Bookmarks'
@@ -18,6 +20,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* login pages */}
+        <Route path="/loginlanding" element={<LoginLanding />}>
+        </Route>
+
         {/* regUser pages */}
         <Route path="/dashboard" element={<Dashboard />}>
         </Route>
