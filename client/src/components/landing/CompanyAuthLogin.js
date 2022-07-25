@@ -32,7 +32,7 @@ export default function RegUserLogin() {
         <div className="flex justify-center mt-20 pt-20">
         </div>
 
-        <div className="flex justify-center pt-20">
+        <div className="flex justify-center pt-20 pb-4">
             <h2 className="text-center text-3xl font-extrabold text-gray-900">Company Login</h2>
         </div>
 
