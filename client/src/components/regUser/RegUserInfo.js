@@ -56,7 +56,17 @@ const RegUserInfo = (props) => {
 
     const handleSubmitEmail = ((event, emailTextField) => {
         event.preventDefault();
-    })
+        if(emailTextField ==="") {
+            return; //no action
+        }
+        Axios.put(`http://localhost:3001/user/edit-email/${props.user_id}/${emailTextField}`)
+            .then((response) => {
+                if(response.status === 200) {
+                    setUser([{...currentUser[0], "email":emailTextField}]);
+                    setEmail("");
+                }
+            });
+    });
 
     return (
         <Accordion>

@@ -38,3 +38,15 @@ exports.changeUserLang = (req, res) => {
             res.send(results);
         });
 };
+
+exports.changeUserEmail = (req, res) => {
+    const user_id = req.params.user_id;
+    const new_email = req.params.new_email;
+
+    connection.query("UPDATE RegularUser SET email=? WHERE user_id=?",
+        [new_email, user_id],
+        (err, results) => {
+            console.log(err);
+            res.send(results);
+        });
+};
