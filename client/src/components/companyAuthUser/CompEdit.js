@@ -36,6 +36,9 @@ export default function CompEdit() {
 
     let[address, setAddress] = useState("");
     let[postal, setPostal] = useState("");
+    let [serviceName, setServiceName] = useState("");
+    let [hop, setHOP] = useState("");
+    let [serviceType, setServiceType] = useState("");
 
     const [show, setShow] = useState(false);
 
@@ -45,7 +48,7 @@ export default function CompEdit() {
     const navigate = useNavigate();
 
     const handleDashboardClick = () => {
-        navigate('/dashboard');
+        navigate('/compdashboard');
     }
 
     const info = useLocation();
@@ -152,8 +155,19 @@ export default function CompEdit() {
         return "Bookmark"
     };
 
-    const updateBookmark = () => {
-
+    const updateServices = (name,hop, address, postalCode) => {
+        Axios.post('http://localhost:3001/update-services', {
+            name: name, hop:hop, address:address, postal_code: postalCode
+        }).then((response)=>{
+            CompanyInfo = {};
+            setCompanyInfo(response.data);
+        });
+        Axios.post('http://localhost:3001/locations',{
+            user_id: fetchInput()
+        })
+            .then((response) => {
+                setCategory(response.data);
+            });
     };
 
     return (
@@ -220,14 +234,14 @@ export default function CompEdit() {
                                                     </thead>
                                                     <tbody>
                                                     {Location.map((val, key) => {
-                                                        return (
+                                                       return (
                                                             <tr key={key}>
                                                                 <td>{val.location_name}</td>
                                                                 <td>{val.address}</td>
                                                                 <td>{val.city}</td>
                                                                 <td>{val.hours_of_operation}</td>
                                                                 <td>{val.service_name}</td>
-                                                                <td><Button variant="secondary" size="sm" onClick={()=>{handleShow(); setAddress(val.address); }}>Edit</Button>
+                                                                <td><Button variant="secondary" size="sm" onClick={()=>{handleShow(); setAddress(val.address); setHOP(val.hours_of_operation); setServiceName(val.location_name); setServiceType(val.service_name); setPostal(val.postal_code)}}>Edit</Button>
                                                                 </td>
                                                             </tr>
                                                         );
@@ -251,17 +265,22 @@ export default function CompEdit() {
                                                                         Postal Code
                                                                     </Form.Label>
                                                                     <Col sm="10">
-                                                                        <Form.Control plaintext readOnly defaultValue="email@example.com" />
+                                                                        <Form.Control plaintext readOnly defaultValue={postal} />
                                                                     </Col>
                                                                 </Form.Group>
                                                                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                                                     <Form.Label>Name</Form.Label>
-                                                                    <Form.Control type="email" placeholder="name@example.com" />
+                                                                    <Form.Control type="email" placeholder="name@example.com" defaultValue={serviceName} onChange={(e)=> { setServiceName(e.target.value); }}/>
                                                                 </Form.Group>
                                                                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                                                                     <Form.Label>Hours of Operation</Form.Label>
-                                                                    <Form.Control as="textarea" rows={3} />
+                                                                    <Form.Control as="textarea" rows={3} defaultValue={hop} onChange={(e)=> { setHOP(e.target.value); }}/>
                                                                 </Form.Group>
+                                                                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                                    <Form.Label>Service</Form.Label>
+                                                                    <Form.Control as="textarea" rows={3} defaultValue={serviceType} onChange={(e)=> { setServiceType(e.target.value); }}/>
+                                                                </Form.Group>
+
                                                             </Form>
                                                         </Modal.Body>
                                                         <Modal.Footer>
@@ -271,7 +290,7 @@ export default function CompEdit() {
                                                             <Button variant="danger" onClick={handleClose}>
                                                                 Delete
                                                             </Button>
-                                                            <Button variant="primary" onClick={handleClose}>
+                                                            <Button variant="primary" onClick={(e)=> {  updateServices(serviceName, hop, address, postal); handleClose(); }}>
                                                                 Save Changes
                                                             </Button>
                                                         </Modal.Footer>
@@ -284,11 +303,177 @@ export default function CompEdit() {
                                     </Tab.Pane>
 
                                     <Tab.Pane eventKey="second">
+                                        <Stack gap={3}>
+                                            <div>
+                                                <h2>Warehouse</h2>
+                                            </div>
+                                            <div>
+                                                <Table striped bordered hover>
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Name</th>
+                                                        <th>Address</th>
+                                                        <th>City</th>
+                                                        <th>Hours of Operation</th>
+                                                        <th>Service</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {Location.map((val, key) => {
+                                                        return (
+                                                            <tr key={key}>
+                                                                <td>{val.location_name}</td>
+                                                                <td>{val.address}</td>
+                                                                <td>{val.city}</td>
+                                                                <td>{val.hours_of_operation}</td>
+                                                                <td>{val.service_name}</td>
+                                                                <td><Button variant="secondary" size="sm" onClick={()=>{handleShow(); setAddress(val.address); setHOP(val.hours_of_operation); setServiceName(val.location_name); setServiceType(val.service_name); setPostal(val.postal_code)}}>Edit</Button>
+                                                                </td>
+                                                            </tr>
+                                                        );
+                                                    })}
+                                                    <Modal show={show} onHide={handleClose}>
+                                                        <Modal.Header closeButton>
+                                                            <Modal.Title>Edit</Modal.Title>
+                                                        </Modal.Header>
+                                                        <Modal.Body>
+                                                            <Form>
+                                                                <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                                                                    <Form.Label column sm="2">
+                                                                        Address
+                                                                    </Form.Label>
+                                                                    <Col sm="10">
+                                                                        <Form.Control plaintext readOnly defaultValue={address} />
+                                                                    </Col>
+                                                                </Form.Group>
+                                                                <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                                                                    <Form.Label column sm="2">
+                                                                        Postal Code
+                                                                    </Form.Label>
+                                                                    <Col sm="10">
+                                                                        <Form.Control plaintext readOnly defaultValue={postal} />
+                                                                    </Col>
+                                                                </Form.Group>
+                                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                                                    <Form.Label>Name</Form.Label>
+                                                                    <Form.Control type="email" placeholder="name@example.com" defaultValue={serviceName} onChange={(e)=> { setServiceName(e.target.value); }}/>
+                                                                </Form.Group>
+                                                                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                                    <Form.Label>Hours of Operation</Form.Label>
+                                                                    <Form.Control as="textarea" rows={3} defaultValue={hop} onChange={(e)=> { setHOP(e.target.value); }}/>
+                                                                </Form.Group>
+                                                                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                                    <Form.Label>Service</Form.Label>
+                                                                    <Form.Control as="textarea" rows={3} defaultValue={serviceType} onChange={(e)=> { setServiceType(e.target.value); }}/>
+                                                                </Form.Group>
 
+                                                            </Form>
+                                                        </Modal.Body>
+                                                        <Modal.Footer>
+                                                            <Button variant="secondary" onClick={handleClose}>
+                                                                Close
+                                                            </Button>
+                                                            <Button variant="danger" onClick={handleClose}>
+                                                                Delete
+                                                            </Button>
+                                                            <Button variant="primary" onClick={(e)=> {  updateServices(serviceName, hop, address, postal); handleClose(); }}>
+                                                                Save Changes
+                                                            </Button>
+                                                        </Modal.Footer>
+                                                    </Modal>
+
+                                                    </tbody>
+                                                </Table>
+                                            </div>
+                                        </Stack>
                                     </Tab.Pane>
 
                                     <Tab.Pane eventKey = "third">
+                                        <Stack gap={3}>
+                                            <div>
+                                                <h2>Events</h2>
+                                            </div>
+                                            <div>
+                                                <Table striped bordered hover>
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Name</th>
+                                                        <th>Address</th>
+                                                        <th>City</th>
+                                                        <th>Hours of Operation</th>
+                                                        <th>Service</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {Location.map((val, key) => {
+                                                        return (
+                                                            <tr key={key}>
+                                                                <td>{val.location_name}</td>
+                                                                <td>{val.address}</td>
+                                                                <td>{val.city}</td>
+                                                                <td>{val.hours_of_operation}</td>
+                                                                <td>{val.service_name}</td>
+                                                                <td><Button variant="secondary" size="sm" onClick={()=>{handleShow(); setAddress(val.address); setHOP(val.hours_of_operation); setServiceName(val.location_name); setServiceType(val.service_name); setPostal(val.postal_code)}}>Edit</Button>
+                                                                </td>
+                                                            </tr>
+                                                        );
+                                                    })}
+                                                    <Modal show={show} onHide={handleClose}>
+                                                        <Modal.Header closeButton>
+                                                            <Modal.Title>Edit</Modal.Title>
+                                                        </Modal.Header>
+                                                        <Modal.Body>
+                                                            <Form>
+                                                                <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                                                                    <Form.Label column sm="2">
+                                                                        Address
+                                                                    </Form.Label>
+                                                                    <Col sm="10">
+                                                                        <Form.Control plaintext readOnly defaultValue={address} />
+                                                                    </Col>
+                                                                </Form.Group>
+                                                                <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                                                                    <Form.Label column sm="2">
+                                                                        Postal Code
+                                                                    </Form.Label>
+                                                                    <Col sm="10">
+                                                                        <Form.Control plaintext readOnly defaultValue={postal} />
+                                                                    </Col>
+                                                                </Form.Group>
+                                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                                                    <Form.Label>Name</Form.Label>
+                                                                    <Form.Control type="email" placeholder="name@example.com" defaultValue={serviceName} onChange={(e)=> { setServiceName(e.target.value); }}/>
+                                                                </Form.Group>
+                                                                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                                    <Form.Label>Hours of Operation</Form.Label>
+                                                                    <Form.Control as="textarea" rows={3} defaultValue={hop} onChange={(e)=> { setHOP(e.target.value); }}/>
+                                                                </Form.Group>
+                                                                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                                                    <Form.Label>Service</Form.Label>
+                                                                    <Form.Control as="textarea" rows={3} defaultValue={serviceType} onChange={(e)=> { setServiceType(e.target.value); }}/>
+                                                                </Form.Group>
 
+                                                            </Form>
+                                                        </Modal.Body>
+                                                        <Modal.Footer>
+                                                            <Button variant="secondary" onClick={handleClose}>
+                                                                Close
+                                                            </Button>
+                                                            <Button variant="danger" onClick={handleClose}>
+                                                                Delete
+                                                            </Button>
+                                                            <Button variant="primary" onClick={(e)=> {  updateServices(serviceName, hop, address, postal); handleClose(); }}>
+                                                                Save Changes
+                                                            </Button>
+                                                        </Modal.Footer>
+                                                    </Modal>
+
+                                                    </tbody>
+                                                </Table>
+                                            </div>
+                                        </Stack>
                                     </Tab.Pane>
 
 

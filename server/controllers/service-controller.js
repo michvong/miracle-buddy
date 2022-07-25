@@ -22,6 +22,20 @@ exports.showBySortedServices = (req, res) => {
 
 };
 
+exports.updateServices = (req, res) => {
+    const name = req.body.name;
+    const hop = req.body.hop;
+    const address = req.body.address;
+    const postalCode = req.body.postal_code;
+
+    connection.query("UPDATE Location SET name = (?), hours_of_operation = (?) WHERE address = (?) AND postal_code = (?)",
+        [name, hop, address, postalCode],
+        (err, results) => {
+            res.send(results);
+        });
+
+};
+
 // app.post('/sort-services', (req, res)=> {
 //   const service = req.body.service;
 

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0b80115-895d-474a-a8f8-7230843621b7" name="Changes" comment="Update Files">
-      <change afterPath="$PROJECT_DIR$/client/src/components/companyAuthUser/CompEdit.js" afterDir="false" />
+    <list default="true" id="c0b80115-895d-474a-a8f8-7230843621b7" name="Changes" comment="Create Edit Button">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/companyAuthUser/CompEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/companyAuthUser/CompEdit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/location-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/location-controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/service-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/service-controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/service-route.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/service-route.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +74,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1658736426724</updated>
-      <workItem from="1658736428622" duration="2564000" />
+      <workItem from="1658736428622" duration="8677000" />
     </task>
     <task id="LOCAL-00001" summary="Update Files">
       <created>1658736480640</created>
@@ -81,7 +83,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658736480640</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add Modal and Form to Edit Information">
+      <created>1658739333629</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1658739333629</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -100,18 +109,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Update Files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update Files" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/client/src/components/companyAuthUser/CompEdit.js</url>
-          <line>222</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Add Modal and Form to Edit Information" />
+    <MESSAGE value="Create Edit Button" />
+    <option name="LAST_COMMIT_MESSAGE" value="Create Edit Button" />
   </component>
 </project>
