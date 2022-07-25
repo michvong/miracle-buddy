@@ -99,8 +99,9 @@ export default function RegUserLogin() {
                     
                     
                     <div className="text-sm text-center m-3">If you are logging in as a company user, please click <a href="/companyauthlogin">here!</a></div>
-                    <div className="flex justify-center pb-40">
-                        <Button className="btn-blue m-0" size="sm" variant="gradient" onClick={handleLoginClick}>Login</Button>
+                    <div className="flex flex-row justify-center pb-40">
+                        <Button className="btn-blue mr-2" size="sm" variant="gradient" onClick={handleLoginClick}>Login</Button>
+                        <Button className="btn-blue ml-2" size="sm" variant="gradient" onClick={handleLoginClick}>Register</Button>
                     </div>
                 </div>
             </div>
