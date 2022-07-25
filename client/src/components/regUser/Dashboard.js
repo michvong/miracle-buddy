@@ -27,7 +27,7 @@ export default function Dashboard() {
     return (
         <>
         <div class="flex justify-center pt-32 pb-8">
-            <p class="welcome-message text-3xl font-sans">
+            <p class="welcome-message text-3xl font-extrabold font-sans">
                 Welcome, {location.state.name}!
             </p>
         </div>
