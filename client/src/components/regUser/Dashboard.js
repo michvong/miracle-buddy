@@ -28,7 +28,7 @@ export default function Dashboard() {
         <>
         <div class="flex justify-center pt-32 pb-8">
             <p class="welcome-message text-3xl font-extrabold font-sans">
-                Welcome, {location.state.name}!
+                Welcome, <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-300">{location.state.name}!</span>
             </p>
         </div>
 
