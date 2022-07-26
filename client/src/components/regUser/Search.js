@@ -31,7 +31,7 @@ export default function Search() {
     let [CompanyInfo, setCompanyInfo] = useState([]);
 
     const navigate = useNavigate();
-    const handleDashboardClick = () => { navigate('/dashboard');}
+    const handleDashboardClick = () => { navigate('/dashboard', {state: {user_id:fetchInput()}});}
 
     const info = useLocation();
 
