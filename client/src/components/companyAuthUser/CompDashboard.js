@@ -18,7 +18,7 @@ export default function CompDashboard() {
     }
     
     const handleCompanyInfoClick = () => {
-        // navigate('/reguserinfo');
+        navigate('/companyinfo');
     }
 
     const handleLocationsClick = () => {

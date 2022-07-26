@@ -18,6 +18,7 @@ import Search from './components/regUser/Search'
 
 import CompDashboard from './components/companyAuthUser/CompDashboard'
 import CompUserInfo from './components/companyAuthUser/CompUserInfo'
+import CompanyInfo from './components/companyAuthUser/CompanyInfo'
 
 function App() {
   return (
@@ -45,6 +46,8 @@ function App() {
         <Route path="/compdashboard" element={<CompDashboard />}>
         </Route>
         <Route path="/compuserinfo" element={<CompUserInfo user_id="2" />}>
+        </Route>
+        <Route path="/companyinfo" element={<CompanyInfo user_id="2" />}>
         </Route>
         
       </Routes>
