@@ -28,6 +28,10 @@ export default function RegUserLogin() {
         navigate('/dashboard', { state: {name: selected.name, user_id: selected.user_id } });
     }
 
+    const handleRegisterClick = () => {
+        navigate('/reguserregister');
+    }
+
     const handleBackClick = () => {
         navigate('/loginlanding');
     }
@@ -52,7 +56,7 @@ export default function RegUserLogin() {
 
             <div className="flex justify-center">
                 
-                <div className="top-16 w-80 pb-40">
+                <div className="top-16 w-80 pb-80">
                     <Listbox value={selected} onChange={handleUserSelect}>
                         <div className="relative mt-1">
                             <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
@@ -99,8 +103,9 @@ export default function RegUserLogin() {
                     
                     
                     <div className="text-sm text-center m-3">If you are logging in as a company user, please click <a href="/companyauthlogin">here!</a></div>
-                    <div className="flex justify-center pb-40">
-                        <Button className="btn-blue m-0" size="sm" variant="gradient" onClick={handleLoginClick}>Login</Button>
+                    <div className="flex flex-row justify-center pb-40">
+                        <Button className="btn-blue mr-2" size="sm" variant="gradient" onClick={handleLoginClick}>Login</Button>
+                        <Button className="btn-blue ml-2" size="sm" variant="gradient" onClick={handleRegisterClick}>Register</Button>
                     </div>
                 </div>
             </div>

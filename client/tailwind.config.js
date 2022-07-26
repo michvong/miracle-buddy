@@ -28,6 +28,10 @@ module.exports = {
         'cityscape': "url('images/cityscape.png')",
       },
 
+      padding: {
+        'p-80': '80%',
+      },
+
       fontSize: {
         '3xl': '3rem',
         // '4xl': '10rem',
