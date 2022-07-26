@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0b80115-895d-474a-a8f8-7230843621b7" name="Changes" comment="Refactoring">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/14411a9c-968d-48aa-ae45-056db94d9b71.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/14411a9c-968d-48aa-ae45-056db94d9b71.xml" afterDir="false" />
+    <list default="true" id="c0b80115-895d-474a-a8f8-7230843621b7" name="Changes" comment="Update INSERT_script.sql">
       <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/regUser/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/regUser/Search.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/INSERT_script.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/INSERT_script.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/bookmark-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/bookmark-controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/bookmark-route.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/bookmark-route.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +56,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected="Node.js.index.js">
+  <component name="RunManager">
     <configuration name="index.js" type="NodeJSConfigurationType" nameIsGenerated="true" path-to-js-file="server/index.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
@@ -68,10 +67,6 @@
       <envs />
       <method v="2" />
     </configuration>
-    <list>
-      <item itemvalue="Node.js.index.js" />
-      <item itemvalue="npm.start" />
-    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -207,7 +202,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658804337699</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Update INSERT_script.sql">
+      <created>1658807222853</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1658807222853</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -242,6 +244,7 @@
     <MESSAGE value="Add Organization Bookmark Button" />
     <MESSAGE value="Update to show Event Host" />
     <MESSAGE value="Refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactoring" />
+    <MESSAGE value="Update INSERT_script.sql" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update INSERT_script.sql" />
   </component>
 </project>

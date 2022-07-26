@@ -132,8 +132,31 @@ export default function Search() {
         return "Bookmark"
     };
 
-    const updateBookmark = () => {
-
+    const updateBookmark = (companyID, userID, type) => {
+        console.log("Running updateBookmark")
+        if (parseInt(type)>0){
+            Axios.post('http://localhost:3001/bookmark-delete', {
+                company_id: companyID, user_id: userID,
+            }).then((response)=>{
+                Axios.post('http://localhost:3001/org', {
+                    userID: fetchInput(), id: companyID,
+                }).then((response)=>{
+                    CompanyInfo = {};
+                    setCompanyInfo(response.data);
+                });
+            });
+        } else {
+            Axios.post('http://localhost:3001/bookmark-set', {
+                company_id: companyID, user_id: userID,
+            }).then((response)=>{
+                Axios.post('http://localhost:3001/org', {
+                    userID: fetchInput(), id: companyID,
+                }).then((response)=>{
+                    CompanyInfo = {};
+                    setCompanyInfo(response.data);
+                });
+            });
+        }
     };
 
     return (
@@ -314,7 +337,7 @@ export default function Search() {
                                                     <tr key={key}>
                                                         <h3>{val.name}{"\n"}</h3>
                                                         <text >Phone Number: {val.phone_number}</text>
-                                                        <Button size="sm" className={"keep-right"}>{updateBookmarkButton(val.bookmark)}</Button>
+                                                        <Button size="sm" className={"keep-right"} onClick={()=>{updateBookmark(val.company_id, fetchInput(), val.bookmark)}}>{updateBookmarkButton(val.bookmark)}</Button>
                                                         <text>{"\n"}Email: {val.email}{"          "}</text>
 
                                                     </tr>

@@ -1,23 +1,23 @@
 const AppError = require("../utils/appError");
 const connection = require("../services/db");
 
-exports.getBookmark = (req, res) => {
+exports.setBookmark = (req, res) => {
     const user_id = req.body.user_id;
-    const service_id = req.body.service_id;
-    connection.query("",
-        [user_id, service_id],
+    const company_id = req.body.company_id;
+    connection.query("INSERT INTO Bookmarks VALUES (?,?)",
+        [user_id, company_id],
         (err, results) => {
         if (err) throw err;
         res.send(results);
     });
 };
 
-exports.modifyBookmark = (req, res) => {
-    const id = req.body.id;
-    connection.query("SELECT * FROM Company WHERE company_id = (?)",
-        [id],
+exports.deleteBookmark = (req, res) => {
+    const user_id = req.body.user_id;
+    const company_id = req.body.company_id;
+    connection.query("DELETE FROM Bookmarks WHERE user_id = (?) AND company_id = (?)",
+        [user_id, company_id],
         (err, results) => {
-            console.log(results);
             if (err) throw err;
             res.send(results);
         });
