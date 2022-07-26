@@ -14,23 +14,23 @@ export default function Dashboard() {
 
     // TODO: Fill in the handleClicks
     const handlePersonalInfoClick = () => {
-        // navigate('/reguserinfo');
+        navigate('/FILL_THIS_IN', { state: { user_id: location.state.user_id } });
     }
     
     const handleCompanyInfoClick = () => {
-        // navigate('/reguserinfo');
+        navigate('/FILL_THIS_IN', { state: { company_id: location.state.company_id } });
     }
 
     const handleLocationsClick = () => {
-        // navigate('/bookmarks');
+        navigate('/FILL_THIS_IN', { state: { company_id: location.state.company_id } });
     }
 
     const handleWarehousesClick = () => {
-        // navigate('/search')
+        navigate('/FILL_THIS_IN', { state: { company_id: location.state.company_id } });
     }
 
     const handleEventsClick = () => {
-        // navigate('/search')
+        navigate('/FILL_THIS_IN', { state: { company_id: location.state.company_id } });
     }
 
     return (
