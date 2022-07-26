@@ -13,15 +13,15 @@ export default function Dashboard() {
     const location = useLocation();
     
     const handlePersonalInfoClick = () => {
-        navigate('/reguserinfo');
+        navigate('/reguserinfo', { state: {user_id: location.state.user_id } });
     }
 
     const handleBookmarksClick = () => {
-        navigate('/bookmarks');
+        navigate('/bookmarks', { state: {user_id: location.state.user_id } });
     }
 
     const handleSearchClick = () => {
-        navigate('/search')
+        navigate('/search', { state: {user_id: location.state.user_id } });
     }
 
     return (
