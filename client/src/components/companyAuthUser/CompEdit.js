@@ -17,6 +17,7 @@ import {useLocation, useNavigate} from "react-router-dom";
 import {Accordion, Card, Form, Modal} from "react-bootstrap";
 import {responsivePropType} from "react-bootstrap/createUtilityClasses";
 import {map} from "react-bootstrap/ElementChildren";
+import InputGroup from 'react-bootstrap/InputGroup';
 
 
 
@@ -54,10 +55,17 @@ export default function CompEdit() {
     const info = useLocation();
     const {infoState} = info
 
+    const [validated, setValidated] = useState(false);
+    const handleSubmit = (event) => {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        setValidated(true);
+    };
 
     useEffect(()=>{
-
-
 
         Axios.post('http://localhost:3001/locations',{
             user_id: fetchInput()
@@ -133,26 +141,12 @@ export default function CompEdit() {
 
     };
 
-    const availability = (sum) => {
-        if (sum>0) {
-            return <text>In Stock. {sum} available{"\n"}<Button variant="secondary" size="sm">Search</Button></text>}
-        return <text>Out of Stock. {sum} available{"\n"}<Button variant="secondary" size="sm" disabled>Search</Button></text>
-    };
-
     const fetchInput = () => {
         try{
             return info.state.user_id
         } catch (e) {
             return "Guest"
         }
-    };
-
-
-    const updateBookmarkButton =  (relation) => {
-        if (parseInt(relation)>0){
-            return "Delete"
-        }
-        return "Bookmark"
     };
 
     const updateServices = (name,hop, address, postalCode) => {
@@ -165,10 +159,14 @@ export default function CompEdit() {
         Axios.post('http://localhost:3001/locations',{
             user_id: fetchInput()
         })
-            .then((response) => {
-                setCategory(response.data);
-            });
+        .then((response) => {
+            setCategory(response.data);
+        });
     };
+
+    const returnBoolean = (bool) => {
+        return bool
+    }
 
     return (
         <Container fluid="xxl" >
@@ -251,49 +249,80 @@ export default function CompEdit() {
                                                             <Modal.Title>Edit</Modal.Title>
                                                         </Modal.Header>
                                                         <Modal.Body>
-                                                            <Form>
-                                                                <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-                                                                    <Form.Label column sm="2">
-                                                                        Address
-                                                                    </Form.Label>
-                                                                    <Col sm="10">
-                                                                        <Form.Control plaintext readOnly defaultValue={address} />
-                                                                    </Col>
+                                                            <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                                                                <Row className="mb-3">
+                                                                    <Form.Group as={Col} md="4" controlId="validationCustom01">
+                                                                        <Form.Label>First name</Form.Label>
+                                                                        <Form.Control
+                                                                            required
+                                                                            isInvalid={returnBoolean(true)}
+                                                                            placeholder="First name"
+                                                                            defaultValue="Mark"
+                                                                        />
+                                                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                                    </Form.Group>
+                                                                    <Form.Group as={Col} md="4" controlId="validationCustom02">
+                                                                        <Form.Label>Last name</Form.Label>
+                                                                        <Form.Control
+                                                                            required
+                                                                            type="text"
+                                                                            placeholder="Last name"
+                                                                            defaultValue="Otto"
+                                                                        />
+                                                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                                    </Form.Group>
+                                                                    <Form.Group as={Col} md="4" controlId="validationCustomUsername">
+                                                                        <Form.Label>Username</Form.Label>
+                                                                        <InputGroup hasValidation>
+                                                                            <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
+                                                                            <Form.Control
+                                                                                type="text"
+                                                                                placeholder="Username"
+                                                                                aria-describedby="inputGroupPrepend"
+                                                                                required
+                                                                            />
+                                                                            <Form.Control.Feedback type="invalid">
+                                                                                Please choose a username.
+                                                                            </Form.Control.Feedback>
+                                                                        </InputGroup>
+                                                                    </Form.Group>
+                                                                </Row>
+                                                                <Row className="mb-3">
+                                                                    <Form.Group as={Col} md="6" controlId="validationCustom03">
+                                                                        <Form.Label>City</Form.Label>
+                                                                        <Form.Control type="text" placeholder="City" required />
+                                                                        <Form.Control.Feedback type="invalid">
+                                                                            Please provide a valid city.
+                                                                        </Form.Control.Feedback>
+                                                                    </Form.Group>
+                                                                    <Form.Group as={Col} md="3" controlId="validationCustom04">
+                                                                        <Form.Label>State</Form.Label>
+                                                                        <Form.Control type="text" placeholder="State" required />
+                                                                        <Form.Control.Feedback type="invalid">
+                                                                            Please provide a valid state.
+                                                                        </Form.Control.Feedback>
+                                                                    </Form.Group>
+                                                                    <Form.Group as={Col} md="3" controlId="validationCustom05">
+                                                                        <Form.Label>Zip</Form.Label>
+                                                                        <Form.Control type="text" placeholder="Zip" required />
+                                                                        <Form.Control.Feedback type="invalid">
+                                                                            Please provide a valid zip.
+                                                                        </Form.Control.Feedback>
+                                                                    </Form.Group>
+                                                                </Row>
+                                                                <Form.Group className="mb-3">
+                                                                    <Form.Check
+                                                                        required
+                                                                        label="Agree to terms and conditions"
+                                                                        feedback="You must agree before submitting."
+                                                                        feedbackType="invalid"
+                                                                    />
                                                                 </Form.Group>
-                                                                <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-                                                                    <Form.Label column sm="2">
-                                                                        Postal Code
-                                                                    </Form.Label>
-                                                                    <Col sm="10">
-                                                                        <Form.Control plaintext readOnly defaultValue={postal} />
-                                                                    </Col>
-                                                                </Form.Group>
-                                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                                                    <Form.Label>Name</Form.Label>
-                                                                    <Form.Control type="email" placeholder="name@example.com" defaultValue={serviceName} onChange={(e)=> { setServiceName(e.target.value); }}/>
-                                                                </Form.Group>
-                                                                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                                                    <Form.Label>Hours of Operation</Form.Label>
-                                                                    <Form.Control as="textarea" rows={3} defaultValue={hop} onChange={(e)=> { setHOP(e.target.value); }}/>
-                                                                </Form.Group>
-                                                                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                                                    <Form.Label>Service</Form.Label>
-                                                                    <Form.Control as="textarea" rows={3} defaultValue={serviceType} onChange={(e)=> { setServiceType(e.target.value); }}/>
-                                                                </Form.Group>
+                                                               <Button type="submit">Save Changes</Button>
 
                                                             </Form>
                                                         </Modal.Body>
-                                                        <Modal.Footer>
-                                                            <Button variant="secondary" onClick={handleClose}>
-                                                                Close
-                                                            </Button>
-                                                            <Button variant="danger" onClick={handleClose}>
-                                                                Delete
-                                                            </Button>
-                                                            <Button variant="primary" onClick={(e)=> {  updateServices(serviceName, hop, address, postal); handleClose(); }}>
-                                                                Save Changes
-                                                            </Button>
-                                                        </Modal.Footer>
+
                                                     </Modal>
 
                                                     </tbody>
@@ -333,55 +362,7 @@ export default function CompEdit() {
                                                             </tr>
                                                         );
                                                     })}
-                                                    <Modal show={show} onHide={handleClose}>
-                                                        <Modal.Header closeButton>
-                                                            <Modal.Title>Edit</Modal.Title>
-                                                        </Modal.Header>
-                                                        <Modal.Body>
-                                                            <Form>
-                                                                <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-                                                                    <Form.Label column sm="2">
-                                                                        Address
-                                                                    </Form.Label>
-                                                                    <Col sm="10">
-                                                                        <Form.Control plaintext readOnly defaultValue={address} />
-                                                                    </Col>
-                                                                </Form.Group>
-                                                                <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-                                                                    <Form.Label column sm="2">
-                                                                        Postal Code
-                                                                    </Form.Label>
-                                                                    <Col sm="10">
-                                                                        <Form.Control plaintext readOnly defaultValue={postal} />
-                                                                    </Col>
-                                                                </Form.Group>
-                                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                                                    <Form.Label>Name</Form.Label>
-                                                                    <Form.Control type="email" placeholder="name@example.com" defaultValue={serviceName} onChange={(e)=> { setServiceName(e.target.value); }}/>
-                                                                </Form.Group>
-                                                                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                                                    <Form.Label>Hours of Operation</Form.Label>
-                                                                    <Form.Control as="textarea" rows={3} defaultValue={hop} onChange={(e)=> { setHOP(e.target.value); }}/>
-                                                                </Form.Group>
-                                                                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                                                    <Form.Label>Service</Form.Label>
-                                                                    <Form.Control as="textarea" rows={3} defaultValue={serviceType} onChange={(e)=> { setServiceType(e.target.value); }}/>
-                                                                </Form.Group>
 
-                                                            </Form>
-                                                        </Modal.Body>
-                                                        <Modal.Footer>
-                                                            <Button variant="secondary" onClick={handleClose}>
-                                                                Close
-                                                            </Button>
-                                                            <Button variant="danger" onClick={handleClose}>
-                                                                Delete
-                                                            </Button>
-                                                            <Button variant="primary" onClick={(e)=> {  updateServices(serviceName, hop, address, postal); handleClose(); }}>
-                                                                Save Changes
-                                                            </Button>
-                                                        </Modal.Footer>
-                                                    </Modal>
 
                                                     </tbody>
                                                 </Table>
@@ -420,55 +401,7 @@ export default function CompEdit() {
                                                             </tr>
                                                         );
                                                     })}
-                                                    <Modal show={show} onHide={handleClose}>
-                                                        <Modal.Header closeButton>
-                                                            <Modal.Title>Edit</Modal.Title>
-                                                        </Modal.Header>
-                                                        <Modal.Body>
-                                                            <Form>
-                                                                <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-                                                                    <Form.Label column sm="2">
-                                                                        Address
-                                                                    </Form.Label>
-                                                                    <Col sm="10">
-                                                                        <Form.Control plaintext readOnly defaultValue={address} />
-                                                                    </Col>
-                                                                </Form.Group>
-                                                                <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-                                                                    <Form.Label column sm="2">
-                                                                        Postal Code
-                                                                    </Form.Label>
-                                                                    <Col sm="10">
-                                                                        <Form.Control plaintext readOnly defaultValue={postal} />
-                                                                    </Col>
-                                                                </Form.Group>
-                                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                                                    <Form.Label>Name</Form.Label>
-                                                                    <Form.Control type="email" placeholder="name@example.com" defaultValue={serviceName} onChange={(e)=> { setServiceName(e.target.value); }}/>
-                                                                </Form.Group>
-                                                                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                                                    <Form.Label>Hours of Operation</Form.Label>
-                                                                    <Form.Control as="textarea" rows={3} defaultValue={hop} onChange={(e)=> { setHOP(e.target.value); }}/>
-                                                                </Form.Group>
-                                                                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                                                    <Form.Label>Service</Form.Label>
-                                                                    <Form.Control as="textarea" rows={3} defaultValue={serviceType} onChange={(e)=> { setServiceType(e.target.value); }}/>
-                                                                </Form.Group>
 
-                                                            </Form>
-                                                        </Modal.Body>
-                                                        <Modal.Footer>
-                                                            <Button variant="secondary" onClick={handleClose}>
-                                                                Close
-                                                            </Button>
-                                                            <Button variant="danger" onClick={handleClose}>
-                                                                Delete
-                                                            </Button>
-                                                            <Button variant="primary" onClick={(e)=> {  updateServices(serviceName, hop, address, postal); handleClose(); }}>
-                                                                Save Changes
-                                                            </Button>
-                                                        </Modal.Footer>
-                                                    </Modal>
 
                                                     </tbody>
                                                 </Table>
