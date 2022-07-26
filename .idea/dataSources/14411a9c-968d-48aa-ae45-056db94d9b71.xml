@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dataSource name="@localhost">
-  <database-model serializer="dbm" dbms="MARIADB" family-id="MARIADB" format-version="4.40">
+<dataSource name="miracle-buddy@localhost">
+  <database-model serializer="dbm" dbms="MARIADB" family-id="MARIADB" format-version="4.39">
     <root id="1">
       <DefaultCasing>mixed/mixed</DefaultCasing>
       <DefaultEngine>InnoDB</DefaultEngine>
@@ -1257,9 +1257,9 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <Position>2</Position>
     </column>
     <key id="356" parent="336" name="PRIMARY">
+      <ColNames>postal_code</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
-      <UnderlyingIndexColNames>postal_code</UnderlyingIndexColNames>
     </key>
     <column id="357" parent="337" name="user_id">
       <DataType>int(10)|0s</DataType>
@@ -1286,10 +1286,10 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <Type>btree</Type>
     </index>
     <key id="362" parent="337" name="PRIMARY">
+      <ColNames>user_id
+company_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
-      <UnderlyingIndexColNames>user_id
-company_id</UnderlyingIndexColNames>
     </key>
     <column id="363" parent="338" name="company_id">
       <DataType>int(10)|0s</DataType>
@@ -1301,7 +1301,7 @@ company_id</UnderlyingIndexColNames>
       <Position>2</Position>
     </column>
     <column id="365" parent="338" name="phone_number">
-      <DataType>int(10)|0s</DataType>
+      <DataType>int(11)|0s</DataType>
       <Position>3</Position>
     </column>
     <column id="366" parent="338" name="email">
@@ -1309,11 +1309,12 @@ company_id</UnderlyingIndexColNames>
       <Position>4</Position>
     </column>
     <key id="367" parent="338" name="PRIMARY">
+      <ColNames>company_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
-      <UnderlyingIndexColNames>company_id</UnderlyingIndexColNames>
     </key>
     <column id="368" parent="339" name="user_id">
+      <AutoIncrement>6</AutoIncrement>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1345,9 +1346,9 @@ company_id</UnderlyingIndexColNames>
       <Type>btree</Type>
     </index>
     <key id="375" parent="339" name="PRIMARY">
+      <ColNames>user_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
-      <UnderlyingIndexColNames>user_id</UnderlyingIndexColNames>
     </key>
     <column id="376" parent="340" name="user_id">
       <DataType>int(10)|0s</DataType>
@@ -1373,12 +1374,12 @@ company_id</UnderlyingIndexColNames>
       <Type>btree</Type>
     </index>
     <key id="381" parent="340" name="PRIMARY">
+      <ColNames>user_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
-      <UnderlyingIndexColNames>user_id</UnderlyingIndexColNames>
     </key>
     <column id="382" parent="341" name="event_name">
-      <DataType>char(20)|0s</DataType>
+      <DataType>char(100)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
@@ -1388,21 +1389,21 @@ company_id</UnderlyingIndexColNames>
       <Position>2</Position>
     </column>
     <column id="384" parent="341" name="location">
-      <DataType>char(20)|0s</DataType>
+      <DataType>char(100)|0s</DataType>
       <Position>3</Position>
     </column>
     <column id="385" parent="341" name="description">
-      <DataType>char(20)|0s</DataType>
+      <DataType>char(100)|0s</DataType>
       <Position>4</Position>
     </column>
     <key id="386" parent="341" name="PRIMARY">
+      <ColNames>event_name
+date</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
-      <UnderlyingIndexColNames>event_name
-date</UnderlyingIndexColNames>
     </key>
     <column id="387" parent="342" name="event_name">
-      <DataType>char(20)|0s</DataType>
+      <DataType>char(100)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
@@ -1433,10 +1434,10 @@ date</RefColNames>
       <Type>btree</Type>
     </index>
     <key id="393" parent="342" name="PRIMARY">
+      <ColNames>event_name
+date</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
-      <UnderlyingIndexColNames>event_name
-date</UnderlyingIndexColNames>
     </key>
     <column id="394" parent="343" name="user_id">
       <DataType>int(10)|0s</DataType>
@@ -1457,9 +1458,9 @@ date</UnderlyingIndexColNames>
       <Type>btree</Type>
     </index>
     <key id="398" parent="343" name="PRIMARY">
+      <ColNames>interests</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
-      <UnderlyingIndexColNames>interests</UnderlyingIndexColNames>
     </key>
     <column id="399" parent="344" name="item_id">
       <DataType>int(20)|0s</DataType>
@@ -1492,10 +1493,10 @@ date</UnderlyingIndexColNames>
       <Type>btree</Type>
     </index>
     <key id="405" parent="344" name="PRIMARY">
+      <ColNames>item_id
+warehouse_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
-      <UnderlyingIndexColNames>item_id
-warehouse_id</UnderlyingIndexColNames>
     </key>
     <column id="406" parent="345" name="address">
       <DataType>varchar(100)|0s</DataType>
@@ -1544,10 +1545,10 @@ warehouse_id</UnderlyingIndexColNames>
       <Type>btree</Type>
     </index>
     <key id="416" parent="345" name="PRIMARY">
+      <ColNames>address
+postal_code</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
-      <UnderlyingIndexColNames>address
-postal_code</UnderlyingIndexColNames>
     </key>
     <column id="417" parent="346" name="item_id">
       <DataType>int(10)|0s</DataType>
@@ -1563,9 +1564,9 @@ postal_code</UnderlyingIndexColNames>
       <Position>3</Position>
     </column>
     <key id="420" parent="346" name="PRIMARY">
+      <ColNames>item_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
-      <UnderlyingIndexColNames>item_id</UnderlyingIndexColNames>
     </key>
     <column id="421" parent="347" name="company_id">
       <DataType>int(10)|0s</DataType>
@@ -1594,12 +1595,13 @@ postal_code</UnderlyingIndexColNames>
       <Type>btree</Type>
     </index>
     <key id="426" parent="347" name="PRIMARY">
+      <ColNames>company_id
+SID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
-      <UnderlyingIndexColNames>company_id
-SID</UnderlyingIndexColNames>
     </key>
     <column id="427" parent="348" name="user_id">
+      <AutoIncrement>6</AutoIncrement>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1617,9 +1619,9 @@ SID</UnderlyingIndexColNames>
       <Position>4</Position>
     </column>
     <key id="431" parent="348" name="PRIMARY">
+      <ColNames>user_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
-      <UnderlyingIndexColNames>user_id</UnderlyingIndexColNames>
     </key>
     <column id="432" parent="349" name="user_id">
       <DataType>int(10)|0s</DataType>
@@ -1648,10 +1650,10 @@ SID</UnderlyingIndexColNames>
       <Type>btree</Type>
     </index>
     <key id="437" parent="349" name="PRIMARY">
+      <ColNames>user_id
+service_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
-      <UnderlyingIndexColNames>user_id
-service_id</UnderlyingIndexColNames>
     </key>
     <column id="438" parent="350" name="service_id">
       <DataType>int(10)|0s</DataType>
@@ -1687,9 +1689,9 @@ service_id</UnderlyingIndexColNames>
       <Type>btree</Type>
     </index>
     <key id="445" parent="350" name="PRIMARY">
+      <ColNames>service_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
-      <UnderlyingIndexColNames>service_id</UnderlyingIndexColNames>
     </key>
     <column id="446" parent="351" name="name">
       <DataType>varchar(100)|0s</DataType>
@@ -1701,9 +1703,9 @@ service_id</UnderlyingIndexColNames>
       <Position>2</Position>
     </column>
     <key id="448" parent="351" name="PRIMARY">
+      <ColNames>name</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
-      <UnderlyingIndexColNames>name</UnderlyingIndexColNames>
     </key>
     <column id="449" parent="352" name="warehouse_id">
       <DataType>int(10)|0s</DataType>
@@ -1732,10 +1734,10 @@ service_id</UnderlyingIndexColNames>
       <Type>btree</Type>
     </index>
     <key id="454" parent="352" name="PRIMARY">
+      <ColNames>warehouse_id
+item_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
-      <UnderlyingIndexColNames>warehouse_id
-item_id</UnderlyingIndexColNames>
     </key>
     <column id="455" parent="353" name="warehouse_id">
       <DataType>int(10)|0s</DataType>
@@ -1775,9 +1777,9 @@ item_id</UnderlyingIndexColNames>
       <Type>btree</Type>
     </index>
     <key id="463" parent="353" name="PRIMARY">
+      <ColNames>warehouse_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
-      <UnderlyingIndexColNames>warehouse_id</UnderlyingIndexColNames>
     </key>
   </database-model>
 </dataSource>

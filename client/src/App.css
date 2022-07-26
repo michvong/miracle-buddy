@@ -77,6 +77,12 @@
 .right-marg{
 padding-right: 10px}
 
+.keep-right{
+  display: flex;
+  justify-content: end;
+  margin-left: 10px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

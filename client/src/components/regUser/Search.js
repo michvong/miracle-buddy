@@ -1,5 +1,4 @@
-import React, {useRef} from "react";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import Axios from "axios";
 import Table from "react-bootstrap/Table";
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -15,48 +14,31 @@ import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
 import {useLocation, useNavigate} from "react-router-dom";
 import {Accordion, Card} from "react-bootstrap";
-import {responsivePropType} from "react-bootstrap/createUtilityClasses";
-import {map} from "react-bootstrap/ElementChildren";
-
-
 
 export default function Search() {
 
-    let [Location, setCategory] = useState([]);
-    let [Services, setServices] = useState([]);
-    let [Cities, setCity] = useState([]);
-    let [Products, setProducts] = useState([]);
+    let [Location, setLocation] = useState([]);
+    let [Service, setService] = useState([]);
+    let [City, setCity] = useState([]);
+    let [Product, setProduct] = useState([]);
     let [Event, setEvent] = useState([]);
-    let [Companies, setCompany] = useState([]);
+
+    let [Company, setCompany] = useState([]);
     let [CompanyService, setCompanyServices] = useState([]);
     let [CompanyInventory, setCompanyInventory] = useState([]);
     let [CompanyEvent, setCompanyEvent] = useState([]);
     let [CompanyInfo, setCompanyInfo] = useState([]);
-    let [userID, setUserID] = useState(new Map());
 
     const navigate = useNavigate();
-
-    const handleDashboardClick = () => {
-        navigate('/dashboard');
-    }
+    const handleDashboardClick = () => { navigate('/dashboard', {state: {user_id:fetchInput()}});}
 
     const info = useLocation();
-    const {infoState} = info
-
 
     useEffect(()=>{
-
-
-
-        Axios.post('http://localhost:3001/locations',{
-            user_id: fetchInput()
-        })
-            .then((response) => { 
-            setCategory(response.data);
-        });
+        updateLocation();
         Axios.get('http://localhost:3001/services')
             .then((response) => { 
-                setServices(response.data);
+                setService(response.data);
             });
         Axios.get('http://localhost:3001/city')
             .then((response) => {
@@ -64,7 +46,7 @@ export default function Search() {
             });
         Axios.get('http://localhost:3001/products')
             .then((response) => {
-                setProducts(response.data);
+                setProduct(response.data);
             });
         Axios.get('http://localhost:3001/event')
             .then((response) => {
@@ -76,22 +58,22 @@ export default function Search() {
             });
     }, []);
 
+    function sortServices(filter1, service1) {
+        Axios.post('http://localhost:3001/sort-services', {
+            filter: filter1, service: service1
+        }).then((response) => {
+            Location = {};
+            setLocation(response.data);
+        });
+    }
+
     const sortServicesButton = (service1, filter1) => {
         if (service1 === 'All'){
             Location = {};
-            Axios.post('http://localhost:3001/locations',{
-                user_id: fetchInput()
-            }).then((response) => {
-                setCategory(response.data)
-            });
+            updateLocation();
             return;
         }
-        Axios.post('http://localhost:3001/sort-services', {
-            filter: filter1, service: service1
-        }).then((response)=>{
-            Location = {};
-            setCategory(response.data);
-        });
+        sortServices(filter1, service1);
     };
 
     const sortCompany = (companyID, filter1) => {
@@ -114,17 +96,16 @@ export default function Search() {
             setCompanyEvent(response.data);
         });
         Axios.post('http://localhost:3001/org', {
-            id: companyID,
+            userID: fetchInput(), id: companyID,
         }).then((response)=>{
             CompanyInfo = {};
             setCompanyInfo(response.data);
         });
-
     };
 
     const availability = (sum) => {
         if (sum>0) {
-            return <text>In Stock. {sum} available{"\n"}<Button variant="secondary" size="sm">Search</Button></text>}
+            return <text>In Stock. {sum} available{"\n"}<Button variant="success" size="sm">Search</Button></text>}
         return <text>Out of Stock. {sum} available{"\n"}<Button variant="secondary" size="sm" disabled>Search</Button></text>
     };
 
@@ -132,20 +113,49 @@ export default function Search() {
         try{
             return info.state.user_id
         } catch (e) {
-            return "Guest"
+            navigate('/reguserlogin');
         }
     };
 
-
     const updateBookmarkButton =  (relation) => {
-        if (parseInt(relation)>0){
+        if (parseInt(relation) > 0) {
             return "Delete"
         }
         return "Bookmark"
     };
 
-    const updateBookmark = () => {
+    function updateCompanyInfo(companyID) {
+        Axios.post('http://localhost:3001/org', {
+            userID: fetchInput(), id: companyID,
+        }).then((response) => {
+            CompanyInfo = {};
+            setCompanyInfo(response.data);
+        });
+    }
 
+    function updateLocation() {
+        Axios.post('http://localhost:3001/locations', {
+            user_id: fetchInput()
+        }).then((response) => {
+            setLocation(response.data)
+        });
+    }
+
+    const updateBookmark = (companyID, userID, type) => {
+        console.log("Running updateBookmark")
+        if (parseInt(type)>0){
+            Axios.post('http://localhost:3001/bookmark-delete', {
+                company_id: companyID, user_id: userID,
+            }).then(()=>{
+                updateCompanyInfo(companyID);
+            });
+        } else {
+            Axios.post('http://localhost:3001/bookmark-set', {
+                company_id: companyID, user_id: userID,
+            }).then(()=>{
+                updateCompanyInfo(companyID);
+            });
+        }
     };
 
     return (
@@ -171,7 +181,6 @@ export default function Search() {
                                 Logged In As: #{fetchInput()}
                             </Navbar.Text>
                         </Navbar.Collapse>
-
                     </Navbar>
                 </div>
                 <div>
@@ -195,7 +204,6 @@ export default function Search() {
                             </Col>
                             <Col sm={13} md={10} lg={10}>
                                 <Tab.Content>
-
                                     <Tab.Pane eventKey="first">
                                         <Stack gap={3}>
                                             <div>
@@ -206,7 +214,7 @@ export default function Search() {
                                                     <div>
                                                         <DropdownButton id="dropdown-basic-button2" title="Find By City">
                                                             <Dropdown.Item onClick={()=>{sortServicesButton('All')} }>All</Dropdown.Item>
-                                                            {Cities.map((val) => {
+                                                            {City.map((val) => {
                                                                 return (
                                                                     <Dropdown.Item onClick={()=>{sortServicesButton(val.city, 'c.city')} }>{val.city}</Dropdown.Item>
                                                                 );
@@ -216,7 +224,7 @@ export default function Search() {
                                                     <div>
                                                         <DropdownButton id="dropdown-basic-button" title="Find By Service">
                                                             <Dropdown.Item onClick={()=>{sortServicesButton('All')} }>All</Dropdown.Item>
-                                                            {Services.map((val) => {
+                                                            {Service.map((val) => {
                                                                 return (
                                                                     <Dropdown.Item onClick={()=>{sortServicesButton(val.name, 'b.name')} }>{val.name}</Dropdown.Item>
                                                                 );
@@ -256,7 +264,6 @@ export default function Search() {
                                             </div>
                                         </Stack>
                                     </Tab.Pane>
-
                                     <Tab.Pane eventKey="second">
                                         <Stack gap={3}>
                                             <div>
@@ -264,7 +271,7 @@ export default function Search() {
                                             </div>
                                             <div>
                                                 <Accordion>
-                                                    {Products.map((val) => {
+                                                    {Product.map((val) => {
                                                         return (
                                                             <Accordion.Item eventKey={val.name}>
                                                                 <Accordion.Header>Item #{val.item_id} {val.name} - {val.description}</Accordion.Header>
@@ -280,7 +287,6 @@ export default function Search() {
                                             </div>
                                         </Stack>
                                     </Tab.Pane>
-
                                     <Tab.Pane eventKey = "third">
                                         <Row>
                                             {Event.map((val) => {
@@ -289,11 +295,9 @@ export default function Search() {
                                                         <Card style={{ width: '322px' }}>
                                                             <Card.Body>
                                                                 <Card.Title>{val.event_name}</Card.Title>
-                                                                <Card.Subtitle className="mb-2 text-muted">{val.location}</Card.Subtitle>
-                                                                <Card.Text>
-                                                                    {val.description}
-                                                                </Card.Text>
-                                                                <Card.Link href="#">Card Link</Card.Link>
+                                                                <Card.Subtitle className="mb-2 text-muted">{val.location} {val.date}</Card.Subtitle>
+                                                                <Card.Subtitle className="mb-2 text-muted">Hosted By: {val.company_name}</Card.Subtitle>
+                                                                <Card.Text>{val.description}</Card.Text>
                                                             </Card.Body>
                                                         </Card>
                                                     </Col>
@@ -301,11 +305,8 @@ export default function Search() {
                                             })}
                                         </Row>
                                     </Tab.Pane>
-
                                     <Tab.Pane eventKey = "forth">
-
                                         <Stack gap={3}>
-
                                             <div>
                                                 <Stack direction={"horizontal"} gap={3}>
                                                     <div>
@@ -313,7 +314,7 @@ export default function Search() {
                                                     </div>
                                                     <div>
                                                         <DropdownButton id="dropdown-basic-button2" title="Find By Organization" >
-                                                            {Companies.map((val) => {
+                                                            {Company.map((val) => {
                                                                 return (
                                                                     <Dropdown.Item onClick={()=>{sortCompany(val.company_id, 'd.company_id')} }>{val.name}</Dropdown.Item>
                                                                 );
@@ -327,8 +328,9 @@ export default function Search() {
                                                 return (
                                                     <tr key={key}>
                                                         <h3>{val.name}{"\n"}</h3>
-                                                        <text >Phone Number: {val.phone_number}{"\n"}</text>
-                                                        <text>Email: {val.email}</text>
+                                                        <text >Phone Number: {val.phone_number}</text>
+                                                        <Button size="sm" className={"keep-right"} onClick={()=>{updateBookmark(val.company_id, fetchInput(), val.bookmark)}}>{updateBookmarkButton(val.bookmark)}</Button>
+                                                        <text>{"\n"}Email: {val.email}</text>
                                                     </tr>
                                                 );
                                             })}
@@ -365,7 +367,6 @@ export default function Search() {
                                             <div>
                                                 <h3>Inventory</h3>
                                             </div>
-
                                             <div>
                                                 <Table striped bordered hover>
                                                     <thead>
@@ -393,7 +394,6 @@ export default function Search() {
                                             <div>
                                                 <h3>Events</h3>
                                             </div>
-
                                             <div>
                                                 <Table striped bordered hover>
                                                     <thead>
@@ -419,9 +419,7 @@ export default function Search() {
                                                 </Table>
                                             </div>
                                         </Stack>
-
                                     </Tab.Pane>
-
                                 </Tab.Content>
                             </Col>
                         </Row>
@@ -429,6 +427,5 @@ export default function Search() {
                 </div>
             </Stack>
         </Container>
-
     );
 }

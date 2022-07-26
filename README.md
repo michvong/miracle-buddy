@@ -3,6 +3,8 @@ In client folder, run these commands:
 - npm install axios
 - npm install react-bootstrap bootstrap
 - npm i --save bootstrap
+- npm install @headlessui/react
+- npm install @heroicons/react
 
 Run the app in client folder with this command:
 - npm start
