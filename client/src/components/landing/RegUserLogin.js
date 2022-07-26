@@ -9,7 +9,10 @@ import { useNavigate } from 'react-router-dom';
 
 export default function RegUserLogin() {
     const [Users, setUsers] = useState([]);
-    const [selected, setSelected] = useState({});
+    const [selected, setSelected] = useState({
+        name: "",
+        user_id: "",
+    });
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -20,8 +23,8 @@ export default function RegUserLogin() {
             });
     }, []);
 
-    const handleUserSelect = (userName) => {
-        setSelected({ name: userName });
+    const handleUserSelect = (user) => {
+        setSelected(user);
     }
 
     const handleLoginClick = () => {
@@ -74,26 +77,27 @@ export default function RegUserLogin() {
                                 leaveFrom="opacity-100"
                                 leaveTo="opacity-0">
 
-                                <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm p-0">
                                     {Users.map((val) => (
                                         <Listbox.Option
                                             key={val.user_id}
-                                            className={({ active }) => `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'bg-blue-100 text-blue-900' : 'text-gray-900'}`}
-                                            value={val.name}>
+                                            className={({ active }) => `relative cursor-pointer select-none py-2 pl-10 pr-4 ${active ? 'bg-blue-100 text-blue-900' : 'text-gray-900'}`}
+                                            value={val}>
 
-                                            {({ selected }) => (
-                                                <>
-                                                    <span
-                                                        className={`block truncate ${selected ? 'font-medium' : 'font-normal'}`}>
-                                                        {val.name}
-                                                    </span>
-                                                    {selected ? (
-                                                        <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600">
-                                                            <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                                {({ selected }) => (
+                                                    <>
+                                                        <span
+                                                            className={`block truncate ${selected ? 'font-medium' : 'font-normal'}`}>
+                                                            {val.name}
                                                         </span>
-                                                    ) : null}
-                                                </>
-                                            )}
+                                                        {selected ? (
+                                                            <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600">
+                                                                <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                                            </span>
+                                                        ) : null}
+                                                    </>
+                                                )}
+                                                
                                         </Listbox.Option>
                                     ))}
                                 </Listbox.Options>
