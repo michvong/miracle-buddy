@@ -1,6 +1,5 @@
-
 CREATE TABLE RegularUser (
-	user_id INT(10),
+	user_id INT(10) NOT NULL AUTO_INCREMENT,
 	name VARCHAR(100),
 	language VARCHAR(100),
 	email VARCHAR(100),
@@ -16,7 +15,7 @@ CREATE TABLE Company(
 );
 
 CREATE TABLE CompanyUser (
-	user_id INT(10),
+	user_id INT(10) NOT NULL AUTO_INCREMENT,
 	name VARCHAR(100),
 	language VARCHAR(100),
 	email VARCHAR(100),
