@@ -17,6 +17,7 @@ import Bookmarks from './components/regUser/Bookmarks'
 import Search from './components/regUser/Search'
 
 import CompDashboard from './components/companyAuthUser/CompDashboard'
+import CompUserInfo from './components/companyAuthUser/CompUserInfo'
 
 function App() {
   return (
@@ -42,6 +43,8 @@ function App() {
 
         {/* companyAuthUser pages */}
         <Route path="/compdashboard" element={<CompDashboard />}>
+        </Route>
+        <Route path="/compuserinfo" element={<CompUserInfo user_id="2" />}>
         </Route>
         
       </Routes>

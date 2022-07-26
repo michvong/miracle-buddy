@@ -14,7 +14,7 @@ export default function CompDashboard() {
 
     // TODO: Fill in the handleClicks
     const handlePersonalInfoClick = () => {
-        // navigate('/reguserinfo');
+        navigate('/compuserinfo');
     }
     
     const handleCompanyInfoClick = () => {
