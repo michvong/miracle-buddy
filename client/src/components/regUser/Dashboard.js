@@ -24,8 +24,18 @@ export default function Dashboard() {
         navigate('/search')
     }
 
+    const handleBackClick = () => {
+        navigate('/reguserlogin');
+    }
+
     return (
         <>
+        <button className="p-2 hover:opacity-70" onClick={handleBackClick}>
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clipRule="evenodd" />
+            </svg>
+        </button>
+
         <div class="flex justify-center pt-32 pb-8">
             <p class="welcome-message text-3xl font-extrabold font-sans">
                 Welcome, <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-300">{location.state.name}!</span>
