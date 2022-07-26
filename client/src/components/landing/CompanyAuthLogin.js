@@ -24,7 +24,7 @@ export default function RegUserLogin() {
     }
 
     const handleLoginClick = () => {
-        navigate('/compdashboard', { state: {name: selected.name, user_id: selected.user_id } });
+        navigate('/compdashboard', { state: {name: selected.name, user_id: selected.user_id, company_id: selected.company_id } });
     }
     
     const handleBackClick = () => {
