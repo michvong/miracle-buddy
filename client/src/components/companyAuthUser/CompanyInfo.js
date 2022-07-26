@@ -15,8 +15,9 @@ const CompanyInfo = (props) => {
     let [phoneTextField, setPhone] = useState("");
     let [emailTextField, setEmail] = useState("");
 
+    //user user_id of company auth user to get company_id
     useEffect(() => {
-        Axios.get(`http://localhost:3001/company/${props.company_id}`)
+        Axios.get(`http://localhost:3001/company/${props.user_id}`)
             .then((response) => {
                 if(response.status === 200) {
                     setCompany(response.data);
@@ -30,7 +31,7 @@ const CompanyInfo = (props) => {
             return; //no action, just return
         }
         //otherwise, update value
-        Axios.put(`http://localhost:3001/company/edit-name/${props.company_id}/${nameTextField}`)
+        Axios.put(`http://localhost:3001/company/edit-name/${currentCompany.company_id}/${nameTextField}`)
             .then((response) => {
                 if(response.status===200) {
                     setCompany([{...currentCompany[0], "name":nameTextField}]);
@@ -44,7 +45,7 @@ const CompanyInfo = (props) => {
         if(phoneTextField === ""){
             return; // no action, just return
         }
-        Axios.put(`http://localhost:3001/company/edit-phone/${props.company_id}/${phoneTextField}`)
+        Axios.put(`http://localhost:3001/company/edit-phone/${currentCompany.company_id}/${phoneTextField}`)
             .then((response) => {
                 if(response.status === 200) {
                     setCompany([{...currentCompany[0], "phone_number":phoneTextField}]);
@@ -58,7 +59,7 @@ const CompanyInfo = (props) => {
         if(emailTextField ==="") {
             return; //no action
         }
-        Axios.put(`http://localhost:3001/company/edit-email/${props.company_id}/${emailTextField}`)
+        Axios.put(`http://localhost:3001/company/edit-email/${currentCompany.company_id}/${emailTextField}`)
             .then((response) => {
                 if(response.status === 200) {
                     setCompany([{...currentCompany[0], "email":emailTextField}]);
