@@ -2,38 +2,45 @@ import React from 'react';
 import {useEffect, useState} from "react";
 import Axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import { response } from 'express';
 
 export default function RegUserLogin() {
-    const [Name, setName] = useState([]);
-    const [Email, setEmail] = useState({});
-    const [Language, setLanguage] = useState({});
+    const [Name, setName] = useState("");
+    const [Email, setEmail] = useState("");
+    const [Language, setLanguage] = useState("");
     const navigate = useNavigate();
 
-    const handleSetNewUser = (Name, Email, Language) => {
-        Axios.put(`http://localhost:3001/user/add-user/`)
-            .then((response) => {
-                if (response.status === 200) {
-                    // if id exists, just keep incrementing by 1?
-                    setName([{ "name": Name }]);
-                    setEmail([{ "email": Email }]);
-                    setLanguage([{ "language": Language }]);
-                }
+    const handleSignUpClick = (e) => {
+        e.preventDefault()
+
+        Axios.post('http://localhost:3001/regusers/add-user', {
+            name: Name,
+            language: Language,
+            email: Email
+        }).then((response) => {
+            console.log(response);
+            // console.log(response.data);
+            navigate('/dashboard', { state: {name: Name, user_id: response.data } });
+
+        }).catch((error) => {
+            console.log(error);
         });
     }
-    // useEffect(() => {
-    //     Axios.get('http://localhost:3001/regusers')
-    //         .then((response) => { 
-    //             setUsers(response.data);
-    //             setSelected(response.data[0]);
-    //         });
-    // }, []);
-
-    // const handleUserSelect = (userName) => {
-    //     setSelected({ name: userName });
-    // }
 
     const handleBackClick = () => {
         navigate('/reguserlogin');
+    }
+
+    const handleNameInput = (event) => {
+        setName(event.target.value);
+    }
+
+    const handleEmailInput = (event) => {
+        setEmail(event.target.value);
+    }
+
+    const handleLanguageInput = (event) => {
+        setLanguage(event.target.value);
     }
 
     return (
@@ -60,27 +67,27 @@ export default function RegUserLogin() {
                         <div className="flex flex-wrap -mx-3 mb-4">
                             <div className="w-full px-3">
                                 <label className="text-sm font-medium mb-1" htmlFor="name">Name</label>
-                                <input id="name" type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your name" required />
+                                <input id="name" type="text" value={Name} onChange={handleNameInput} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your name" required />
                             </div>
                         </div>
 
                         <div className="flex flex-wrap -mx-3 mb-4">
                             <div className="w-full px-3">
                                 <label className="text-sm font-medium mb-1" htmlFor="email">Email</label>
-                                <input id="email" type="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your email address" required />
+                                <input id="email" type="email" value={Email} onChange={handleEmailInput} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your email address" required />
                             </div>
                         </div>
 
                         <div className="flex flex-wrap -mx-3 mb-4">
                             <div className="w-full px-3">
                                 <label className="text-sm font-medium mb-1" htmlFor="language">Language</label>
-                                <input id="language" type="language" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your preferred language" required />
+                                <input id="language" type="language" value={Language} onChange={handleLanguageInput} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your preferred language" required />
                             </div>
                         </div>
 
                         <div className="flex flex-wrap -mx-3 mt-6">
                             <div className="flex justify-center w-full px-3 pb-2">
-                                <button className="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-full px-5 py-2.5 text-center dark:bg-blue-100 dark:hover:bg-blue-300 dark:focus:ring-blue-500">Sign up</button>
+                                <button onClick={handleSignUpClick} className="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-full px-5 py-2.5 text-center dark:bg-blue-100 dark:hover:bg-blue-300 dark:focus:ring-blue-500">Sign up</button>
                             </div>
                         </div>
                     </form>

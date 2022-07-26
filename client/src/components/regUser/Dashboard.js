@@ -13,7 +13,6 @@ export default function Dashboard() {
     const location = useLocation();
     
     const handlePersonalInfoClick = () => {
-        console.log(location.state.name);
         navigate('/reguserinfo');
     }
 
