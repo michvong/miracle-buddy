@@ -11,7 +11,6 @@ const warehouseRouter = require("./routes/warehouse-route");
 const eventRouter = require("./routes/event-route")
 const companyRouter = require("./routes/company-route");
 const bookmarkRouter = require("./routes/bookmark-route");
-const serviceRouter = require("./routes/service-route");
 const regUserRouter = require("./routes/regUser-route");
 const companyUserRouter = require("./routes/companyUser-route");
 

@@ -15,10 +15,6 @@ import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
 import {useLocation, useNavigate} from "react-router-dom";
 import {Accordion, Card} from "react-bootstrap";
-import {responsivePropType} from "react-bootstrap/createUtilityClasses";
-import {map} from "react-bootstrap/ElementChildren";
-
-
 
 export default function Search() {
 
@@ -27,26 +23,19 @@ export default function Search() {
     let [Cities, setCity] = useState([]);
     let [Products, setProducts] = useState([]);
     let [Event, setEvent] = useState([]);
+
     let [Companies, setCompany] = useState([]);
     let [CompanyService, setCompanyServices] = useState([]);
     let [CompanyInventory, setCompanyInventory] = useState([]);
     let [CompanyEvent, setCompanyEvent] = useState([]);
     let [CompanyInfo, setCompanyInfo] = useState([]);
-    let [userID, setUserID] = useState(new Map());
 
     const navigate = useNavigate();
-
-    const handleDashboardClick = () => {
-        navigate('/dashboard');
-    }
+    const handleDashboardClick = () => { navigate('/dashboard');}
 
     const info = useLocation();
-    const {infoState} = info
-
 
     useEffect(()=>{
-
-
 
         Axios.post('http://localhost:3001/locations',{
             user_id: fetchInput()
@@ -135,7 +124,6 @@ export default function Search() {
             return "Guest"
         }
     };
-
 
     const updateBookmarkButton =  (relation) => {
         if (parseInt(relation)>0){
