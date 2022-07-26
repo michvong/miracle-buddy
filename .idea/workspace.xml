@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0b80115-895d-474a-a8f8-7230843621b7" name="Changes" comment="" />
+    <list default="true" id="c0b80115-895d-474a-a8f8-7230843621b7" name="Changes" comment="Extract Functions">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/regUser/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/regUser/Dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/regUser/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/regUser/Search.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="origin/main" />
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2CBEYFNiRml4s1Ikso6e2hconm5" />
   <component name="ProjectViewState">
@@ -17,10 +39,15 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.OpenDatabaseViewOnStart": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/mich"
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/hclim/WebstormProjects/miracle-buddy",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
     "DatabaseDriversLRU": [
@@ -28,5 +55,208 @@
     ]
   }
 }]]></component>
+  <component name="RunManager" selected="npm.start">
+    <configuration name="index.js" type="NodeJSConfigurationType" nameIsGenerated="true" path-to-js-file="server/index.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/client/package.json" />
+      <command value="start" />
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Node.js.index.js" />
+      <item itemvalue="npm.start" />
+    </list>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c0b80115-895d-474a-a8f8-7230843621b7" name="Changes" comment="" />
+      <created>1658371757944</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1658371757944</updated>
+      <workItem from="1658371759023" duration="37807000" />
+      <workItem from="1658467757164" duration="1720000" />
+      <workItem from="1658469507684" duration="10246000" />
+      <workItem from="1658519680132" duration="9450000" />
+      <workItem from="1658603995859" duration="713000" />
+      <workItem from="1658621025716" duration="29000" />
+    </task>
+    <task id="LOCAL-00001" summary="ui improvements">
+      <created>1658383912185</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1658383912185</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added ability to filter by city">
+      <created>1658391328645</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1658391328645</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Removed unnecessary queries">
+      <created>1658434882641</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1658434882641</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Update package.json">
+      <created>1658435182868</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1658435182868</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Update Button Links">
+      <created>1658437736174</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1658437736174</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Add Tab Layout">
+      <created>1658441867345</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1658441867345</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Add Event &amp; Warehouse Controller">
+      <created>1658461301074</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1658461301074</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Add Company Controller">
+      <created>1658478122436</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1658478122436</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Add Ability to Search By Organization">
+      <created>1658479407611</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1658479407611</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Display Company Information">
+      <created>1658480392200</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1658480392200</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Set Navigate Parameters">
+      <created>1658544930563</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1658544930563</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Add Ability to see Bookmarks">
+      <created>1658735241412</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1658735241412</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Merged with Main">
+      <created>1658735674393</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1658735674393</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Refactored Code">
+      <created>1658735715124</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1658735715124</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Add Organization Bookmark Button">
+      <created>1658787966779</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1658787966779</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Update to show Event Host">
+      <created>1658789238608</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1658789238608</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Refactoring">
+      <created>1658804337699</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1658804337699</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Update INSERT_script.sql">
+      <created>1658807222853</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1658807222853</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Fix Bookmark Company Button">
+      <created>1658820022236</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1658820022236</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="ui improvements" />
+    <MESSAGE value="Added ability to filter by city" />
+    <MESSAGE value="Removed unnecessary queries" />
+    <MESSAGE value="Update package.json" />
+    <MESSAGE value="Update Button Links" />
+    <MESSAGE value="Add Tab Layout" />
+    <MESSAGE value="Add Event &amp; Warehouse Controller" />
+    <MESSAGE value="Add Company Controller" />
+    <MESSAGE value="Add Ability to Search By Organization" />
+    <MESSAGE value="Display Company Information" />
+    <MESSAGE value="Set Navigate Parameters" />
+    <MESSAGE value="Add Ability to see Bookmarks" />
+    <MESSAGE value="Merged with Main" />
+    <MESSAGE value="Refactored Code" />
+    <MESSAGE value="Add Organization Bookmark Button" />
+    <MESSAGE value="Update to show Event Host" />
+    <MESSAGE value="Refactoring" />
+    <MESSAGE value="Update INSERT_script.sql" />
+    <MESSAGE value="Fix Bookmark Company Button" />
+    <MESSAGE value="Extract Functions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Extract Functions" />
+  </component>
 </project>

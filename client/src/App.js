@@ -16,6 +16,7 @@ import Dashboard from './components/regUser/Dashboard'
 import RegUserInfo from './components/regUser/RegUserInfo'
 import Bookmarks from './components/regUser/Bookmarks'
 import Search from './components/regUser/Search'
+import Forward from './components/regUser/Forward'
 
 import CompDashboard from './components/companyAuthUser/CompDashboard'
 
@@ -41,6 +42,8 @@ function App() {
         <Route path="/bookmarks" element={<Bookmarks />}>
         </Route>
         <Route path="/search" element={<Search />}>
+        </Route>
+        <Route path="/forward" element={<Forward />}>
         </Route>
 
         {/* companyAuthUser pages */}

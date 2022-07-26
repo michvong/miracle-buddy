@@ -140,8 +140,8 @@ CREATE TABLE EventHost (
 
 CREATE TABLE Requests (
 	user_id INT(10),
-	company_id INT(10),
-	PRIMARY KEY(user_id, company_id),
+	service_id INT(10),
+	PRIMARY KEY(user_id, service_id),
 	FOREIGN KEY(user_id) references RegularUser(user_id) ON DELETE CASCADE,
-	FOREIGN KEY(company_id) references Service(service_id) ON DELETE CASCADE
+	FOREIGN KEY(service_id) references Service(service_id) ON DELETE CASCADE
 );
