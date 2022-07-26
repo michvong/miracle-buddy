@@ -26,6 +26,8 @@ module.exports = {
 
       backgroundImage: {
         'cityscape': "url('images/cityscape.png')",
+        'cityscape1': "url('images/cityscape1.png')",
+        'cityscape2': "url('images/cityscape2.png')",
       },
 
       padding: {

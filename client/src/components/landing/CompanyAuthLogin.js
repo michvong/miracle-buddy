@@ -8,7 +8,10 @@ import { useNavigate } from 'react-router-dom';
 
 export default function RegUserLogin() {
     const [Users, setUser] = useState([]);
-    const [selected, setSelected] = useState({});
+    const [selected, setSelected] = useState({
+        name: "",
+        user_id: "",
+    });
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -19,8 +22,8 @@ export default function RegUserLogin() {
             });
     }, []);
 
-    const handleUserSelect = (userName) => {
-        setSelected({ name: userName });
+    const handleUserSelect = (user) => {
+        setSelected(user);
     }
 
     const handleLoginClick = () => {
@@ -54,7 +57,7 @@ export default function RegUserLogin() {
                 <div className="top-16 w-80 pb-80">
                     <Listbox value={selected} onChange={handleUserSelect}>
                         <div className="relative mt-1">
-                            <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+                            <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-blue-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-blue-300 sm:text-sm">
                                 <span className="block truncate">{selected.name}</span>
                                 <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                                     <SelectorIcon
@@ -69,12 +72,12 @@ export default function RegUserLogin() {
                                 leaveFrom="opacity-100"
                                 leaveTo="opacity-0">
 
-                                <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                    {Users.map((val, personIdx) => (
+                                <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm p-0">
+                                    {Users.map((val) => (
                                         <Listbox.Option
-                                            key={personIdx}
-                                            className={({ active }) => `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'bg-amber-100 text-amber-900' : 'text-gray-900'}`}
-                                            value={val.name}>
+                                            key={val.user_id}
+                                            className={({ active }) => `relative cursor-pointer select-none py-2 pl-10 pr-4 ${active ? 'bg-blue-100 text-blue-900' : 'text-gray-900'}`}
+                                            value={val}>
 
                                             {({ selected }) => (
                                                 <>
