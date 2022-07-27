@@ -52,7 +52,7 @@ function App() {
         {/* companyAuthUser pages */}
         <Route path="/compdashboard" element={<CompDashboard />}>
         </Route>
-        <Route path="/compuserinfo" element={<CompUserInfo user_id="2" />}>
+        <Route path="/compuserinfo" element={<CompUserInfo />}>
         </Route>
         <Route path="/companyinfo" element={<CompanyInfo  />}>
         </Route>
