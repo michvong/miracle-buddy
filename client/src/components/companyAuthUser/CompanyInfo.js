@@ -1,6 +1,6 @@
 import React , { Component } from 'react';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import {Accordion, Button} from 'react-bootstrap';
 import Axios from 'axios';
@@ -10,15 +10,25 @@ import Axios from 'axios';
 // class CompanyInfo extends Component {
 const CompanyInfo = (props) => {
 
+    const info = useLocation();
+
     let [currentUser, setUser] = useState([]);
     let [currentCompany, setCompany] = useState([]);
     let [nameTextField, setName] = useState("");
     let [phoneTextField, setPhone] = useState("");
     let [emailTextField, setEmail] = useState("");
+    
+    const fetch_user_id = () => {
+        try{
+            return info.state.user_id
+        } catch (e) {
+            Navigate('/companyauthLogin')
+        }
+    }
 
     //user user_id of company auth user to get company_id
     useEffect(() => {
-        Axios.get(`http://localhost:3001/compuser/${props.user_id}`)
+        Axios.get(`http://localhost:3001/compuser/${fetch_user_id()}`)
             .then((response) => {
                 if(response.status === 200) {
                     // setUser(response.data);

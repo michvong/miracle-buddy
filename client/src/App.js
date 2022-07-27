@@ -21,6 +21,7 @@ import Forward from './components/regUser/Forward'
 import CompDashboard from './components/companyAuthUser/CompDashboard'
 import CompUserInfo from './components/companyAuthUser/CompUserInfo'
 import CompanyInfo from './components/companyAuthUser/CompanyInfo'
+import CompEdit from './components/companyAuthUser/CompEdit'
 
 function App() {
   return (
@@ -53,7 +54,7 @@ function App() {
         </Route>
         <Route path="/compuserinfo" element={<CompUserInfo user_id="2" />}>
         </Route>
-        <Route path="/companyinfo" element={<CompanyInfo user_id="2" />}>
+        <Route path="/companyinfo" element={<CompanyInfo  />}>
         </Route>
         <Route path="/compedit" element={<CompEdit />}>
         </Route>

@@ -19,7 +19,7 @@ export default function CompDashboard() {
     }
     
     const handleCompanyInfoClick = () => {
-        navigate('/companyinfo');
+        navigate('/companyinfo', {state: {user_id: location.state.user_id}});
     }
     
     const handleCompanyInfoClick2 = () => {
