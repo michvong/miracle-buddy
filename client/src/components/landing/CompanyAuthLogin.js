@@ -11,6 +11,7 @@ export default function RegUserLogin() {
     const [selected, setSelected] = useState({
         name: "",
         user_id: "",
+        company_id: "",
     });
     const navigate = useNavigate();
 
@@ -27,6 +28,7 @@ export default function RegUserLogin() {
     }
 
     const handleLoginClick = () => {
+        console.log(selected.company_id);
         navigate('/compdashboard', { state: {name: selected.name, user_id: selected.user_id, company_id: selected.company_id } });
     }
     
