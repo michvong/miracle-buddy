@@ -10,6 +10,7 @@ import Axios from 'axios';
 // class CompanyInfo extends Component {
 const CompanyInfo = (props) => {
 
+    let [currentUser, setUser] = useState([]);
     let [currentCompany, setCompany] = useState([]);
     let [nameTextField, setName] = useState("");
     let [phoneTextField, setPhone] = useState("");
@@ -17,10 +18,16 @@ const CompanyInfo = (props) => {
 
     //user user_id of company auth user to get company_id
     useEffect(() => {
-        Axios.get(`http://localhost:3001/company/${props.user_id}`)
+        Axios.get(`http://localhost:3001/compuser/${props.user_id}`)
             .then((response) => {
                 if(response.status === 200) {
-                    setCompany(response.data);
+                    // setUser(response.data);
+                    Axios.get(`http://localhost:3001/company/${response.data[0].company_id}`)
+                        .then((response) => {
+                            if(response.status ===200){
+                                setCompany(response.data);
+                            }
+                        });
                 }
             });
     }, []);

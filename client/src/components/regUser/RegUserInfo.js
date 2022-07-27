@@ -23,7 +23,7 @@ const RegUserInfo = (props) => {
                     setUser(response.data);
                 }
             });
-    }, []);
+    });
 
     const handleSubmitName= ((event, nameTextField) => {
         event.preventDefault();
