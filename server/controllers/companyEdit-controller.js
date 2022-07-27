@@ -16,6 +16,18 @@ exports.updateService = (req, res) => {
 };
 
 exports.addService = (req, res) => {
+    const address = req.body.address;
+    const postal_code = req.body.postal_code;
+    const hours_of_operation = req.body.hours_of_operation;
+    const name = req.body.name;
+    const company_id = req.body.company_id;
+    const service_id = req.body.service_id;
+
+    console.log(address, postal_code, hours_of_operation, name, company_id,service_id);
+
+    connection.query("INSERT INTO Location VALUES (?, ?, ?, ?, ?, ?)",
+        [address, postal_code, hours_of_operation, name, company_id, service_id],
+        (err, results) => { res.send(results); });
 
 };
 

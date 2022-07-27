@@ -52,6 +52,10 @@ export default function CompEdit() {
     const [show2, setShow2] = useState(false);
     const [show3, setShow3] = useState(false);
 
+    const [show4, setShow4] = useState(false);
+    const [show5, setShow5] = useState(false);
+    const [show6, setShow6] = useState(false);
+
     let [Service, setService] = useState([]);
 
     const handleClose = () => setShow(false);
@@ -63,6 +67,15 @@ export default function CompEdit() {
     const handleClose3 = () => setShow3(false);
     const handleShow3 = () => setShow3(true);
 
+    const handleClose4 = () => setShow4(false);
+    const handleShow4 = () => setShow4(true);
+
+    const handleClose5 = () => setShow5(false);
+    const handleShow5 = () => setShow5(true);
+
+    const handleClose6 = () => setShow6(false);
+    const handleShow6 = () => setShow6(true);
+
     const navigate = useNavigate();
 
     const handleDashboardClick = () => {
@@ -73,6 +86,8 @@ export default function CompEdit() {
     const {infoState} = info
 
     const [validated, setValidated] = useState(false);
+    const [validated2, setValidated2] = useState(false);
+
 
     // Update Buttons
     const handleSubmitLocation = (event) => {
@@ -151,6 +166,30 @@ export default function CompEdit() {
         setShow3(false);
     }
 
+    // Add Buttons
+
+    const handleSubmitLocationAdd = (event) => {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+
+        } else {
+
+
+            Axios.post('http://localhost:3001/add-services', {
+                address: locationAddress, postal_code: locationPostal, hours_of_operation: locationHOP, name: locationName, company_id: fetchInput(), service_id: locationService
+            }).then((response)=>{
+                updateLocation();
+            });
+
+            setShow4(false);
+        }
+        setValidated(true);
+        event.preventDefault();
+    };
+
+    // END
     function updateInventory() {
         Axios.post('http://localhost:3001/sort-products', {
             id: fetchInput(),
@@ -249,9 +288,14 @@ export default function CompEdit() {
                                 <Tab.Content>
                                     <Tab.Pane eventKey="first">
                                         <Stack gap={3}>
-                                            <div>
-                                                <h2>Locations</h2>
-                                            </div>
+                                            <Stack direction={"horizontal"} gap={3}>
+                                                <div>
+                                                    <h2>Locations</h2>
+                                                </div>
+                                                <div>
+                                                    <Button id="dropdown-basic-button2" onClick={()=>{handleShow4(); setAddress(""); setHOP(""); setServiceName(""); setServiceType(""); setPostal(""); setLocationCity(""); setLocationService("1")}}>Add</Button>
+                                                </div>
+                                            </Stack>
                                             <div>
                                                 <Table striped bordered hover>
                                                     <thead>
@@ -286,9 +330,14 @@ export default function CompEdit() {
 
                                     <Tab.Pane eventKey="second">
                                         <Stack gap={3}>
-                                            <div>
-                                                <h2>Inventory</h2>
-                                            </div>
+                                            <Stack direction={"horizontal"} gap={3}>
+                                                <div>
+                                                    <h2>Inventory</h2>
+                                                </div>
+                                                <div>
+                                                    <Button id="dropdown-basic-button2" >Add</Button>
+                                                </div>
+                                            </Stack>
                                             <div>
                                                 <Table striped bordered hover>
                                                     <thead>
@@ -321,9 +370,14 @@ export default function CompEdit() {
 
                                     <Tab.Pane eventKey = "third">
                                         <Stack gap={3}>
-                                            <div>
-                                                <h2>Events</h2>
-                                            </div>
+                                            <Stack direction={"horizontal"} gap={3}>
+                                                <div>
+                                                    <h2>Events</h2>
+                                                </div>
+                                                <div>
+                                                    <Button id="dropdown-basic-button2" >Add</Button>
+                                                </div>
+                                            </Stack>
                                             <div>
                                                 <Table striped bordered hover>
                                                     <thead>
@@ -432,7 +486,85 @@ export default function CompEdit() {
                                                     <div>
                                                         <Button md="3" type="submit">Save Changes</Button>
                                                     </div>
-                                                </Stack>                                            </Form>
+                                                </Stack>
+                                            </Form>
+                                        </Modal.Body>
+                                    </Modal>
+
+                                    <Modal show={show4} onHide={handleClose4}>
+                                        <Modal.Header closeButton>
+                                            <Modal.Title>Add Location</Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>
+                                            <Form noValidate validated={validated} onSubmit={handleSubmitLocationAdd}>
+                                                <Row className="mb-3">
+                                                    <Form.Group as={Col} md="6" controlId="validationCustom044">
+                                                        <Form.Label>Location Address</Form.Label>
+                                                        <Form.Control
+                                                            required
+                                                            type="text"
+                                                            placeholder="First name"
+                                                            defaultValue={locationAddress}
+                                                            onChange={(e)=>{ setAddress(e.target.value)} }
+                                                        />
+                                                    </Form.Group>
+                                                    <Form.Group as={Col} md="6" controlId="validationCustom02">
+                                                        <Form.Label>Postal Code</Form.Label>
+                                                        <Form.Control
+                                                            required
+                                                            type="text"
+                                                            placeholder="Last name"
+                                                            defaultValue={locationPostal}
+                                                            onChange={(e)=>{ setPostal(e.target.value)} }
+                                                        />
+                                                    </Form.Group>
+
+                                                </Row>
+                                                <Row className="mb-3">
+                                                    <Form.Group as={Col} md="12" controlId="validationCustom03">
+                                                        <Form.Label>Name</Form.Label>
+                                                        <Form.Control type="text" placeholder="Address" required defaultValue={locationName} onChange={(e)=> { setServiceName(e.target.value)}}/>
+                                                        <Form.Control.Feedback type="invalid">
+                                                            Please provide a valid address.
+                                                        </Form.Control.Feedback>
+                                                    </Form.Group>
+                                                </Row>
+                                                <Row className="mb-3">
+                                                    <Form.Group as={Col} md="12" controlId="validationCustom03">
+                                                        <Form.Label>Hours Of Operation</Form.Label>
+                                                        <Form.Control type="text" placeholder="Sat to Fri, 5PM to 6PM" required defaultValue={locationHOP} onChange={(e)=> { setHOP(e.target.value)}}/>
+                                                        <Form.Control.Feedback type="invalid">
+                                                            Please provide a valid hours.
+                                                        </Form.Control.Feedback>
+                                                    </Form.Group>
+                                                </Row>
+                                                <Row className="mb-3">
+                                                    <Form.Group as={Col} md="6" controlId="validationCustom01">
+                                                        <Form.Label>City</Form.Label>
+                                                        <Form.Control
+                                                            required
+                                                            placeholder="First name"
+                                                            defaultValue={locationCity}
+                                                            onChange={(e)=> { setLocationCity(e.target.value)}}
+                                                        />
+                                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                    </Form.Group>
+                                                    <Form.Group as={Col} md="6" controlId="validationCustom02">
+                                                        <Form.Label>Service</Form.Label>
+                                                        <Form.Select aria-label="Default select example" defaultValue={locationService} onChange={(e)=> { setLocationService(e.target.value)}}>
+                                                            {Service.map((val) => {
+                                                                return (
+                                                                    <option value={val.service_id} onClick={(e)=>{ setLocationService(e.target.value)} }>{val.name} ({val.service_id})</option>
+                                                                );
+                                                            })}
+                                                        </Form.Select>
+                                                    </Form.Group>
+
+                                                </Row>
+
+                                                        <Button md="3" type="submit">Add</Button>
+
+                                            </Form>
                                         </Modal.Body>
                                     </Modal>
 
