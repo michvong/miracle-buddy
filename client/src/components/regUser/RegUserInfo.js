@@ -1,6 +1,6 @@
 import React , { Component } from 'react';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import {Accordion, Button} from 'react-bootstrap';
 import Axios from 'axios';
@@ -11,13 +11,23 @@ import Dashboard from './Dashboard';
 // class RegUserInfo extends Component {
 const RegUserInfo = (props) => {
 
+    const info = useLocation();
+
     let [currentUser, setUser] = useState([]);
     let [nameTextField, setName] = useState("");
     let [langTextField, setLang] = useState("");
     let [emailTextField, setEmail] = useState("");
 
+    const fetch_user_id = () => {
+        try{
+            return info.state.user_id
+        } catch (e) {
+            Navigate('/reguserLogin')
+        }
+    }
+
     useEffect(() => {
-        Axios.get(`http://localhost:3001/user/${props.user_id}`)
+        Axios.get(`http://localhost:3001/user/${fetch_user_id()}`)
             .then((response) => {
                 if(response.status === 200) {
                     setUser(response.data);

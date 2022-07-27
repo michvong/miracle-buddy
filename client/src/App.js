@@ -40,7 +40,7 @@ function App() {
         {/* regUser pages */}
         <Route path="/dashboard" element={<Dashboard />}>
         </Route>
-        <Route path="/reguserinfo" element={<RegUserInfo user_id="2"/>}>
+        <Route path="/reguserinfo" element={<RegUserInfo />}>
         </Route>
         <Route path="/bookmarks" element={<Bookmarks />}>
         </Route>
