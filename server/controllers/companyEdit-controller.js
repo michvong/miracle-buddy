@@ -82,6 +82,23 @@ exports.updateEvent = (req, res) => {
 };
 
 exports.addEvent = (req, res) => {
+    const event_name = req.body.event_name;
+    const date = req.body.date;
+    const location = req.body.location;
+    const description = req.body.description;
+    const company_id = req.body.company_id;
+
+    console.log(event_name, date, location, description, company_id);
+
+    connection.query("INSERT INTO Event VALUES (?,?,?,?)",
+        [event_name, date, location, description],
+        (err, results) => {
+            connection.query("INSERT INTO EventHost VALUES (?,?,?)",
+                [event_name, date, company_id],
+                (err, results) => {
+                res.send(results);
+            });
+        });
 
 };
 

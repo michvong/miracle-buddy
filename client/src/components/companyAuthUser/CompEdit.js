@@ -189,6 +189,26 @@ export default function CompEdit() {
         event.preventDefault();
     };
 
+    const handleSubmitEventAdd = (event) => {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+            return
+        }
+        setValidated(true);
+        event.preventDefault();
+
+        console.log(eventLocation, eventDescription, eventName, eventDate, fetchInput());
+        Axios.post('http://localhost:3001/add-event', {
+            location: eventLocation, description: eventDescription, event_name: eventName, date: eventDate, company_id:fetchInput()
+        }).then((response)=>{
+            updateEvent();
+        });
+
+        setShow6(false);
+    };
+
     // END
     function updateInventory() {
         Axios.post('http://localhost:3001/sort-products', {
@@ -375,7 +395,7 @@ export default function CompEdit() {
                                                     <h2>Events</h2>
                                                 </div>
                                                 <div>
-                                                    <Button id="dropdown-basic-button2" >Add</Button>
+                                                    <Button id="dropdown-basic-button2" onClick={()=>{handleShow6(); setEventName(""); setEventDescription(""); setEventLocation(""); setEventDate((""))}}>Add</Button>
                                                 </div>
                                             </Stack>
                                             <div>
@@ -655,6 +675,67 @@ export default function CompEdit() {
                                                             placeholder="YYYY-MM-DD HH:MM:SS"
                                                             defaultValue={eventDate}
                                                             readOnly
+                                                        />
+                                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                    </Form.Group>
+                                                </Row>
+                                                <Row className="mb-3">
+                                                    <Form.Group as={Col} md="12" controlId="validationCustom03">
+                                                        <Form.Label>Location</Form.Label>
+                                                        <Form.Control required type="text" placeholder="Address, City" defaultValue={eventLocation} onChange={(e)=> { setEventLocation(e.target.value); }}/>
+                                                        <Form.Control.Feedback type="invalid">
+                                                            Please provide a valid city.
+                                                        </Form.Control.Feedback>
+                                                    </Form.Group>
+
+                                                </Row><Row className="mb-3">
+                                                <Form.Group as={Col} md="12" controlId="validationCustom04">
+                                                    <Form.Label>Description</Form.Label>
+                                                    <Form.Control type="text" placeholder="Description" required defaultValue={eventDescription} onChange={(e)=> { setEventDescription(e.target.value); }}/>
+                                                    <Form.Control.Feedback type="invalid">
+                                                        Please provide a valid description.
+                                                    </Form.Control.Feedback>
+                                                </Form.Group>
+                                            </Row>
+
+                                                <Stack direction={"horizontal"} gap={1}>
+                                                    <div>
+                                                        <Button md="3" variant="danger" onClick={()=>{deleteEvent(eventName, eventDate)}}>Delete</Button>
+                                                    </div>
+                                                    <div>
+                                                        <Button md="3" type="submit">Save Changes</Button>
+                                                    </div>
+                                                </Stack>
+                                            </Form>
+                                        </Modal.Body>
+                                    </Modal>
+
+                                    <Modal show={show6} onHide={handleClose6}>
+                                        <Modal.Header closeButton>
+                                            <Modal.Title>Add Events</Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>
+                                            <Form noValidate validated={validated} onSubmit={handleSubmitEventAdd}>
+                                                <Row className="mb-3">
+                                                    <Form.Group as={Col} md="6" controlId="validationCustom01">
+                                                        <Form.Label>Event Name</Form.Label>
+                                                        <Form.Control
+                                                            required
+                                                            isInvalid={returnBoolean(false)}
+                                                            placeholder="Event Name"
+                                                            defaultValue={eventName}
+                                                            onChange={(e)=> { setEventName(e.target.value); }}
+                                                        />
+                                                        <Form.Control.Feedback type="invalid">Please Provide Valid Event Name</Form.Control.Feedback>
+                                                    </Form.Group>
+                                                    <Form.Group as={Col} md="6" controlId="validationCustom02">
+                                                        <Form.Label>Date</Form.Label>
+                                                        <Form.Control
+                                                            required
+                                                            type="text"
+                                                            placeholder="YYYY-MM-DD HH:MM:SS"
+                                                            defaultValue={eventDate}
+                                                            onChange={(e)=> { setEventDate(e.target.value); }}
                                                         />
                                                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                                     </Form.Group>
