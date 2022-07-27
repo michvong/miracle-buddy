@@ -74,6 +74,7 @@ export default function CompEdit() {
 
     const [validated, setValidated] = useState(false);
 
+    // Update Buttons
     const handleSubmitLocation = (event) => {
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
@@ -129,6 +130,17 @@ export default function CompEdit() {
 
         setShow3(false);
     };
+
+    // Delete Buttons
+
+    const deleteLocation = (address, postal_code) => {
+        Axios.post('http://localhost:3001/delete-service', {
+            address: address, postal_code: postal_code
+        }).then((response)=>{
+            updateLocation();
+        });
+        setShow(false);
+    }
 
     function updateInventory() {
         Axios.post('http://localhost:3001/sort-products', {
@@ -406,7 +418,7 @@ export default function CompEdit() {
                                                 </Row>
                                                 <Stack direction={"horizontal"} gap={1}>
                                                     <div>
-                                                        <Button md="3" variant="danger">Delete</Button>
+                                                        <Button md="3" variant="danger" onClick={()=>{deleteLocation(locationAddress, locationPostal)}}>Delete</Button>
                                                     </div>
                                                     <div>
                                                         <Button md="3" type="submit">Save Changes</Button>

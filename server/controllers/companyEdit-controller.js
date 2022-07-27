@@ -20,6 +20,13 @@ exports.addService = (req, res) => {
 };
 
 exports.deleteService = (req, res) => {
+    const address = req.body.address;
+    const postal_code = req.body.postal_code;
+
+    console.log(address, postal_code);
+    connection.query("DELETE FROM Location WHERE address = (?) AND postal_code  = (?)",
+        [address, postal_code],
+        (err, results) => { res.send(results); });
 
 };
 
