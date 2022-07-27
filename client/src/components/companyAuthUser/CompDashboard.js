@@ -22,15 +22,15 @@ export default function CompDashboard() {
     }
 
     const handleLocationsClick = () => {
-        navigate('/compedit', { state: { company_id: location.state.company_id } });
+        navigate('/compedit', { state: { company_id: location.state.company_id, tab: "first" } });
     }
 
     const handleWarehousesClick = () => {
-        navigate('/FILL_THIS_IN', { state: { company_id: location.state.company_id } });
+        navigate('/compedit', { state: { company_id: location.state.company_id, tab: "second" } });
     }
 
     const handleEventsClick = () => {
-        navigate('/FILL_THIS_IN', { state: { company_id: location.state.company_id } });
+        navigate('/compedit', { state: { company_id: location.state.company_id, tab: "third" } });
     }
 
     const handleBackClick = () => {

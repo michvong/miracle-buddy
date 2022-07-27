@@ -10,7 +10,7 @@ export default function Forward() {
 
 
     const reactButton = () => {
-        navigate('/compedit', {state: {company_id:input1}});
+        navigate('/compdashboard', {state: {company_id:input1}});
     };
 
     return (

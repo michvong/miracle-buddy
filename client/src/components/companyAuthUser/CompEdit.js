@@ -288,6 +288,15 @@ export default function CompEdit() {
         }
     };
 
+    const fetchTab = () => {
+        try {
+            return info.state.tab
+        } catch (e) {
+            return "first"
+        }
+
+    }
+
     const returnBoolean = (bool) => {
         return bool
     }
@@ -319,7 +328,7 @@ export default function CompEdit() {
                     </Navbar>
                 </div>
                 <div>
-                    <Tab.Container defaultActiveKey="first">
+                    <Tab.Container defaultActiveKey={fetchTab()}>
                         <Row >
                             <Col sm={20} md={2} lg={2}>
                                 <Nav variant="pills" className="flex-column">
