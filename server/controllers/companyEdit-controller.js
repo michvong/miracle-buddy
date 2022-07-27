@@ -55,7 +55,7 @@ exports.updateInventory = (req, res) => {
     const item_id = req.body.item_id;
     const warehouse_id = req.body.warehouse_id;
 
-    console.log(name, description, stock, item_id);
+    console.log(name, description, stock, item_id, warehouse_id);
     connection.query("UPDATE Products SET name = (?), description = (?) WHERE item_id = (?) ",
         [name, description, item_id],
         (err, results) => {  });

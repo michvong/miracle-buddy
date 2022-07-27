@@ -119,7 +119,7 @@ export default function CompEdit() {
 
         } else {
             Axios.post('http://localhost:3001/update-inventory', {
-                name: inventoryName, description: inventoryDescription, stock: inventoryStock, item_id: inventoryItemID
+                name: inventoryName, description: inventoryDescription, stock: inventoryStock, item_id: inventoryItemID, warehouse_id: inventoryWarehouseID
             }).then((response)=>{
                 updateInventory();
             });
