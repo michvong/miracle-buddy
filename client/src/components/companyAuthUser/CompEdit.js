@@ -142,6 +142,15 @@ export default function CompEdit() {
         setShow(false);
     }
 
+    const deleteEvent = (event_name, date) => {
+        Axios.post('http://localhost:3001/delete-event', {
+            event_name: event_name, date: date
+        }).then((response)=>{
+            updateEvent();
+        });
+        setShow3(false);
+    }
+
     function updateInventory() {
         Axios.post('http://localhost:3001/sort-products', {
             id: fetchInput(),
@@ -539,7 +548,7 @@ export default function CompEdit() {
 
                                                 <Stack direction={"horizontal"} gap={1}>
                                                     <div>
-                                                        <Button md="3" variant="danger">Delete</Button>
+                                                        <Button md="3" variant="danger" onClick={()=>{deleteEvent(eventName, eventDate)}}>Delete</Button>
                                                     </div>
                                                     <div>
                                                         <Button md="3" type="submit">Save Changes</Button>

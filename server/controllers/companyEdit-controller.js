@@ -51,6 +51,7 @@ exports.addInventory = (req, res) => {
 
 exports.deleteInventory = (req, res) => {
 
+
 };
 
 exports.updateEvent = (req, res) => {
@@ -73,5 +74,13 @@ exports.addEvent = (req, res) => {
 };
 
 exports.deleteEvent = (req, res) => {
+    const event_name = req.body.event_name;
+    const date = req.body.date;
+
+    console.log(event_name, date);
+    connection.query("DELETE FROM Event WHERE event_name = (?) AND date = (?)",
+        [event_name, date],
+        (err, results) => { res.send(results); });
+
 
 };
