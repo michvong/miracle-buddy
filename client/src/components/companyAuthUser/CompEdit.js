@@ -211,7 +211,7 @@ export default function CompEdit() {
 
         } else {
             Axios.post('http://localhost:3001/add-inventory', {
-                name: inventoryName, description: inventoryDescription, stock: inventoryStock, item_id: inventoryItemID, warehouse_id: inventoryWarehouseID
+                name: inventoryName, description: inventoryDescription, stock: inventoryStock, item_id: inventoryItemID, warehouse_id: inventoryWarehouseID, company_id: fetchInput()
             }).then((response)=>{
                 updateInventory();
             });
@@ -412,6 +412,7 @@ export default function CompEdit() {
                                                         <th>Description</th>
                                                         <th>Stock</th>
                                                         <th>Item #</th>
+                                                        <th>Warehouse ID</th>
                                                         <th>Actions</th>
                                                     </tr>
                                                     </thead>
@@ -423,7 +424,8 @@ export default function CompEdit() {
                                                                 <td>{val.description}</td>
                                                                 <td>{val.stock}</td>
                                                                 <td>{val.item_id}</td>
-                                                                <td><Button variant="secondary" size="sm" onClick={()=>{handleShow2(); setInventoryName(val.name); setInventoryDescription(val.description); setInventoryStock(val.stock); setInventoryItemID(val.item_id)}}>Edit</Button>
+                                                                <td>{val.warehouse_id}</td>
+                                                                <td><Button variant="secondary" size="sm" onClick={()=>{handleShow2(); setInventoryName(val.name); setInventoryDescription(val.description); setInventoryStock(val.stock); setInventoryItemID(val.item_id); setInventoryWarehouseID(val.warehouse_id)}}>Edit</Button>
                                                                 </td>
                                                             </tr>
                                                         );
@@ -652,16 +654,13 @@ export default function CompEdit() {
                                                         />
                                                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                                     </Form.Group>
-                                                    <Form.Group as={Col} md="6" controlId="validationCustom02">
-                                                        <Form.Label>Stock</Form.Label>
-                                                        <Form.Control
-                                                            required
-                                                            type="text"
-                                                            placeholder="Last name"
-                                                            defaultValue={inventoryStock}
-                                                            onChange={(e)=> { setInventoryStock(e.target.value); }}
-                                                        />
-                                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+
+                                                    <Form.Group as={Col} md="6" controlId="validationCustom03">
+                                                        <Form.Label>WarehouseID</Form.Label>
+                                                        <Form.Control type="text" placeholder="Name" required defaultValue={inventoryWarehouseID} onChange={(e)=> { setInventoryWarehouseID(e.target.value); }} readOnly/>
+                                                        <Form.Control.Feedback type="invalid">
+                                                            Please provide a valid name.
+                                                        </Form.Control.Feedback>
                                                     </Form.Group>
                                                 </Row>
                                                 <Row className="mb-3">
@@ -672,12 +671,16 @@ export default function CompEdit() {
                                                             Please provide a valid name.
                                                         </Form.Control.Feedback>
                                                     </Form.Group>
-                                                    <Form.Group as={Col} md="6" controlId="validationCustom03">
-                                                        <Form.Label>WarehouseID</Form.Label>
-                                                        <Form.Control type="text" placeholder="Name" required onChange={(e)=> { setInventoryWarehouseID(e.target.value); }}/>
-                                                        <Form.Control.Feedback type="invalid">
-                                                            Please provide a valid name.
-                                                        </Form.Control.Feedback>
+                                                    <Form.Group as={Col} md="6" controlId="validationCustom02">
+                                                        <Form.Label>Stock</Form.Label>
+                                                        <Form.Control
+                                                            required
+                                                            type="text"
+                                                            placeholder="Last name"
+                                                            defaultValue={inventoryStock}
+                                                            onChange={(e)=> { setInventoryStock(e.target.value); }}
+                                                        />
+                                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                                     </Form.Group>
                                                 </Row>
                                                 <Row className="mb-3">
@@ -720,16 +723,13 @@ export default function CompEdit() {
                                                         />
                                                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                                     </Form.Group>
-                                                    <Form.Group as={Col} md="6" controlId="validationCustom02">
-                                                        <Form.Label>Stock</Form.Label>
-                                                        <Form.Control
-                                                            required
-                                                            type="text"
-                                                            placeholder="Last name"
-                                                            defaultValue={inventoryStock}
-                                                            onChange={(e)=> { setInventoryStock(e.target.value); }}
-                                                        />
-                                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+
+                                                    <Form.Group as={Col} md="6" controlId="validationCustom03">
+                                                        <Form.Label>WarehouseID</Form.Label>
+                                                        <Form.Control type="text" placeholder="Name" required onChange={(e)=> { setInventoryWarehouseID(e.target.value); }}/>
+                                                        <Form.Control.Feedback type="invalid">
+                                                            Please provide a valid id number.
+                                                        </Form.Control.Feedback>
                                                     </Form.Group>
                                                 </Row>
                                                 <Row className="mb-3">
@@ -740,12 +740,16 @@ export default function CompEdit() {
                                                             Please provide a valid name.
                                                         </Form.Control.Feedback>
                                                     </Form.Group>
-                                                    <Form.Group as={Col} md="6" controlId="validationCustom03">
-                                                        <Form.Label>WarehouseID</Form.Label>
-                                                        <Form.Control type="text" placeholder="Name" required onChange={(e)=> { setInventoryWarehouseID(e.target.value); }}/>
-                                                        <Form.Control.Feedback type="invalid">
-                                                            Please provide a valid name.
-                                                        </Form.Control.Feedback>
+                                                    <Form.Group as={Col} md="6" controlId="validationCustom02">
+                                                        <Form.Label>Stock</Form.Label>
+                                                        <Form.Control
+                                                            required
+                                                            type="text"
+                                                            placeholder="Last name"
+                                                            defaultValue={inventoryStock}
+                                                            onChange={(e)=> { setInventoryStock(e.target.value); }}
+                                                        />
+                                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                                     </Form.Group>
                                                 </Row>
                                                 <Row className="mb-3">

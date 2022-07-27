@@ -53,13 +53,14 @@ exports.updateInventory = (req, res) => {
     const description = req.body.description;
     const stock = req.body.stock;
     const item_id = req.body.item_id;
+    const warehouse_id = req.body.warehouse_id;
 
     console.log(name, description, stock, item_id);
     connection.query("UPDATE Products SET name = (?), description = (?) WHERE item_id = (?) ",
         [name, description, item_id],
         (err, results) => {  });
-    connection.query("UPDATE Inventory SET stock = (?) WHERE item_id = (?) ",
-        [stock, item_id],
+    connection.query("UPDATE Inventory SET stock = (?) WHERE item_id = (?) AND warehouse_id=(?)",
+        [stock, item_id, warehouse_id],
         (err, results) => { res.send(results); });
 };
 
@@ -69,15 +70,21 @@ exports.addInventory = (req, res) => {
     const stock = req.body.stock;
     const item_id = req.body.item_id;
     const warehouse_id = req.body.warehouse_id;
+    const company_id = req.body.company_id;
 
-    console.log(name, description, stock, item_id);
+    console.log(name, description, stock, item_id, warehouse_id, company_id);
     connection.query("INSERT IGNORE INTO Products VALUES (?,?,?)",
         [item_id, name, description],
         (err, results) => {
-            connection.query("INSERT INTO Inventory VALUES (?,?,?) ",
-                [item_id, stock, warehouse_id],
-                (err, results) => { res.send(results); });
+            connection.query("INSERT IGNORE INTO Warehouse VALUES (?,?,null,null) ",
+                [warehouse_id, company_id],
+                (err, results) => {
+                    connection.query("INSERT INTO Inventory VALUES (?,?,?) ",
+                        [item_id, stock, warehouse_id],
+                        (err, results) => { res.send(results); });
+                });
         });
+
 
 };
 
