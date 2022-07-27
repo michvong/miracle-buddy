@@ -35,6 +35,10 @@ export default function CompEdit() {
     let [locationServiceType, setServiceType] = useState("");
 
     // Warehouses
+    let [inventoryName, setInventoryName] = useState("");
+    let [inventoryDescription, setInventoryDescription] = useState("");
+    let [inventoryStock, setInventoryStock] = useState("");
+    let [inventoryItemID, setInventoryItemID] = useState("");
 
     // Events
     let [eventName, setEventName] = useState("");
@@ -75,7 +79,7 @@ export default function CompEdit() {
         }
         setValidated(true);
         event.preventDefault();
-        setShow3(false);
+        setShow(false);
     };
 
     const handleSubmitWarehouse = (event) => {
@@ -87,7 +91,7 @@ export default function CompEdit() {
         }
         setValidated(true);
         event.preventDefault();
-        setShow3(false);
+        setShow2(false);
     };
 
     const handleSubmitEvent = (event) => {
@@ -180,7 +184,7 @@ export default function CompEdit() {
                                         <Nav.Link eventKey="first" >Locations</Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
-                                        <Nav.Link eventKey="second" >Warehouse</Nav.Link>
+                                        <Nav.Link eventKey="second" >Inventory</Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item className={"minimum-width"}>
                                         <Nav.Link eventKey="third" >Events</Nav.Link>
@@ -236,23 +240,21 @@ export default function CompEdit() {
                                                     <thead>
                                                     <tr>
                                                         <th>Name</th>
-                                                        <th>Address</th>
-                                                        <th>City</th>
-                                                        <th>Hours of Operation</th>
-                                                        <th>Service</th>
+                                                        <th>Description</th>
+                                                        <th>Stock</th>
+                                                        <th>Item #</th>
                                                         <th>Actions</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    {Location.map((val, key) => {
+                                                    {Inventory.map((val, key) => {
                                                         return (
                                                             <tr key={key}>
-                                                                <td>{val.location_name}</td>
-                                                                <td>{val.address}</td>
-                                                                <td>{val.city}</td>
-                                                                <td>{val.hours_of_operation}</td>
-                                                                <td>{val.service_name}</td>
-                                                                <td><Button variant="secondary" size="sm" onClick={()=>{handleShow2(); setAddress(val.address); setHOP(val.hours_of_operation); setServiceName(val.location_name); setServiceType(val.service_name); setPostal(val.postal_code)}}>Edit</Button>
+                                                                <td>{val.name}</td>
+                                                                <td>{val.description}</td>
+                                                                <td>{val.stock}</td>
+                                                                <td>{val.item_id}</td>
+                                                                <td><Button variant="secondary" size="sm" onClick={()=>{handleShow2(); setInventoryName(val.name); setInventoryDescription(val.description); setInventoryStock(val.stock); setInventoryItemID(val.item_id)}}>Edit</Button>
                                                                 </td>
                                                             </tr>
                                                         );
@@ -383,73 +385,48 @@ export default function CompEdit() {
                                         <Modal.Body>
                                             <Form noValidate validated={validated} onSubmit={handleSubmitWarehouse}>
                                                 <Row className="mb-3">
-                                                    <Form.Group as={Col} md="4" controlId="validationCustom01">
-                                                        <Form.Label>First name</Form.Label>
+                                                    <Form.Group as={Col} md="6" controlId="validationCustom01">
+                                                        <Form.Label>Item #</Form.Label>
                                                         <Form.Control
                                                             required
                                                             isInvalid={returnBoolean(false)}
-                                                            placeholder="First name"
-                                                            defaultValue="Mark"
+                                                            placeholder="1234"
+                                                            defaultValue={inventoryItemID}
+                                                            readOnly
                                                         />
                                                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                                     </Form.Group>
-                                                    <Form.Group as={Col} md="4" controlId="validationCustom02">
-                                                        <Form.Label>Last name</Form.Label>
+                                                    <Form.Group as={Col} md="6" controlId="validationCustom02">
+                                                        <Form.Label>Stock</Form.Label>
                                                         <Form.Control
                                                             required
                                                             type="text"
                                                             placeholder="Last name"
-                                                            defaultValue="Otto"
+                                                            defaultValue={inventoryStock}
+
                                                         />
                                                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                                     </Form.Group>
-                                                    <Form.Group as={Col} md="4" controlId="validationCustomUsername">
-                                                        <Form.Label>Username</Form.Label>
-                                                        <InputGroup hasValidation>
-                                                            <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
-                                                            <Form.Control
-                                                                type="text"
-                                                                placeholder="Username"
-                                                                aria-describedby="inputGroupPrepend"
-                                                                required
-                                                            />
-                                                            <Form.Control.Feedback type="invalid">
-                                                                Please choose a username.
-                                                            </Form.Control.Feedback>
-                                                        </InputGroup>
+                                                </Row>
+                                                <Row className="mb-3">
+                                                    <Form.Group as={Col} md="12" controlId="validationCustom03">
+                                                        <Form.Label>Name</Form.Label>
+                                                        <Form.Control type="text" placeholder="Name" required defaultValue={inventoryName}/>
+                                                        <Form.Control.Feedback type="invalid">
+                                                            Please provide a valid name.
+                                                        </Form.Control.Feedback>
                                                     </Form.Group>
                                                 </Row>
                                                 <Row className="mb-3">
-                                                    <Form.Group as={Col} md="6" controlId="validationCustom03">
-                                                        <Form.Label>City</Form.Label>
-                                                        <Form.Control type="text" placeholder="City" required />
+                                                    <Form.Group as={Col} md="12" controlId="validationCustom03">
+                                                        <Form.Label>Description</Form.Label>
+                                                        <Form.Control type="text" placeholder="Description" required defaultValue={inventoryDescription}/>
                                                         <Form.Control.Feedback type="invalid">
-                                                            Please provide a valid city.
-                                                        </Form.Control.Feedback>
-                                                    </Form.Group>
-                                                    <Form.Group as={Col} md="3" controlId="validationCustom04">
-                                                        <Form.Label>State</Form.Label>
-                                                        <Form.Control type="text" placeholder="State" required />
-                                                        <Form.Control.Feedback type="invalid">
-                                                            Please provide a valid state.
-                                                        </Form.Control.Feedback>
-                                                    </Form.Group>
-                                                    <Form.Group as={Col} md="3" controlId="validationCustom05">
-                                                        <Form.Label>Zip</Form.Label>
-                                                        <Form.Control type="text" placeholder="Zip" required />
-                                                        <Form.Control.Feedback type="invalid">
-                                                            Please provide a valid zip.
+                                                            Please provide a valid description.
                                                         </Form.Control.Feedback>
                                                     </Form.Group>
                                                 </Row>
-                                                <Form.Group className="mb-3">
-                                                    <Form.Check
-                                                        required
-                                                        label="Agree to terms and conditions"
-                                                        feedback="You must agree before submitting."
-                                                        feedbackType="invalid"
-                                                    />
-                                                </Form.Group>
+
                                                 <Button type="submit">Save Changes</Button>
                                             </Form>
                                         </Modal.Body>
