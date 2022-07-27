@@ -33,6 +33,7 @@ export default function CompEdit() {
     let [locationName, setServiceName] = useState("");
     let [locationHOP, setHOP] = useState("");
     let [locationServiceType, setServiceType] = useState("");
+    let [locationCity, setLocationCity] = useState("");
 
     // Warehouses
     let [inventoryName, setInventoryName] = useState("");
@@ -49,6 +50,8 @@ export default function CompEdit() {
     const [show, setShow] = useState(false);
     const [show2, setShow2] = useState(false);
     const [show3, setShow3] = useState(false);
+
+    let [Service, setService] = useState([]);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -133,6 +136,10 @@ export default function CompEdit() {
             Event = {};
             setEvent(response.data);
         });
+        Axios.get('http://localhost:3001/services')
+            .then((response) => {
+                setService(response.data);
+            });
 
     }, []);
 
@@ -219,7 +226,7 @@ export default function CompEdit() {
                                                                 <td>{val.city}</td>
                                                                 <td>{val.hours_of_operation}</td>
                                                                 <td>{val.service_name}</td>
-                                                                <td><Button variant="secondary" size="sm" onClick={()=>{handleShow(); setAddress(val.address); setHOP(val.hours_of_operation); setServiceName(val.location_name); setServiceType(val.service_name); setPostal(val.postal_code)}}>Edit</Button>
+                                                                <td><Button variant="secondary" size="sm" onClick={()=>{handleShow(); setAddress(val.address); setHOP(val.hours_of_operation); setServiceName(val.location_name); setServiceType(val.service_name); setPostal(val.postal_code); setLocationCity(val.city)}}>Edit</Button>
                                                                 </td>
                                                             </tr>
                                                         );
@@ -354,25 +361,23 @@ export default function CompEdit() {
                                                         <Form.Control
                                                             required
                                                             placeholder="First name"
-                                                            defaultValue={locationPostal}
+                                                            defaultValue={locationCity}
 
                                                         />
                                                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                                     </Form.Group>
                                                     <Form.Group as={Col} md="6" controlId="validationCustom02">
                                                         <Form.Label>Service</Form.Label>
-                                                        <Form.Control
-                                                            required
-                                                            type="text"
-                                                            placeholder="Last name"
-                                                            defaultValue={locationServiceType}
-
-                                                        />
-                                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                        <Form.Select aria-label="Default select example" defaultValue={locationServiceType}>
+                                                            {Service.map((val) => {
+                                                                return (
+                                                                    <option value={val.name} onClick={()=>{ } }>{val.name}</option>
+                                                                );
+                                                            })}
+                                                        </Form.Select>
                                                     </Form.Group>
 
                                                 </Row>
-
                                                 <Button type="submit">Save Changes</Button>
                                             </Form>
                                         </Modal.Body>
