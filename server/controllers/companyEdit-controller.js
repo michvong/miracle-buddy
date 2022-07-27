@@ -58,12 +58,36 @@ exports.updateInventory = (req, res) => {
 };
 
 exports.addInventory = (req, res) => {
+    const name = req.body.name;
+    const description = req.body.description;
+    const stock = req.body.stock;
+    const item_id = req.body.item_id;
+    const warehouse_id = req.body.warehouse_id;
+
+    console.log(name, description, stock, item_id);
+    connection.query("INSERT IGNORE INTO Products VALUES (?,?,?)",
+        [item_id, name, description],
+        (err, results) => {
+            connection.query("INSERT INTO Inventory VALUES (?,?,?) ",
+                [item_id, stock, warehouse_id],
+                (err, results) => { res.send(results); });
+        });
 
 };
 
 exports.deleteInventory = (req, res) => {
 
+    const name = req.body.name;
+    const description = req.body.description;
+    const stock = req.body.stock;
+    const item_id = req.body.item_id;
+    const warehouse_id = req.body.warehouse_id;
 
+    connection.query("DELETE FROM Inventory WHERE item_id = (?) AND warehouse_id = (?)",
+        [item_id, warehouse_id],
+        (err, results) => {
+                res.send(results);
+        });
 };
 
 exports.updateEvent = (req, res) => {

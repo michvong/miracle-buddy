@@ -41,6 +41,7 @@ export default function CompEdit() {
     let [inventoryDescription, setInventoryDescription] = useState("");
     let [inventoryStock, setInventoryStock] = useState("");
     let [inventoryItemID, setInventoryItemID] = useState("");
+    let [inventoryWarehouseID, setInventoryWarehouseID] = useState("");
 
     // Events
     let [eventName, setEventName] = useState("");
@@ -157,6 +158,16 @@ export default function CompEdit() {
         setShow(false);
     }
 
+    const deleteInventory = (item_id, warehouse_id) => {
+        console.log(item_id, warehouse_id);
+        Axios.post('http://localhost:3001/delete-inventory', {
+            item_id: item_id, warehouse_id: warehouse_id
+        }).then((response)=>{
+            updateInventory();
+        });
+        setShow2(false);
+    }
+
     const deleteEvent = (event_name, date) => {
         Axios.post('http://localhost:3001/delete-event', {
             event_name: event_name, date: date
@@ -189,6 +200,24 @@ export default function CompEdit() {
         event.preventDefault();
     };
 
+    const handleSubmitWarehouseAdd = (event) => {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+            return
+        }
+        setValidated(true);
+        event.preventDefault();
+
+        Axios.post('http://localhost:3001/add-inventory', {
+            name: inventoryName, description: inventoryDescription, stock: inventoryStock, item_id: inventoryItemID, warehouse_id: inventoryWarehouseID
+        }).then((response)=>{
+            updateInventory();
+        });
+        setShow5(false);
+    };
+
     const handleSubmitEventAdd = (event) => {
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
@@ -210,6 +239,7 @@ export default function CompEdit() {
     };
 
     // END
+
     function updateInventory() {
         Axios.post('http://localhost:3001/sort-products', {
             id: fetchInput(),
@@ -355,7 +385,7 @@ export default function CompEdit() {
                                                     <h2>Inventory</h2>
                                                 </div>
                                                 <div>
-                                                    <Button id="dropdown-basic-button2" >Add</Button>
+                                                    <Button id="dropdown-basic-button2" onClick={()=>{handleShow5(); setInventoryName(""); setInventoryDescription(""); setInventoryStock(""); setInventoryItemID(""); setInventoryWarehouseID("")}}>Add</Button>
                                                 </div>
                                             </Stack>
                                             <div>
@@ -619,9 +649,16 @@ export default function CompEdit() {
                                                     </Form.Group>
                                                 </Row>
                                                 <Row className="mb-3">
-                                                    <Form.Group as={Col} md="12" controlId="validationCustom03">
+                                                    <Form.Group as={Col} md="6" controlId="validationCustom03">
                                                         <Form.Label>Name</Form.Label>
                                                         <Form.Control type="text" placeholder="Name" required defaultValue={inventoryName} onChange={(e)=> { setInventoryName(e.target.value); }}/>
+                                                        <Form.Control.Feedback type="invalid">
+                                                            Please provide a valid name.
+                                                        </Form.Control.Feedback>
+                                                    </Form.Group>
+                                                    <Form.Group as={Col} md="6" controlId="validationCustom03">
+                                                        <Form.Label>WarehouseID</Form.Label>
+                                                        <Form.Control type="text" placeholder="Name" required onChange={(e)=> { setInventoryWarehouseID(e.target.value); }}/>
                                                         <Form.Control.Feedback type="invalid">
                                                             Please provide a valid name.
                                                         </Form.Control.Feedback>
@@ -639,8 +676,74 @@ export default function CompEdit() {
 
                                                 <Stack direction={"horizontal"} gap={1}>
                                                     <div>
-                                                        <Button md="3" variant="danger">Delete</Button>
+                                                        <Button md="3" variant="danger" onClick={()=>{deleteInventory(inventoryItemID, inventoryWarehouseID)}}>Delete</Button>
                                                     </div>
+                                                    <div>
+                                                        <Button md="3" type="submit">Save Changes</Button>
+                                                    </div>
+                                                </Stack>
+                                            </Form>
+                                        </Modal.Body>
+                                    </Modal>
+
+                                    <Modal show={show5} onHide={handleClose5}>
+                                        <Modal.Header closeButton>
+                                            <Modal.Title>Add Inventory</Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>
+                                            <Form noValidate validated={validated} onSubmit={handleSubmitWarehouseAdd}>
+                                                <Row className="mb-3">
+                                                    <Form.Group as={Col} md="6" controlId="validationCustom01">
+                                                        <Form.Label>Item #</Form.Label>
+                                                        <Form.Control
+                                                            required
+                                                            isInvalid={returnBoolean(false)}
+                                                            placeholder="1234"
+                                                            defaultValue={inventoryItemID}
+                                                            onChange={(e)=> { setInventoryItemID(e.target.value); }}
+                                                        />
+                                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                    </Form.Group>
+                                                    <Form.Group as={Col} md="6" controlId="validationCustom02">
+                                                        <Form.Label>Stock</Form.Label>
+                                                        <Form.Control
+                                                            required
+                                                            type="text"
+                                                            placeholder="Last name"
+                                                            defaultValue={inventoryStock}
+                                                            onChange={(e)=> { setInventoryStock(e.target.value); }}
+                                                        />
+                                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                    </Form.Group>
+                                                </Row>
+                                                <Row className="mb-3">
+                                                    <Form.Group as={Col} md="6" controlId="validationCustom03">
+                                                        <Form.Label>Name</Form.Label>
+                                                        <Form.Control type="text" placeholder="Name" required defaultValue={inventoryName} onChange={(e)=> { setInventoryName(e.target.value); }}/>
+                                                        <Form.Control.Feedback type="invalid">
+                                                            Please provide a valid name.
+                                                        </Form.Control.Feedback>
+                                                    </Form.Group>
+                                                    <Form.Group as={Col} md="6" controlId="validationCustom03">
+                                                        <Form.Label>WarehouseID</Form.Label>
+                                                        <Form.Control type="text" placeholder="Name" required onChange={(e)=> { setInventoryWarehouseID(e.target.value); }}/>
+                                                        <Form.Control.Feedback type="invalid">
+                                                            Please provide a valid name.
+                                                        </Form.Control.Feedback>
+                                                    </Form.Group>
+                                                </Row>
+                                                <Row className="mb-3">
+                                                    <Form.Group as={Col} md="12" controlId="validationCustom03">
+                                                        <Form.Label>Description</Form.Label>
+                                                        <Form.Control type="text" placeholder="Description" required defaultValue={inventoryDescription} onChange={(e)=> { setInventoryDescription(e.target.value); }}/>
+                                                        <Form.Control.Feedback type="invalid">
+                                                            Please provide a valid description.
+                                                        </Form.Control.Feedback>
+                                                    </Form.Group>
+                                                </Row>
+
+                                                <Stack direction={"horizontal"} gap={1}>
+
                                                     <div>
                                                         <Button md="3" type="submit">Save Changes</Button>
                                                     </div>
