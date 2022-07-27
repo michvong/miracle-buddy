@@ -15,7 +15,7 @@ exports.getAllProducts = (req, res) => {
 exports.showBySortedProducts = (req, res) => {
     const id = req.body.id;
 
-    connection.query("SELECT stock, Products.name, Products.description, Inventory.item_id, Warehouse.company_id " +
+    connection.query("SELECT stock, Products.name, Products.description, Inventory.item_id, Warehouse.company_id, Warehouse.warehouse_id, Warehouse.address, Warehouse.postal_code " +
         "FROM Inventory, Products, Warehouse " +
         "WHERE Inventory.item_id = Products.item_id " +
         "AND Warehouse.warehouse_id = Inventory.warehouse_id " +

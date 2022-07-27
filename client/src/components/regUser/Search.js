@@ -105,8 +105,8 @@ export default function Search() {
 
     const availability = (sum) => {
         if (sum>0) {
-            return <text>In Stock. {sum} available{"\n"}<Button variant="success" size="sm">Search</Button></text>}
-        return <text>Out of Stock. {sum} available{"\n"}<Button variant="secondary" size="sm" disabled>Search</Button></text>
+            return <text>{sum} available{"\n"}<Button variant="success" size="sm" disabled>In Stock</Button></text> }
+        return <text>{sum} available{"\n"}<Button variant="secondary" size="sm" disabled>Out Of Stock</Button></text>
     };
 
     const fetchInput = () => {
