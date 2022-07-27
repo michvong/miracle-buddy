@@ -10,4 +10,10 @@ router.put('/company/edit-name/:company_id/:new_name', controllers.changeCompany
 router.put('/company/edit-phone/:company_id/:new_phone', controllers.changeCompanyPhone);
 router.put('/company/edit-email/:company_id/:new_email', controllers.changeCompanyEmail);
 
+
+router.get('/company', controllers.getAllCompany);
+router.post('/org', controllers.getCompany);
+// router.post('/locations', controllers.updateLocationAddress);
+
+
 module.exports = router;

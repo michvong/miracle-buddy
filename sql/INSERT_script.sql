@@ -52,11 +52,11 @@ INSERT INTO Provides VALUES (103, 0003);
 INSERT INTO Provides VALUES (104, 0004);
 INSERT INTO Provides VALUES (105, 0005);
 
-INSERT INTO Location VALUES ('1117 Industrial Way','V8B0H1','Monday to Friday, 8:00AM - 5:00PM','Donation Circle Society',101,0001);
-INSERT INTO Location VALUES ('2616 Cedar Park Pl','V2T3S5','Saturday to Wednesday, 12:00PM - 7:00PM','Variety - The Children’s Charity',101,0002);
-INSERT INTO Location VALUES ('3564 Hastings Street','V6C1B4','Monday to Friday, 1:00PM - 7:00PM','Big Brothers of Greater Vancouver',101,0003);
-INSERT INTO Location VALUES ('15 Tanner Street','V5R2T4','Monday to Friday, 9:00AM - 4:00PM','Baobab Inclusive Empowerment Society',101,0004);
-INSERT INTO Location VALUES ('3812 James Street','V5W3C3','Thursday to Monday, 10:00AM - 5:00PM','HOPE International Development Agency',101,0005);
+INSERT INTO Location VALUES ('1117 Industrial Way','V7L2C1','Monday to Friday, 8:00AM - 5:00PM','Donation Circle Society',101,0001);
+INSERT INTO Location VALUES ('2616 Cedar Park Pl','V6B3K9','Saturday to Wednesday, 12:00PM - 7:00PM','Variety - The Children’s Charity',102,0002);
+INSERT INTO Location VALUES ('3564 Hastings Street','V6C1B4','Monday to Friday, 1:00PM - 7:00PM','Big Brothers of Greater Vancouver',103,0003);
+INSERT INTO Location VALUES ('15 Tanner Street','V5G1J9','Monday to Friday, 9:00AM - 4:00PM','Baobab Inclusive Empowerment Society',104,0004);
+INSERT INTO Location VALUES ('3812 James Street','V3W4E3','Thursday to Monday, 10:00AM - 5:00PM','HOPE International Development Agency',105,0005);
 
 INSERT INTO AreaCode VALUES ('V7L2C1', 'North Van');
 INSERT INTO AreaCode VALUES ('V6B3K9', 'Vancouver');

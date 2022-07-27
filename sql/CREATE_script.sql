@@ -1,6 +1,5 @@
-
 CREATE TABLE RegularUser (
-	user_id INT(10),
+	user_id INT(10) NOT NULL AUTO_INCREMENT,
 	name VARCHAR(100),
 	language VARCHAR(100),
 	email VARCHAR(100),
@@ -16,7 +15,7 @@ CREATE TABLE Company(
 );
 
 CREATE TABLE CompanyUser (
-	user_id INT(10),
+	user_id INT(10) NOT NULL AUTO_INCREMENT,
 	name VARCHAR(100),
 	language VARCHAR(100),
 	email VARCHAR(100),
@@ -124,7 +123,7 @@ CREATE TABLE Store (
 
 CREATE TABLE Event (
 	event_name CHAR(100),
-	date DATETIME(6),
+	date CHAR(100),
 	location CHAR(100),
 	description CHAR(100),
 	PRIMARY KEY (event_name, date)
@@ -132,17 +131,17 @@ CREATE TABLE Event (
 
 CREATE TABLE EventHost (
 	event_name CHAR(100),
-	date DATETIME(6),
+	date CHAR(100),
 	company_id INT(10),
 	PRIMARY KEY (event_name, date),
-	FOREIGN KEY (event_name, date) references Event(event_name, date),
+	FOREIGN KEY (event_name, date) references Event(event_name, date) ON DELETE CASCADE,
 	FOREIGN KEY (company_id) references Company(company_id) ON DELETE CASCADE
 );
 
 CREATE TABLE Requests (
 	user_id INT(10),
-	company_id INT(10),
-	PRIMARY KEY(user_id, company_id),
+	service_id INT(10),
+	PRIMARY KEY(user_id, service_id),
 	FOREIGN KEY(user_id) references RegularUser(user_id) ON DELETE CASCADE,
-	FOREIGN KEY(company_id) references Service(service_id) ON DELETE CASCADE
+	FOREIGN KEY(service_id) references Service(service_id) ON DELETE CASCADE
 );
