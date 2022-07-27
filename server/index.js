@@ -9,7 +9,7 @@ const locationRouter = require("./routes/location-route");
 const serviceRouter = require("./routes/service-route");
 const warehouseRouter = require("./routes/warehouse-route");
 const eventRouter = require("./routes/event-route")
-const companyRouter = require("./routes/company-route");
+// const companyRouter = require("./routes/company-route");
 const bookmarkRouter = require("./routes/bookmark-route");
 const regUserRouter = require("./routes/regUser-route");
 const companyUserRouter = require("./routes/companyUser-route");
@@ -26,7 +26,7 @@ app.use(locationRouter);
 app.use(serviceRouter);
 app.use(regUserRouter);
 app.use(companyUserRouter);
-app.use(companyRouter);
+// app.use(companyRouter);
 app.use(warehouseRouter);
 app.use(eventRouter);
 app.use(companyRouter);
