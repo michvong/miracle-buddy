@@ -34,6 +34,7 @@ export default function CompEdit() {
     let [locationHOP, setHOP] = useState("");
     let [locationServiceType, setServiceType] = useState("");
     let [locationCity, setLocationCity] = useState("");
+    let [locationService, setLocationService] = useState("");
 
     // Warehouses
     let [inventoryName, setInventoryName] = useState("");
@@ -82,6 +83,13 @@ export default function CompEdit() {
         }
         setValidated(true);
         event.preventDefault();
+
+        Axios.post('http://localhost:3001/update-service', {
+            address: locationAddress, postal_code: locationPostal, hours_of_operation: locationHOP, name: locationName, company_id: fetchInput(), service_id: locationService
+        }).then((response)=>{
+            updateLocation();
+        });
+
         setShow(false);
     };
 
@@ -140,14 +148,18 @@ export default function CompEdit() {
         });
     }
 
-    useEffect(()=>{
-
+    function updateLocation() {
         Axios.post('http://localhost:3001/sort-services', {
-            filter: 'd.company_id', service: fetchInput()
-        }).then((response)=>{
+            filter: 'a.company_id', service: fetchInput()
+        }).then((response) => {
             Location = {};
             setLocation(response.data);
         });
+    }
+
+    useEffect(()=>{
+
+        updateLocation();
         updateInventory();
         updateEvent();
         Axios.get('http://localhost:3001/services')
@@ -240,7 +252,7 @@ export default function CompEdit() {
                                                                 <td>{val.city}</td>
                                                                 <td>{val.hours_of_operation}</td>
                                                                 <td>{val.service_name}</td>
-                                                                <td><Button variant="secondary" size="sm" onClick={()=>{handleShow(); setAddress(val.address); setHOP(val.hours_of_operation); setServiceName(val.location_name); setServiceType(val.service_name); setPostal(val.postal_code); setLocationCity(val.city)}}>Edit</Button>
+                                                                <td><Button variant="secondary" size="sm" onClick={()=>{handleShow(); setAddress(val.address); setHOP(val.hours_of_operation); setServiceName(val.location_name); setServiceType(val.service_name); setPostal(val.postal_code); setLocationCity(val.city); setLocationService(val.service_id)}}>Edit</Button>
                                                                 </td>
                                                             </tr>
                                                         );
@@ -329,7 +341,7 @@ export default function CompEdit() {
                                             <Form noValidate validated={validated} onSubmit={handleSubmitLocation}>
                                                 <Row className="mb-3">
                                                     <Form.Group as={Col} md="6" controlId="validationCustom01">
-                                                        <Form.Label>Location Name</Form.Label>
+                                                        <Form.Label>Location Address</Form.Label>
                                                         <Form.Control
                                                             required
                                                             placeholder="First name"
@@ -353,8 +365,8 @@ export default function CompEdit() {
                                                 </Row>
                                                 <Row className="mb-3">
                                                     <Form.Group as={Col} md="12" controlId="validationCustom03">
-                                                        <Form.Label>Address</Form.Label>
-                                                        <Form.Control type="text" placeholder="Address" required defaultValue={locationAddress}/>
+                                                        <Form.Label>Name</Form.Label>
+                                                        <Form.Control type="text" placeholder="Address" required defaultValue={locationName} onChange={(e)=> { setServiceName(e.target.value)}}/>
                                                         <Form.Control.Feedback type="invalid">
                                                             Please provide a valid address.
                                                         </Form.Control.Feedback>
@@ -363,7 +375,7 @@ export default function CompEdit() {
                                                 <Row className="mb-3">
                                                     <Form.Group as={Col} md="12" controlId="validationCustom03">
                                                         <Form.Label>Hours Of Operation</Form.Label>
-                                                        <Form.Control type="text" placeholder="Sat to Fri, 5PM to 6PM" required defaultValue={locationHOP}/>
+                                                        <Form.Control type="text" placeholder="Sat to Fri, 5PM to 6PM" required defaultValue={locationHOP} onChange={(e)=> { setHOP(e.target.value)}}/>
                                                         <Form.Control.Feedback type="invalid">
                                                             Please provide a valid hours.
                                                         </Form.Control.Feedback>
@@ -376,24 +388,30 @@ export default function CompEdit() {
                                                             required
                                                             placeholder="First name"
                                                             defaultValue={locationCity}
-
+                                                            onChange={(e)=> { setLocationCity(e.target.value)}}
                                                         />
                                                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                                     </Form.Group>
                                                     <Form.Group as={Col} md="6" controlId="validationCustom02">
                                                         <Form.Label>Service</Form.Label>
-                                                        <Form.Select aria-label="Default select example" defaultValue={locationServiceType}>
+                                                        <Form.Select aria-label="Default select example" defaultValue={locationService} onChange={(e)=> { setLocationService(e.target.value)}}>
                                                             {Service.map((val) => {
                                                                 return (
-                                                                    <option value={val.name} onClick={()=>{ } }>{val.name}</option>
+                                                                    <option value={val.service_id} onClick={(e)=>{ setLocationService(e.target.value)} }>{val.name} ({val.service_id})</option>
                                                                 );
                                                             })}
                                                         </Form.Select>
                                                     </Form.Group>
 
                                                 </Row>
-                                                <Button type="submit">Save Changes</Button>
-                                            </Form>
+                                                <Stack direction={"horizontal"} gap={1}>
+                                                    <div>
+                                                        <Button md="3" variant="danger">Delete</Button>
+                                                    </div>
+                                                    <div>
+                                                        <Button md="3" type="submit">Save Changes</Button>
+                                                    </div>
+                                                </Stack>                                            </Form>
                                         </Modal.Body>
                                     </Modal>
 
@@ -446,7 +464,14 @@ export default function CompEdit() {
                                                     </Form.Group>
                                                 </Row>
 
-                                                <Button type="submit">Save Changes</Button>
+                                                <Stack direction={"horizontal"} gap={1}>
+                                                    <div>
+                                                        <Button md="3" variant="danger">Delete</Button>
+                                                    </div>
+                                                    <div>
+                                                        <Button md="3" type="submit">Save Changes</Button>
+                                                    </div>
+                                                </Stack>
                                             </Form>
                                         </Modal.Body>
                                     </Modal>
@@ -498,9 +523,16 @@ export default function CompEdit() {
                                                         Please provide a valid description.
                                                     </Form.Control.Feedback>
                                                 </Form.Group>
-
                                             </Row>
-                                                <Button type="submit">Save Changes</Button>
+
+                                                <Stack direction={"horizontal"} gap={1}>
+                                                    <div>
+                                                        <Button md="3" variant="danger">Delete</Button>
+                                                    </div>
+                                                    <div>
+                                                        <Button md="3" type="submit">Save Changes</Button>
+                                                    </div>
+                                                </Stack>
                                             </Form>
                                         </Modal.Body>
                                     </Modal>

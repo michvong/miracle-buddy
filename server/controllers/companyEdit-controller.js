@@ -1,13 +1,17 @@
 const connection = require("../services/db");
 
 exports.updateService = (req, res) => {
-    const name = req.body.name;
-    const hop = req.body.hop;
     const address = req.body.address;
-    const postalCode = req.body.postal_code;
+    const postal_code = req.body.postal_code;
+    const hours_of_operation = req.body.hours_of_operation;
+    const name = req.body.name;
+    const company_id = req.body.company_id;
+    const service_id = req.body.service_id;
 
-    connection.query("UPDATE Location SET name = (?), hours_of_operation = (?) WHERE address = (?) AND postal_code = (?)",
-        [name, hop, address, postalCode],
+    console.log(address, postal_code, hours_of_operation, name, service_id);
+
+    connection.query("UPDATE Location SET name = (?), hours_of_operation = (?), service_id = (?) WHERE address = (?) AND postal_code = (?)",
+        [name, hours_of_operation, service_id, address, postal_code],
         (err, results) => { res.send(results); });
 };
 
