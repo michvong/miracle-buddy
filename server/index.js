@@ -13,6 +13,7 @@ const companyRouter = require("./routes/company-route");
 const bookmarkRouter = require("./routes/bookmark-route");
 const regUserRouter = require("./routes/regUser-route");
 const companyUserRouter = require("./routes/companyUser-route");
+const companyRouter = require("./routes/company-route");
 const companyEdit = require("./routes/companyEdit-route");
 
 // app.use(bodyParser.urlencoded({ extended: true }));
@@ -25,6 +26,7 @@ app.use(locationRouter);
 app.use(serviceRouter);
 app.use(regUserRouter);
 app.use(companyUserRouter);
+app.use(companyRouter);
 app.use(warehouseRouter);
 app.use(eventRouter);
 app.use(companyRouter);

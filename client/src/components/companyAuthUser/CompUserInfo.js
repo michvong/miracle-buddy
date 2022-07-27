@@ -4,12 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import {Accordion, Button} from 'react-bootstrap';
 import Axios from 'axios';
-import Dashboard from './Dashboard';
+import CompDashboard from './CompDashboard';
 
 
 
-// class RegUserInfo extends Component {
-const RegUserInfo = (props) => {
+const CompUserInfo = (props) => {
 
     let [currentUser, setUser] = useState([]);
     let [nameTextField, setName] = useState("");
@@ -17,13 +16,13 @@ const RegUserInfo = (props) => {
     let [emailTextField, setEmail] = useState("");
 
     useEffect(() => {
-        Axios.get(`http://localhost:3001/user/${props.user_id}`)
+        Axios.get(`http://localhost:3001/compuser/${props.user_id}`)
             .then((response) => {
                 if(response.status === 200) {
                     setUser(response.data);
                 }
             });
-    });
+    }, []);
 
     const handleSubmitName= ((event, nameTextField) => {
         event.preventDefault();
@@ -31,7 +30,7 @@ const RegUserInfo = (props) => {
             return; //no action, just return
         }
         //otherwise, update value
-        Axios.put(`http://localhost:3001/user/edit-name/${props.user_id}/${nameTextField}`)
+        Axios.put(`http://localhost:3001/compuser/edit-name/${props.user_id}/${nameTextField}`)
             .then((response) => {
                 if(response.status===200) {
                     setUser([{...currentUser[0], "name":nameTextField}]);
@@ -45,7 +44,7 @@ const RegUserInfo = (props) => {
         if(langTextField === ""){
             return; // no action, just return
         }
-        Axios.put(`http://localhost:3001/user/edit-lang/${props.user_id}/${langTextField}`)
+        Axios.put(`http://localhost:3001/compuser/edit-lang/${props.user_id}/${langTextField}`)
             .then((response) => {
                 if(response.status === 200) {
                     setUser([{...currentUser[0], "language":langTextField}]);
@@ -59,7 +58,7 @@ const RegUserInfo = (props) => {
         if(emailTextField ==="") {
             return; //no action
         }
-        Axios.put(`http://localhost:3001/user/edit-email/${props.user_id}/${emailTextField}`)
+        Axios.put(`http://localhost:3001/compuser/edit-email/${props.user_id}/${emailTextField}`)
             .then((response) => {
                 if(response.status === 200) {
                     setUser([{...currentUser[0], "email":emailTextField}]);
@@ -125,4 +124,4 @@ const RegUserInfo = (props) => {
     );
 }
 
-export default RegUserInfo;
+export default CompUserInfo;

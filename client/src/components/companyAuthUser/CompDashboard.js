@@ -14,10 +14,20 @@ export default function CompDashboard() {
 
     // TODO: Fill in the handleClicks
     const handlePersonalInfoClick = () => {
-        navigate('/FILL_THIS_IN', { state: { user_id: location.state.user_id } });
+
+        navigate('/compuserinfo');
     }
     
     const handleCompanyInfoClick = () => {
+        navigate('/companyinfo');
+    }
+    
+    const handleCompanyInfoClick2 = () => {
+
+        navigate('/FILL_THIS_IN', { state: { user_id: location.state.user_id } });
+    }
+    
+    const handleCompanyInfoClick3 = () => {
         navigate('/FILL_THIS_IN', { state: { company_id: location.state.company_id } });
     }
 
