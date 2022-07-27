@@ -4,7 +4,7 @@ const router = express.Router();
 
 //Added by Adri
 //acquires tuple info of company with id = company_id
-router.get('/company/:comp_id', controllers.getCompInfo);
+router.get('/company/:company_id', controllers.getCompInfo);
 //changes instance of attribute for company with id = company_id
 router.put('/company/edit-name/:company_id/:new_name', controllers.changeCompName);
 router.put('/company/edit-phone/:company_id/:new_phone', controllers.changeCompPhone);

@@ -9,6 +9,7 @@ const locationRouter = require("./routes/location-route");
 const serviceRouter = require("./routes/service-route");
 const regUserRouter = require("./routes/regUser-route");
 const companyUserRouter = require("./routes/companyUser-route");
+const companyRouter = require("./routes/company-route");
 
 // app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(bodyParser.json());
@@ -20,6 +21,7 @@ app.use(locationRouter);
 app.use(serviceRouter);
 app.use(regUserRouter);
 app.use(companyUserRouter);
+app.use(companyRouter);
 
 app.all("*", (req, res, next) => {
   next(new AppError(`The URL ${req.originalUrl} does not exists`, 404));
