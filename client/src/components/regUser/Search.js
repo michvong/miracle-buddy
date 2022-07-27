@@ -316,7 +316,7 @@ export default function Search() {
                                                         <DropdownButton id="dropdown-basic-button2" title="Find By Organization" >
                                                             {Company.map((val) => {
                                                                 return (
-                                                                    <Dropdown.Item onClick={()=>{sortCompany(val.company_id, 'd.company_id')} }>{val.name}</Dropdown.Item>
+                                                                    <Dropdown.Item onClick={()=>{sortCompany(val.company_id, 'a.company_id')} }>{val.name}</Dropdown.Item>
                                                                 );
                                                             })}
                                                         </DropdownButton>

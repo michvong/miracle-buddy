@@ -13,6 +13,7 @@ const companyRouter = require("./routes/company-route");
 const bookmarkRouter = require("./routes/bookmark-route");
 const regUserRouter = require("./routes/regUser-route");
 const companyUserRouter = require("./routes/companyUser-route");
+const companyEdit = require("./routes/companyEdit-route");
 
 // app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(bodyParser.json());
@@ -28,6 +29,7 @@ app.use(warehouseRouter);
 app.use(eventRouter);
 app.use(companyRouter);
 app.use(bookmarkRouter);
+app.use(companyEdit);
 
 app.all("*", (req, res, next) => {
   next(new AppError(`The URL ${req.originalUrl} does not exists`, 404));

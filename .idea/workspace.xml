@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+    <list default="true" id="c0b80115-895d-474a-a8f8-7230843621b7" name="Changes" comment="Create Edit Button">
     <list default="true" id="c0b80115-895d-474a-a8f8-7230843621b7" name="Changes" comment="Extract Functions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/companyAuthUser/CompEdit.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/companyAuthUser/CompEdit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/location-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/location-controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/service-controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/service-controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/service-route.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/service-route.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/regUser/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/regUser/Dashboard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/regUser/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/regUser/Search.js" afterDir="false" />
     </list>
@@ -19,7 +24,7 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="origin/main" />
+    <option name="BRANCH" value="7-refine-search-services-page-for-regular-user" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -37,6 +42,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenDatabaseViewOnStart": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/mich",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -75,151 +89,27 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="c0b80115-895d-474a-a8f8-7230843621b7" name="Changes" comment="" />
-      <created>1658371757944</created>
+      <created>1658736426724</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1658371757944</updated>
-      <workItem from="1658371759023" duration="37807000" />
-      <workItem from="1658467757164" duration="1720000" />
-      <workItem from="1658469507684" duration="10246000" />
-      <workItem from="1658519680132" duration="9450000" />
-      <workItem from="1658603995859" duration="713000" />
-      <workItem from="1658621025716" duration="29000" />
+      <updated>1658736426724</updated>
+      <workItem from="1658736428622" duration="8677000" />
     </task>
-    <task id="LOCAL-00001" summary="ui improvements">
-      <created>1658383912185</created>
+    <task id="LOCAL-00001" summary="Update Files">
+      <created>1658736480640</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1658383912185</updated>
+      <updated>1658736480640</updated>
     </task>
-    <task id="LOCAL-00002" summary="Added ability to filter by city">
-      <created>1658391328645</created>
+    <task id="LOCAL-00002" summary="Add Modal and Form to Edit Information">
+      <created>1658739333629</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1658391328645</updated>
+      <updated>1658739333629</updated>
     </task>
-    <task id="LOCAL-00003" summary="Removed unnecessary queries">
-      <created>1658434882641</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1658434882641</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Update package.json">
-      <created>1658435182868</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1658435182868</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Update Button Links">
-      <created>1658437736174</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1658437736174</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Add Tab Layout">
-      <created>1658441867345</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1658441867345</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Add Event &amp; Warehouse Controller">
-      <created>1658461301074</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1658461301074</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Add Company Controller">
-      <created>1658478122436</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1658478122436</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Add Ability to Search By Organization">
-      <created>1658479407611</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1658479407611</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Display Company Information">
-      <created>1658480392200</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1658480392200</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Set Navigate Parameters">
-      <created>1658544930563</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1658544930563</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Add Ability to see Bookmarks">
-      <created>1658735241412</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1658735241412</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Merged with Main">
-      <created>1658735674393</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1658735674393</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Refactored Code">
-      <created>1658735715124</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1658735715124</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Add Organization Bookmark Button">
-      <created>1658787966779</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1658787966779</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Update to show Event Host">
-      <created>1658789238608</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1658789238608</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Refactoring">
-      <created>1658804337699</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1658804337699</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Update INSERT_script.sql">
-      <created>1658807222853</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1658807222853</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Fix Bookmark Company Button">
-      <created>1658820022236</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1658820022236</updated>
-    </task>
-    <option name="localTasksCounter" value="20" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -258,5 +148,9 @@
     <MESSAGE value="Fix Bookmark Company Button" />
     <MESSAGE value="Extract Functions" />
     <option name="LAST_COMMIT_MESSAGE" value="Extract Functions" />
+    <MESSAGE value="Update Files" />
+    <MESSAGE value="Add Modal and Form to Edit Information" />
+    <MESSAGE value="Create Edit Button" />
+    <option name="LAST_COMMIT_MESSAGE" value="Create Edit Button" />
   </component>
 </project>

@@ -123,7 +123,7 @@ CREATE TABLE Store (
 
 CREATE TABLE Event (
 	event_name CHAR(100),
-	date DATETIME(6),
+	date CHAR(100),
 	location CHAR(100),
 	description CHAR(100),
 	PRIMARY KEY (event_name, date)
@@ -131,10 +131,10 @@ CREATE TABLE Event (
 
 CREATE TABLE EventHost (
 	event_name CHAR(100),
-	date DATETIME(6),
+	date CHAR(100),
 	company_id INT(10),
 	PRIMARY KEY (event_name, date),
-	FOREIGN KEY (event_name, date) references Event(event_name, date),
+	FOREIGN KEY (event_name, date) references Event(event_name, date) ON DELETE CASCADE,
 	FOREIGN KEY (company_id) references Company(company_id) ON DELETE CASCADE
 );
 
