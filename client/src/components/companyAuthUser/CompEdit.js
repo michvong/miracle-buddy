@@ -28,11 +28,11 @@ export default function CompEdit() {
     let [Event, setEvent] = useState([]);
 
     // Locations
-    let [address, setAddress] = useState("");
-    let [postal, setPostal] = useState("");
-    let [serviceName, setServiceName] = useState("");
-    let [hop, setHOP] = useState("");
-    let [serviceType, setServiceType] = useState("");
+    let [locationAddress, setAddress] = useState("");
+    let [locationPostal, setPostal] = useState("");
+    let [locationName, setServiceName] = useState("");
+    let [locationHOP, setHOP] = useState("");
+    let [locationServiceType, setServiceType] = useState("");
 
     // Warehouses
 
@@ -66,7 +66,19 @@ export default function CompEdit() {
 
     const [validated, setValidated] = useState(false);
 
-    const handleSubmit = (event) => {
+    const handleSubmitLocation = (event) => {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+            return
+        }
+        setValidated(true);
+        event.preventDefault();
+        setShow3(false);
+    };
+
+    const handleSubmitWarehouse = (event) => {
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
             event.preventDefault();
@@ -291,75 +303,74 @@ export default function CompEdit() {
                                             <Modal.Title>Edit 1</Modal.Title>
                                         </Modal.Header>
                                         <Modal.Body>
-                                            <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                                            <Form noValidate validated={validated} onSubmit={handleSubmitLocation}>
                                                 <Row className="mb-3">
-                                                    <Form.Group as={Col} md="4" controlId="validationCustom01">
-                                                        <Form.Label>First name</Form.Label>
+                                                    <Form.Group as={Col} md="6" controlId="validationCustom01">
+                                                        <Form.Label>Location Name</Form.Label>
                                                         <Form.Control
                                                             required
-                                                            isInvalid={returnBoolean(true)}
                                                             placeholder="First name"
-                                                            defaultValue="Mark"
+                                                            defaultValue={locationAddress}
+                                                            readOnly
                                                         />
                                                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                                     </Form.Group>
-                                                    <Form.Group as={Col} md="4" controlId="validationCustom02">
-                                                        <Form.Label>Last name</Form.Label>
+                                                    <Form.Group as={Col} md="6" controlId="validationCustom02">
+                                                        <Form.Label>Postal Code</Form.Label>
                                                         <Form.Control
                                                             required
                                                             type="text"
                                                             placeholder="Last name"
-                                                            defaultValue="Otto"
+                                                            defaultValue={locationPostal}
+                                                            readOnly
                                                         />
                                                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                                     </Form.Group>
-                                                    <Form.Group as={Col} md="4" controlId="validationCustomUsername">
-                                                        <Form.Label>Username</Form.Label>
-                                                        <InputGroup hasValidation>
-                                                            <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
-                                                            <Form.Control
-                                                                type="text"
-                                                                placeholder="Username"
-                                                                aria-describedby="inputGroupPrepend"
-                                                                required
-                                                            />
-                                                            <Form.Control.Feedback type="invalid">
-                                                                Please choose a username.
-                                                            </Form.Control.Feedback>
-                                                        </InputGroup>
+
+                                                </Row>
+                                                <Row className="mb-3">
+                                                    <Form.Group as={Col} md="12" controlId="validationCustom03">
+                                                        <Form.Label>Address</Form.Label>
+                                                        <Form.Control type="text" placeholder="Address" required defaultValue={locationAddress}/>
+                                                        <Form.Control.Feedback type="invalid">
+                                                            Please provide a valid address.
+                                                        </Form.Control.Feedback>
                                                     </Form.Group>
                                                 </Row>
                                                 <Row className="mb-3">
-                                                    <Form.Group as={Col} md="6" controlId="validationCustom03">
-                                                        <Form.Label>City</Form.Label>
-                                                        <Form.Control type="text" placeholder="City" required />
+                                                    <Form.Group as={Col} md="12" controlId="validationCustom03">
+                                                        <Form.Label>Hours Of Operation</Form.Label>
+                                                        <Form.Control type="text" placeholder="Sat to Fri, 5PM to 6PM" required defaultValue={locationHOP}/>
                                                         <Form.Control.Feedback type="invalid">
-                                                            Please provide a valid city.
-                                                        </Form.Control.Feedback>
-                                                    </Form.Group>
-                                                    <Form.Group as={Col} md="3" controlId="validationCustom04">
-                                                        <Form.Label>State</Form.Label>
-                                                        <Form.Control type="text" placeholder="State" required />
-                                                        <Form.Control.Feedback type="invalid">
-                                                            Please provide a valid state.
-                                                        </Form.Control.Feedback>
-                                                    </Form.Group>
-                                                    <Form.Group as={Col} md="3" controlId="validationCustom05">
-                                                        <Form.Label>Zip</Form.Label>
-                                                        <Form.Control type="text" placeholder="Zip" required />
-                                                        <Form.Control.Feedback type="invalid">
-                                                            Please provide a valid zip.
+                                                            Please provide a valid hours.
                                                         </Form.Control.Feedback>
                                                     </Form.Group>
                                                 </Row>
-                                                <Form.Group className="mb-3">
-                                                    <Form.Check
-                                                        required
-                                                        label="Agree to terms and conditions"
-                                                        feedback="You must agree before submitting."
-                                                        feedbackType="invalid"
-                                                    />
-                                                </Form.Group>
+                                                <Row className="mb-3">
+                                                    <Form.Group as={Col} md="6" controlId="validationCustom01">
+                                                        <Form.Label>City</Form.Label>
+                                                        <Form.Control
+                                                            required
+                                                            placeholder="First name"
+                                                            defaultValue={locationPostal}
+
+                                                        />
+                                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                    </Form.Group>
+                                                    <Form.Group as={Col} md="6" controlId="validationCustom02">
+                                                        <Form.Label>Service</Form.Label>
+                                                        <Form.Control
+                                                            required
+                                                            type="text"
+                                                            placeholder="Last name"
+                                                            defaultValue={locationServiceType}
+
+                                                        />
+                                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                    </Form.Group>
+
+                                                </Row>
+
                                                 <Button type="submit">Save Changes</Button>
                                             </Form>
                                         </Modal.Body>
@@ -370,7 +381,7 @@ export default function CompEdit() {
                                             <Modal.Title>Edit 2</Modal.Title>
                                         </Modal.Header>
                                         <Modal.Body>
-                                            <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                                            <Form noValidate validated={validated} onSubmit={handleSubmitWarehouse}>
                                                 <Row className="mb-3">
                                                     <Form.Group as={Col} md="4" controlId="validationCustom01">
                                                         <Form.Label>First name</Form.Label>
