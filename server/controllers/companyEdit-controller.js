@@ -8,35 +8,38 @@ exports.updateService = (req, res) => {
 
     connection.query("UPDATE Location SET name = (?), hours_of_operation = (?) WHERE address = (?) AND postal_code = (?)",
         [name, hop, address, postalCode],
-        (err, results) => {
-            res.send(results);
-        });
+        (err, results) => { res.send(results); });
 };
 
 exports.addService = (req, res) => {
-    const name = req.body.name;
-    const hop = req.body.hop;
-    const address = req.body.address;
-    const postalCode = req.body.postal_code;
 
-    connection.query("UPDATE Location SET name = (?), hours_of_operation = (?) WHERE address = (?) AND postal_code = (?)",
-        [name, hop, address, postalCode],
-        (err, results) => {
-            res.send(results);
-        });
 };
 
 exports.deleteService = (req, res) => {
-    const name = req.body.name;
-    const hop = req.body.hop;
-    const address = req.body.address;
-    const postalCode = req.body.postal_code;
 
-    connection.query("UPDATE Location SET name = (?), hours_of_operation = (?) WHERE address = (?) AND postal_code = (?)",
-        [name, hop, address, postalCode],
-        (err, results) => {
-            res.send(results);
-        });
+};
+
+exports.updateInventory = (req, res) => {
+    const name = req.body.name;
+    const description = req.body.description;
+    const stock = req.body.stock;
+    const item_id = req.body.item_id;
+
+    console.log(name, description, stock, item_id);
+    connection.query("UPDATE Products SET name = (?), description = (?) WHERE item_id = (?) ",
+        [name, description, item_id],
+        (err, results) => {  });
+    connection.query("UPDATE Inventory SET stock = (?) WHERE item_id = (?) ",
+        [stock, item_id],
+        (err, results) => { res.send(results); });
+};
+
+exports.addInventory = (req, res) => {
+
+};
+
+exports.deleteInventory = (req, res) => {
+
 };
 
 exports.updateEvent = (req, res) => {
@@ -55,27 +58,9 @@ exports.updateEvent = (req, res) => {
 };
 
 exports.addEvent = (req, res) => {
-    const name = req.body.name;
-    const hop = req.body.hop;
-    const address = req.body.address;
-    const postalCode = req.body.postal_code;
 
-    connection.query("UPDATE Location SET name = (?), hours_of_operation = (?) WHERE address = (?) AND postal_code = (?)",
-        [name, hop, address, postalCode],
-        (err, results) => {
-            res.send(results);
-        });
 };
 
 exports.deleteEvent = (req, res) => {
-    const name = req.body.name;
-    const hop = req.body.hop;
-    const address = req.body.address;
-    const postalCode = req.body.postal_code;
 
-    connection.query("UPDATE Location SET name = (?), hours_of_operation = (?) WHERE address = (?) AND postal_code = (?)",
-        [name, hop, address, postalCode],
-        (err, results) => {
-            res.send(results);
-        });
 };

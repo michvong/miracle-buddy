@@ -94,6 +94,12 @@ export default function CompEdit() {
         }
         setValidated(true);
         event.preventDefault();
+
+        Axios.post('http://localhost:3001/update-inventory', {
+            name: inventoryName, description: inventoryDescription, stock: inventoryStock, item_id: inventoryItemID
+        }).then((response)=>{
+            updateInventory();
+        });
         setShow2(false);
     };
 
@@ -110,11 +116,29 @@ export default function CompEdit() {
         Axios.post('http://localhost:3001/update-event', {
             location: eventLocation, description: eventDescription, eventName: eventName, date: eventDate
         }).then((response)=>{
-
+            updateEvent();
         });
 
         setShow3(false);
     };
+
+    function updateInventory() {
+        Axios.post('http://localhost:3001/sort-products', {
+            id: fetchInput(),
+        }).then((response) => {
+            Inventory = {};
+            setInventory(response.data);
+        });
+    }
+
+    function updateEvent() {
+        Axios.post('http://localhost:3001/sort-event', {
+            id: fetchInput(),
+        }).then((response) => {
+            Event = {};
+            setEvent(response.data);
+        });
+    }
 
     useEffect(()=>{
 
@@ -124,18 +148,8 @@ export default function CompEdit() {
             Location = {};
             setLocation(response.data);
         });
-        Axios.post('http://localhost:3001/sort-products', {
-            id: fetchInput(),
-        }).then((response)=>{
-            Inventory = {};
-            setInventory(response.data);
-        });
-        Axios.post('http://localhost:3001/sort-event', {
-            id: fetchInput(),
-        }).then((response)=>{
-            Event = {};
-            setEvent(response.data);
-        });
+        updateInventory();
+        updateEvent();
         Axios.get('http://localhost:3001/services')
             .then((response) => {
                 setService(response.data);
@@ -408,7 +422,7 @@ export default function CompEdit() {
                                                             type="text"
                                                             placeholder="Last name"
                                                             defaultValue={inventoryStock}
-
+                                                            onChange={(e)=> { setInventoryStock(e.target.value); }}
                                                         />
                                                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                                     </Form.Group>
@@ -416,7 +430,7 @@ export default function CompEdit() {
                                                 <Row className="mb-3">
                                                     <Form.Group as={Col} md="12" controlId="validationCustom03">
                                                         <Form.Label>Name</Form.Label>
-                                                        <Form.Control type="text" placeholder="Name" required defaultValue={inventoryName}/>
+                                                        <Form.Control type="text" placeholder="Name" required defaultValue={inventoryName} onChange={(e)=> { setInventoryName(e.target.value); }}/>
                                                         <Form.Control.Feedback type="invalid">
                                                             Please provide a valid name.
                                                         </Form.Control.Feedback>
@@ -425,7 +439,7 @@ export default function CompEdit() {
                                                 <Row className="mb-3">
                                                     <Form.Group as={Col} md="12" controlId="validationCustom03">
                                                         <Form.Label>Description</Form.Label>
-                                                        <Form.Control type="text" placeholder="Description" required defaultValue={inventoryDescription}/>
+                                                        <Form.Control type="text" placeholder="Description" required defaultValue={inventoryDescription} onChange={(e)=> { setInventoryDescription(e.target.value); }}/>
                                                         <Form.Control.Feedback type="invalid">
                                                             Please provide a valid description.
                                                         </Form.Control.Feedback>
