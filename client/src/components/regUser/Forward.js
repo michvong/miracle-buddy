@@ -10,7 +10,7 @@ export default function Forward() {
 
 
     const reactButton = () => {
-        navigate('/search', {state: {user_id:input1}});
+        navigate('/compedit', {state: {company_id:input1}});
     };
 
     return (

@@ -22,7 +22,7 @@ export default function CompDashboard() {
     }
 
     const handleLocationsClick = () => {
-        navigate('/FILL_THIS_IN', { state: { company_id: location.state.company_id } });
+        navigate('/compedit', { state: { company_id: location.state.company_id } });
     }
 
     const handleWarehousesClick = () => {
@@ -49,7 +49,7 @@ export default function CompDashboard() {
 
             <div class="flex justify-center pt-20">
                 <p class="welcome-message text-3xl font-extrabold font-sans">
-                    Welcome, <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-300">{location.state.name}!</span>
+                    Welcome, <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-300">{location.state.name}! #{location.state.company_id}</span>
                 </p>
             </div>
 

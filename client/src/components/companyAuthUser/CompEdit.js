@@ -20,31 +20,40 @@ import {map} from "react-bootstrap/ElementChildren";
 import InputGroup from 'react-bootstrap/InputGroup';
 
 
-
 export default function CompEdit() {
 
-    let [Location, setCategory] = useState([]);
-    let [Services, setServices] = useState([]);
-    let [Cities, setCity] = useState([]);
-    let [Products, setProducts] = useState([]);
+    // Tables
+    let [Location, setLocation] = useState([]);
+    let [Inventory, setInventory] = useState([]);
     let [Event, setEvent] = useState([]);
-    let [Companies, setCompany] = useState([]);
-    let [CompanyService, setCompanyServices] = useState([]);
-    let [CompanyInventory, setCompanyInventory] = useState([]);
-    let [CompanyEvent, setCompanyEvent] = useState([]);
-    let [CompanyInfo, setCompanyInfo] = useState([]);
-    let [userID, setUserID] = useState(new Map());
 
-    let[address, setAddress] = useState("");
-    let[postal, setPostal] = useState("");
+    // Locations
+    let [address, setAddress] = useState("");
+    let [postal, setPostal] = useState("");
     let [serviceName, setServiceName] = useState("");
     let [hop, setHOP] = useState("");
     let [serviceType, setServiceType] = useState("");
 
+    // Warehouses
+
+    // Events
+    let [eventName, setEventName] = useState("");
+    let [eventDate, setEventDate] = useState("");
+    let [eventLocation, setEventLocation] = useState("");
+    let [eventDescription, setEventDescription] = useState("");
+
     const [show, setShow] = useState(false);
+    const [show2, setShow2] = useState(false);
+    const [show3, setShow3] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const handleClose2 = () => setShow2(false);
+    const handleShow2 = () => setShow2(true);
+
+    const handleClose3 = () => setShow3(false);
+    const handleShow3 = () => setShow3(true);
 
     const navigate = useNavigate();
 
@@ -56,112 +65,68 @@ export default function CompEdit() {
     const {infoState} = info
 
     const [validated, setValidated] = useState(false);
+
     const handleSubmit = (event) => {
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
+            return
         }
         setValidated(true);
+        event.preventDefault();
+        setShow3(false);
+    };
+
+    const handleSubmitEvent = (event) => {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+            return
+        }
+        setValidated(true);
+        event.preventDefault();
+
+        Axios.post('http://localhost:3001/update-event', {
+            location: eventLocation, description: eventDescription, eventName: eventName, date: eventDate
+        }).then((response)=>{
+
+        });
+
+        setShow3(false);
     };
 
     useEffect(()=>{
 
-        Axios.post('http://localhost:3001/locations',{
-            user_id: fetchInput()
-        })
-            .then((response) => {
-                setCategory(response.data);
-            });
-        Axios.get('http://localhost:3001/services')
-            .then((response) => {
-                setServices(response.data);
-            });
-        Axios.get('http://localhost:3001/city')
-            .then((response) => {
-                setCity(response.data);
-            });
-        Axios.get('http://localhost:3001/products')
-            .then((response) => {
-                setProducts(response.data);
-            });
-        Axios.get('http://localhost:3001/event')
-            .then((response) => {
-                setEvent(response.data);
-            });
-        Axios.get('http://localhost:3001/company')
-            .then((response) => {
-                setCompany(response.data);
-            });
-    }, []);
-
-    const sortServicesButton = (service1, filter1) => {
-        if (service1 === 'All'){
-            Location = {};
-            Axios.post('http://localhost:3001/locations',{
-                user_id: fetchInput()
-            }).then((response) => {
-                setCategory(response.data)
-            });
-            return;
-        }
         Axios.post('http://localhost:3001/sort-services', {
-            filter: filter1, service: service1
+            filter: 'd.company_id', service: fetchInput()
         }).then((response)=>{
             Location = {};
-            setCategory(response.data);
-        });
-    };
-
-    const sortCompany = (companyID, filter1) => {
-        Axios.post('http://localhost:3001/sort-services', {
-            filter: filter1, service: companyID
-        }).then((response)=>{
-            CompanyService = {};
-            setCompanyServices(response.data);
+            setLocation(response.data);
         });
         Axios.post('http://localhost:3001/sort-products', {
-            id: companyID,
+            id: fetchInput(),
         }).then((response)=>{
-            CompanyInventory = {};
-            setCompanyInventory(response.data);
+            Inventory = {};
+            setInventory(response.data);
         });
         Axios.post('http://localhost:3001/sort-event', {
-            id: companyID,
+            id: fetchInput(),
         }).then((response)=>{
-            CompanyEvent = {};
-            setCompanyEvent(response.data);
-        });
-        Axios.post('http://localhost:3001/org', {
-            id: companyID,
-        }).then((response)=>{
-            CompanyInfo = {};
-            setCompanyInfo(response.data);
+            Event = {};
+            setEvent(response.data);
         });
 
-    };
+    }, []);
+
 
     const fetchInput = () => {
         try{
-            return info.state.user_id
+            return info.state.company_id
         } catch (e) {
             return "Guest"
         }
-    };
-
-    const updateServices = (name,hop, address, postalCode) => {
-        Axios.post('http://localhost:3001/update-services', {
-            name: name, hop:hop, address:address, postal_code: postalCode
-        }).then((response)=>{
-            CompanyInfo = {};
-            setCompanyInfo(response.data);
-        });
-        Axios.post('http://localhost:3001/locations',{
-            user_id: fetchInput()
-        })
-        .then((response) => {
-            setCategory(response.data);
-        });
     };
 
     const returnBoolean = (bool) => {
@@ -200,7 +165,7 @@ export default function CompEdit() {
                             <Col sm={20} md={2} lg={2}>
                                 <Nav variant="pills" className="flex-column">
                                     <Nav.Item>
-                                        <Nav.Link eventKey="first" >Services</Nav.Link>
+                                        <Nav.Link eventKey="first" >Locations</Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
                                         <Nav.Link eventKey="second" >Warehouse</Nav.Link>
@@ -212,11 +177,10 @@ export default function CompEdit() {
                             </Col>
                             <Col sm={13} md={10} lg={10}>
                                 <Tab.Content>
-
                                     <Tab.Pane eventKey="first">
                                         <Stack gap={3}>
                                             <div>
-                                                <h2>Services</h2>
+                                                <h2>Locations</h2>
                                             </div>
                                             <div>
                                                 <Table striped bordered hover>
@@ -244,87 +208,6 @@ export default function CompEdit() {
                                                             </tr>
                                                         );
                                                     })}
-                                                    <Modal show={show} onHide={handleClose}>
-                                                        <Modal.Header closeButton>
-                                                            <Modal.Title>Edit</Modal.Title>
-                                                        </Modal.Header>
-                                                        <Modal.Body>
-                                                            <Form noValidate validated={validated} onSubmit={handleSubmit}>
-                                                                <Row className="mb-3">
-                                                                    <Form.Group as={Col} md="4" controlId="validationCustom01">
-                                                                        <Form.Label>First name</Form.Label>
-                                                                        <Form.Control
-                                                                            required
-                                                                            isInvalid={returnBoolean(true)}
-                                                                            placeholder="First name"
-                                                                            defaultValue="Mark"
-                                                                        />
-                                                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                                                                    </Form.Group>
-                                                                    <Form.Group as={Col} md="4" controlId="validationCustom02">
-                                                                        <Form.Label>Last name</Form.Label>
-                                                                        <Form.Control
-                                                                            required
-                                                                            type="text"
-                                                                            placeholder="Last name"
-                                                                            defaultValue="Otto"
-                                                                        />
-                                                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                                                                    </Form.Group>
-                                                                    <Form.Group as={Col} md="4" controlId="validationCustomUsername">
-                                                                        <Form.Label>Username</Form.Label>
-                                                                        <InputGroup hasValidation>
-                                                                            <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
-                                                                            <Form.Control
-                                                                                type="text"
-                                                                                placeholder="Username"
-                                                                                aria-describedby="inputGroupPrepend"
-                                                                                required
-                                                                            />
-                                                                            <Form.Control.Feedback type="invalid">
-                                                                                Please choose a username.
-                                                                            </Form.Control.Feedback>
-                                                                        </InputGroup>
-                                                                    </Form.Group>
-                                                                </Row>
-                                                                <Row className="mb-3">
-                                                                    <Form.Group as={Col} md="6" controlId="validationCustom03">
-                                                                        <Form.Label>City</Form.Label>
-                                                                        <Form.Control type="text" placeholder="City" required />
-                                                                        <Form.Control.Feedback type="invalid">
-                                                                            Please provide a valid city.
-                                                                        </Form.Control.Feedback>
-                                                                    </Form.Group>
-                                                                    <Form.Group as={Col} md="3" controlId="validationCustom04">
-                                                                        <Form.Label>State</Form.Label>
-                                                                        <Form.Control type="text" placeholder="State" required />
-                                                                        <Form.Control.Feedback type="invalid">
-                                                                            Please provide a valid state.
-                                                                        </Form.Control.Feedback>
-                                                                    </Form.Group>
-                                                                    <Form.Group as={Col} md="3" controlId="validationCustom05">
-                                                                        <Form.Label>Zip</Form.Label>
-                                                                        <Form.Control type="text" placeholder="Zip" required />
-                                                                        <Form.Control.Feedback type="invalid">
-                                                                            Please provide a valid zip.
-                                                                        </Form.Control.Feedback>
-                                                                    </Form.Group>
-                                                                </Row>
-                                                                <Form.Group className="mb-3">
-                                                                    <Form.Check
-                                                                        required
-                                                                        label="Agree to terms and conditions"
-                                                                        feedback="You must agree before submitting."
-                                                                        feedbackType="invalid"
-                                                                    />
-                                                                </Form.Group>
-                                                               <Button type="submit">Save Changes</Button>
-
-                                                            </Form>
-                                                        </Modal.Body>
-
-                                                    </Modal>
-
                                                     </tbody>
                                                 </Table>
                                             </div>
@@ -334,7 +217,7 @@ export default function CompEdit() {
                                     <Tab.Pane eventKey="second">
                                         <Stack gap={3}>
                                             <div>
-                                                <h2>Warehouse</h2>
+                                                <h2>Inventory</h2>
                                             </div>
                                             <div>
                                                 <Table striped bordered hover>
@@ -357,13 +240,11 @@ export default function CompEdit() {
                                                                 <td>{val.city}</td>
                                                                 <td>{val.hours_of_operation}</td>
                                                                 <td>{val.service_name}</td>
-                                                                <td><Button variant="secondary" size="sm" onClick={()=>{handleShow(); setAddress(val.address); setHOP(val.hours_of_operation); setServiceName(val.location_name); setServiceType(val.service_name); setPostal(val.postal_code)}}>Edit</Button>
+                                                                <td><Button variant="secondary" size="sm" onClick={()=>{handleShow2(); setAddress(val.address); setHOP(val.hours_of_operation); setServiceName(val.location_name); setServiceType(val.service_name); setPostal(val.postal_code)}}>Edit</Button>
                                                                 </td>
                                                             </tr>
                                                         );
                                                     })}
-
-
                                                     </tbody>
                                                 </Table>
                                             </div>
@@ -380,36 +261,242 @@ export default function CompEdit() {
                                                     <thead>
                                                     <tr>
                                                         <th>Name</th>
-                                                        <th>Address</th>
-                                                        <th>City</th>
-                                                        <th>Hours of Operation</th>
-                                                        <th>Service</th>
+                                                        <th>Description</th>
+                                                        <th>Location</th>
+                                                        <th>Date</th>
                                                         <th>Actions</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    {Location.map((val, key) => {
+                                                    {Event.map((val, key) => {
                                                         return (
                                                             <tr key={key}>
-                                                                <td>{val.location_name}</td>
-                                                                <td>{val.address}</td>
-                                                                <td>{val.city}</td>
-                                                                <td>{val.hours_of_operation}</td>
-                                                                <td>{val.service_name}</td>
-                                                                <td><Button variant="secondary" size="sm" onClick={()=>{handleShow(); setAddress(val.address); setHOP(val.hours_of_operation); setServiceName(val.location_name); setServiceType(val.service_name); setPostal(val.postal_code)}}>Edit</Button>
+                                                                <td>{val.event_name}</td>
+                                                                <td>{val.description}</td>
+                                                                <td>{val.location}</td>
+                                                                <td>{val.date}</td>
+                                                                <td><Button variant="secondary" size="sm" onClick={()=>{handleShow3(); setEventName(val.event_name); setEventDescription(val.description); setEventLocation(val.location); setEventDate((val.date))}}>Edit</Button>
                                                                 </td>
                                                             </tr>
                                                         );
                                                     })}
-
-
                                                     </tbody>
                                                 </Table>
                                             </div>
                                         </Stack>
                                     </Tab.Pane>
 
+                                    <Modal show={show} onHide={handleClose}>
+                                        <Modal.Header closeButton>
+                                            <Modal.Title>Edit 1</Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>
+                                            <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                                                <Row className="mb-3">
+                                                    <Form.Group as={Col} md="4" controlId="validationCustom01">
+                                                        <Form.Label>First name</Form.Label>
+                                                        <Form.Control
+                                                            required
+                                                            isInvalid={returnBoolean(true)}
+                                                            placeholder="First name"
+                                                            defaultValue="Mark"
+                                                        />
+                                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                    </Form.Group>
+                                                    <Form.Group as={Col} md="4" controlId="validationCustom02">
+                                                        <Form.Label>Last name</Form.Label>
+                                                        <Form.Control
+                                                            required
+                                                            type="text"
+                                                            placeholder="Last name"
+                                                            defaultValue="Otto"
+                                                        />
+                                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                    </Form.Group>
+                                                    <Form.Group as={Col} md="4" controlId="validationCustomUsername">
+                                                        <Form.Label>Username</Form.Label>
+                                                        <InputGroup hasValidation>
+                                                            <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
+                                                            <Form.Control
+                                                                type="text"
+                                                                placeholder="Username"
+                                                                aria-describedby="inputGroupPrepend"
+                                                                required
+                                                            />
+                                                            <Form.Control.Feedback type="invalid">
+                                                                Please choose a username.
+                                                            </Form.Control.Feedback>
+                                                        </InputGroup>
+                                                    </Form.Group>
+                                                </Row>
+                                                <Row className="mb-3">
+                                                    <Form.Group as={Col} md="6" controlId="validationCustom03">
+                                                        <Form.Label>City</Form.Label>
+                                                        <Form.Control type="text" placeholder="City" required />
+                                                        <Form.Control.Feedback type="invalid">
+                                                            Please provide a valid city.
+                                                        </Form.Control.Feedback>
+                                                    </Form.Group>
+                                                    <Form.Group as={Col} md="3" controlId="validationCustom04">
+                                                        <Form.Label>State</Form.Label>
+                                                        <Form.Control type="text" placeholder="State" required />
+                                                        <Form.Control.Feedback type="invalid">
+                                                            Please provide a valid state.
+                                                        </Form.Control.Feedback>
+                                                    </Form.Group>
+                                                    <Form.Group as={Col} md="3" controlId="validationCustom05">
+                                                        <Form.Label>Zip</Form.Label>
+                                                        <Form.Control type="text" placeholder="Zip" required />
+                                                        <Form.Control.Feedback type="invalid">
+                                                            Please provide a valid zip.
+                                                        </Form.Control.Feedback>
+                                                    </Form.Group>
+                                                </Row>
+                                                <Form.Group className="mb-3">
+                                                    <Form.Check
+                                                        required
+                                                        label="Agree to terms and conditions"
+                                                        feedback="You must agree before submitting."
+                                                        feedbackType="invalid"
+                                                    />
+                                                </Form.Group>
+                                                <Button type="submit">Save Changes</Button>
+                                            </Form>
+                                        </Modal.Body>
+                                    </Modal>
 
+                                    <Modal show={show2} onHide={handleClose2}>
+                                        <Modal.Header closeButton>
+                                            <Modal.Title>Edit 2</Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>
+                                            <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                                                <Row className="mb-3">
+                                                    <Form.Group as={Col} md="4" controlId="validationCustom01">
+                                                        <Form.Label>First name</Form.Label>
+                                                        <Form.Control
+                                                            required
+                                                            isInvalid={returnBoolean(false)}
+                                                            placeholder="First name"
+                                                            defaultValue="Mark"
+                                                        />
+                                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                    </Form.Group>
+                                                    <Form.Group as={Col} md="4" controlId="validationCustom02">
+                                                        <Form.Label>Last name</Form.Label>
+                                                        <Form.Control
+                                                            required
+                                                            type="text"
+                                                            placeholder="Last name"
+                                                            defaultValue="Otto"
+                                                        />
+                                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                    </Form.Group>
+                                                    <Form.Group as={Col} md="4" controlId="validationCustomUsername">
+                                                        <Form.Label>Username</Form.Label>
+                                                        <InputGroup hasValidation>
+                                                            <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
+                                                            <Form.Control
+                                                                type="text"
+                                                                placeholder="Username"
+                                                                aria-describedby="inputGroupPrepend"
+                                                                required
+                                                            />
+                                                            <Form.Control.Feedback type="invalid">
+                                                                Please choose a username.
+                                                            </Form.Control.Feedback>
+                                                        </InputGroup>
+                                                    </Form.Group>
+                                                </Row>
+                                                <Row className="mb-3">
+                                                    <Form.Group as={Col} md="6" controlId="validationCustom03">
+                                                        <Form.Label>City</Form.Label>
+                                                        <Form.Control type="text" placeholder="City" required />
+                                                        <Form.Control.Feedback type="invalid">
+                                                            Please provide a valid city.
+                                                        </Form.Control.Feedback>
+                                                    </Form.Group>
+                                                    <Form.Group as={Col} md="3" controlId="validationCustom04">
+                                                        <Form.Label>State</Form.Label>
+                                                        <Form.Control type="text" placeholder="State" required />
+                                                        <Form.Control.Feedback type="invalid">
+                                                            Please provide a valid state.
+                                                        </Form.Control.Feedback>
+                                                    </Form.Group>
+                                                    <Form.Group as={Col} md="3" controlId="validationCustom05">
+                                                        <Form.Label>Zip</Form.Label>
+                                                        <Form.Control type="text" placeholder="Zip" required />
+                                                        <Form.Control.Feedback type="invalid">
+                                                            Please provide a valid zip.
+                                                        </Form.Control.Feedback>
+                                                    </Form.Group>
+                                                </Row>
+                                                <Form.Group className="mb-3">
+                                                    <Form.Check
+                                                        required
+                                                        label="Agree to terms and conditions"
+                                                        feedback="You must agree before submitting."
+                                                        feedbackType="invalid"
+                                                    />
+                                                </Form.Group>
+                                                <Button type="submit">Save Changes</Button>
+                                            </Form>
+                                        </Modal.Body>
+                                    </Modal>
+
+                                    <Modal show={show3} onHide={handleClose3}>
+                                        <Modal.Header closeButton>
+                                            <Modal.Title>Edit Events</Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>
+                                            <Form noValidate validated={validated} onSubmit={handleSubmitEvent}>
+                                                <Row className="mb-3">
+                                                    <Form.Group as={Col} md="6" controlId="validationCustom01">
+                                                        <Form.Label>Event Name</Form.Label>
+                                                        <Form.Control
+                                                            required
+                                                            isInvalid={returnBoolean(false)}
+                                                            placeholder="Event Name"
+                                                            defaultValue={eventName}
+                                                            readOnly
+                                                        />
+                                                        <Form.Control.Feedback type="invalid">Please Provide Valid Event Name</Form.Control.Feedback>
+                                                    </Form.Group>
+                                                    <Form.Group as={Col} md="6" controlId="validationCustom02">
+                                                        <Form.Label>Date</Form.Label>
+                                                        <Form.Control
+                                                            required
+                                                            type="text"
+                                                            placeholder="YYYY-MM-DD HH:MM:SS"
+                                                            defaultValue={eventDate}
+                                                            readOnly
+                                                        />
+                                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                    </Form.Group>
+                                                </Row>
+                                                <Row className="mb-3">
+                                                    <Form.Group as={Col} md="12" controlId="validationCustom03">
+                                                        <Form.Label>Location</Form.Label>
+                                                        <Form.Control required type="text" placeholder="Address, City" defaultValue={eventLocation} onChange={(e)=> { setEventLocation(e.target.value); }}/>
+                                                        <Form.Control.Feedback type="invalid">
+                                                            Please provide a valid city.
+                                                        </Form.Control.Feedback>
+                                                    </Form.Group>
+
+                                                </Row><Row className="mb-3">
+                                                <Form.Group as={Col} md="12" controlId="validationCustom04">
+                                                    <Form.Label>Description</Form.Label>
+                                                    <Form.Control type="text" placeholder="Description" required defaultValue={eventDescription} onChange={(e)=> { setEventDescription(e.target.value); }}/>
+                                                    <Form.Control.Feedback type="invalid">
+                                                        Please provide a valid description.
+                                                    </Form.Control.Feedback>
+                                                </Form.Group>
+
+                                            </Row>
+                                                <Button type="submit">Save Changes</Button>
+                                            </Form>
+                                        </Modal.Body>
+                                    </Modal>
 
                                 </Tab.Content>
                             </Col>
