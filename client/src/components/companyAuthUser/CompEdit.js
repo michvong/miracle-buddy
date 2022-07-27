@@ -759,14 +759,9 @@ export default function CompEdit() {
                                                 </Form.Group>
                                             </Row>
 
-                                                <Stack direction={"horizontal"} gap={1}>
-                                                    <div>
-                                                        <Button md="3" variant="danger" onClick={()=>{deleteEvent(eventName, eventDate)}}>Delete</Button>
-                                                    </div>
-                                                    <div>
+
                                                         <Button md="3" type="submit">Save Changes</Button>
-                                                    </div>
-                                                </Stack>
+
                                             </Form>
                                         </Modal.Body>
                                     </Modal>
