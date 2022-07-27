@@ -284,7 +284,7 @@ export default function CompEdit() {
         try{
             return info.state.company_id
         } catch (e) {
-            return "Guest"
+            navigate('/companyauthlogin');
         }
     };
 
@@ -292,7 +292,7 @@ export default function CompEdit() {
         try {
             return info.state.tab
         } catch (e) {
-            return "first"
+            navigate('/companyauthlogin');
         }
 
     }
