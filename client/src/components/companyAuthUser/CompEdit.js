@@ -96,18 +96,19 @@ export default function CompEdit() {
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
-            return
+
+        } else {
+            Axios.post('http://localhost:3001/update-service', {
+                address: locationAddress, postal_code: locationPostal, hours_of_operation: locationHOP, name: locationName, company_id: fetchInput(), service_id: locationService, city:locationCity
+            }).then((response)=>{
+                updateLocation();
+            });
+            setShow(false);
         }
         setValidated(true);
         event.preventDefault();
 
-        Axios.post('http://localhost:3001/update-service', {
-            address: locationAddress, postal_code: locationPostal, hours_of_operation: locationHOP, name: locationName, company_id: fetchInput(), service_id: locationService
-        }).then((response)=>{
-            updateLocation();
-        });
 
-        setShow(false);
     };
 
     const handleSubmitWarehouse = (event) => {
@@ -115,17 +116,18 @@ export default function CompEdit() {
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
-            return
+
+        } else {
+            Axios.post('http://localhost:3001/update-inventory', {
+                name: inventoryName, description: inventoryDescription, stock: inventoryStock, item_id: inventoryItemID
+            }).then((response)=>{
+                updateInventory();
+            });
+            setShow2(false);
         }
         setValidated(true);
         event.preventDefault();
 
-        Axios.post('http://localhost:3001/update-inventory', {
-            name: inventoryName, description: inventoryDescription, stock: inventoryStock, item_id: inventoryItemID
-        }).then((response)=>{
-            updateInventory();
-        });
-        setShow2(false);
     };
 
     const handleSubmitEvent = (event) => {
@@ -133,18 +135,19 @@ export default function CompEdit() {
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
-            return
+
+        } else {
+            Axios.post('http://localhost:3001/update-event', {
+                location: eventLocation, description: eventDescription, eventName: eventName, date: eventDate
+            }).then((response)=>{
+                updateEvent();
+            });
+            setShow3(false);
+
         }
         setValidated(true);
         event.preventDefault();
 
-        Axios.post('http://localhost:3001/update-event', {
-            location: eventLocation, description: eventDescription, eventName: eventName, date: eventDate
-        }).then((response)=>{
-            updateEvent();
-        });
-
-        setShow3(false);
     };
 
     // Delete Buttons
@@ -189,7 +192,7 @@ export default function CompEdit() {
 
 
             Axios.post('http://localhost:3001/add-services', {
-                address: locationAddress, postal_code: locationPostal, hours_of_operation: locationHOP, name: locationName, company_id: fetchInput(), service_id: locationService
+                address: locationAddress, postal_code: locationPostal, hours_of_operation: locationHOP, name: locationName, company_id: fetchInput(), service_id: locationService, city: locationCity
             }).then((response)=>{
                 updateLocation();
             });
@@ -205,17 +208,19 @@ export default function CompEdit() {
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
-            return
+
+        } else {
+            Axios.post('http://localhost:3001/add-inventory', {
+                name: inventoryName, description: inventoryDescription, stock: inventoryStock, item_id: inventoryItemID, warehouse_id: inventoryWarehouseID
+            }).then((response)=>{
+                updateInventory();
+            });
+            setShow5(false);
         }
         setValidated(true);
         event.preventDefault();
 
-        Axios.post('http://localhost:3001/add-inventory', {
-            name: inventoryName, description: inventoryDescription, stock: inventoryStock, item_id: inventoryItemID, warehouse_id: inventoryWarehouseID
-        }).then((response)=>{
-            updateInventory();
-        });
-        setShow5(false);
+
     };
 
     const handleSubmitEventAdd = (event) => {
@@ -223,19 +228,21 @@ export default function CompEdit() {
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
-            return
+
+        } else {
+            console.log(eventLocation, eventDescription, eventName, eventDate, fetchInput());
+            Axios.post('http://localhost:3001/add-event', {
+                location: eventLocation, description: eventDescription, event_name: eventName, date: eventDate, company_id:fetchInput()
+            }).then((response)=>{
+                updateEvent();
+            });
+
+            setShow6(false);
         }
         setValidated(true);
         event.preventDefault();
 
-        console.log(eventLocation, eventDescription, eventName, eventDate, fetchInput());
-        Axios.post('http://localhost:3001/add-event', {
-            location: eventLocation, description: eventDescription, event_name: eventName, date: eventDate, company_id:fetchInput()
-        }).then((response)=>{
-            updateEvent();
-        });
 
-        setShow6(false);
     };
 
     // END

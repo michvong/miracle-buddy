@@ -22,12 +22,18 @@ exports.addService = (req, res) => {
     const name = req.body.name;
     const company_id = req.body.company_id;
     const service_id = req.body.service_id;
+    const city = req.body.city;
 
     console.log(address, postal_code, hours_of_operation, name, company_id,service_id);
 
-    connection.query("INSERT INTO Location VALUES (?, ?, ?, ?, ?, ?)",
-        [address, postal_code, hours_of_operation, name, company_id, service_id],
-        (err, results) => { res.send(results); });
+
+    connection.query("INSERT IGNORE INTO AreaCode VALUES (?, ?)",
+        [postal_code, city],
+        (err, results) => {
+            connection.query("INSERT IGNORE INTO Location VALUES (?, ?, ?, ?, ?, ?)",
+                [address, postal_code, hours_of_operation, name, company_id, service_id],
+                (err, results) => { res.send(results); });
+        });
 
 };
 
