@@ -28,7 +28,7 @@ exports.deleteBookmark = (req, res) => {
 
 //get company id's of all bookmarked companies
 exports.getBookmarked = (req, res) => {
-    connection.query("SELECT DISTINCT x.company_id FROM Bookmarked AS x WHERE NOT EXISTS (SELECT * FROM required AS y WHERE NOT EXISTS (SELECT * FROM Bookmarked AS z WHERE (z.company_id = x.company_id) AND (z.user_id = y. user_id)))",
+    connection.query("SELECT DISTINCT x.company_id FROM Bookmarks AS x WHERE NOT EXISTS (SELECT * FROM RegularUser AS y WHERE NOT EXISTS (SELECT * FROM Bookmarks AS z WHERE (z.company_id = x.company_id) AND (z.user_id = y. user_id)))",
         (err, results) => {
             if(err) throw err;
             res.send(results);
