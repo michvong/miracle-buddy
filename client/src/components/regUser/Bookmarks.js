@@ -65,6 +65,18 @@ export default function Bookmarks() {
                                             <th>Remove Bookmark</th>
                                         </tr>
                                     </thread>
+                                    <tbody>
+                                        {bookmarks.map((val, key) => {
+                                            return (
+                                                <tr key={key}>
+                                                    <td>{val.name}</td>
+                                                    <td>{val.phone_number}</td>
+                                                    <td>{val.email}</td>
+                                                    <td><Button size="sm"></Button></td>
+                                                </tr>
+                                            );
+                                        })}
+                                    </tbody>
                                 </Table>
                             </Accordion.Body>
                         </Accordion.Item>
