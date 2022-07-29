@@ -28,7 +28,16 @@ exports.deleteBookmark = (req, res) => {
 
 //get company id's of all bookmarked companies
 exports.getBookmarked = (req, res) => {
-    connection.query("SELECT DISTINCT x.company_id FROM Bookmarks AS x WHERE NOT EXISTS (SELECT * FROM RegularUser AS y WHERE NOT EXISTS (SELECT * FROM Bookmarks AS z WHERE (z.company_id = x.company_id) AND (z.user_id = y. user_id)))",
+    const user_id = req.params.user_id;
+
+    connection.query("CREATE VIEW tmp_user AS SELECT * FROM RegularUser WHERE user_id = ? " +
+        "SELECT DISTINCT x.company_id FROM Bookmarks AS x " +
+        "WHERE NOT EXISTS (" +
+            "SELECT * FROM tmp_user AS y " +
+            "WHERE NOT EXISTS(" +
+                "SELECT * FROM Bookmarks AS z " +
+                "WHERE (z.company_id = x.company_id) AND (z.user_id = y.user_id)))",
+        [user_id],
         (err, results) => {
             if(err) throw err;
             res.send(results);
