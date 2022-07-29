@@ -1,5 +1,5 @@
 const AppError = require("../utils/appError");
-const connection = require("../services/db")
+const connection = require("../services/db");
 
 // get all info for company with id=company_id
 exports.getCompInfo = (req, res) => {

@@ -23,7 +23,7 @@ export default function Bookmarks() {
     }
 
     useEffect(() => {
-        Axios.get(`http://localhost:3001/bookmark-bookmarked-companies`)
+        Axios.get(`http://localhost:3001/bookmark-bookmarked-companies/${fetch_user_id()}`)
             .then((response) => {
                 if(response.status === 200) {
                     setNumber(testNumber++);
