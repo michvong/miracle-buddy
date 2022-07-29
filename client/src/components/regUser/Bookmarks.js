@@ -72,7 +72,7 @@ export default function Bookmarks() {
                                                     <td>{val.name}</td>
                                                     <td>{val.phone_number}</td>
                                                     <td>{val.email}</td>
-                                                    <td><Button size="sm"></Button></td>
+                                                    <td><Button ></Button></td>
                                                 </tr>
                                             );
                                         })}
