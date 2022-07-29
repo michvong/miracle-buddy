@@ -33,7 +33,7 @@ export default function Bookmarks() {
             })
     })
 
-    const grab_company_ids = ((event) => {
+    const grab_companies = ((event) => {
         event.preventDefault();
         Axios.get(`http://localhost:3001/bookmark-bookmarked-companies/${fetch_user_id()}`)
             .then((response) => {
@@ -43,39 +43,25 @@ export default function Bookmarks() {
             });
     });
 
-    const grab_company = ((company_id, key) => {
-        Axios.get(`http://localhost:3001/company/${company_id}`)
-            .then((response) => {
-                if(response.status === 200) {
-                    // setCompany(response.data);
-                    // setCompany(...company, company[key] = response.data[0]);
-                    setCompany({company : company.concat(response.data)})
-                }
-            });
-    });
-
-
     return (
-        <Navbar>
+        <Accordion>
             {currentUser.map((val, key) => {
-                return (
+                return(
                     <div key={key}>
-                        <h1>Hello {val.name}</h1>
-                        <form onSubmit={(e) => grab_company_ids(e)}>
-                            <Button color="blue" type="submit">List Bookmarks</Button>
-                        </form>
-                        {bookmarks.map((val, key) => {
-                            // grab_company(val.company_id);
-                            return(
-                                <div key={key}>
+                        <Accordion.Item eventkey='0'>
+                            <Accordion.Header>
+                                Hello {val.name}
+                            </Accordion.Header>
+                            <Accordion.Body>
+                                <form onSubmit={(e) => grab_companies(e)}>
+                                    <Button type="submit">Click to load Bookmarks</Button>
+                                </form>
+                            </Accordion.Body>
+                        </Accordion.Item>
 
-                                </div>
-                            );
-                        })};
                     </div>
                 );
-            })};
-        </Navbar>
-
+            })}
+        </Accordion>
     );
 }
