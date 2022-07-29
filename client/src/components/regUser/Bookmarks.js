@@ -2,7 +2,7 @@ import React , { Component } from 'react';
 import { useEffect, useState } from 'react';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import {Accordion, Button, Navbar} from 'react-bootstrap';
+import {Accordion, Button, Navbar, Table} from 'react-bootstrap';
 import Axios from 'axios';
 import Dashboard from './Dashboard';
 
@@ -56,6 +56,16 @@ export default function Bookmarks() {
                                 <form onSubmit={(e) => grab_companies(e)}>
                                     <Button type="submit">Click to load Bookmarks</Button>
                                 </form>
+                                <Table striped bordered hover>
+                                    <thread>
+                                        <tr>
+                                            <th>Company Name</th>
+                                            <th>Company Phone</th>
+                                            <th>Company Email</th>
+                                            <th>Remove Bookmark</th>
+                                        </tr>
+                                    </thread>
+                                </Table>
                             </Accordion.Body>
                         </Accordion.Item>
 
