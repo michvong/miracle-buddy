@@ -29,10 +29,21 @@ export default function Search() {
     let [CompanyEvent, setCompanyEvent] = useState([]);
     let [CompanyInfo, setCompanyInfo] = useState([]);
 
+    let [AvgStock, setAvgStock] = useState([]);
+
     const navigate = useNavigate();
-    const handleDashboardClick = () => { navigate('/dashboard', {state: {user_id:fetchInput()}});}
+    const handleDashboardClick = () => { navigate('/dashboard', { state: {user_id: info.state.user_id , name: info.state.name} });}
 
     const info = useLocation();
+
+    function updateAvgStock(int2) {
+        Axios.post('http://localhost:3001/avg-stock', {
+            count: int2
+        }).then((response) => {
+            AvgStock = {};
+            setAvgStock(response.data);
+        });
+    }
 
     useEffect(()=>{
         updateLocation();
@@ -56,6 +67,7 @@ export default function Search() {
             .then((response) => {
                 setCompany(response.data);
             });
+        updateAvgStock(1);
     }, []);
 
     function sortServices(filter1, service1) {
@@ -168,12 +180,7 @@ export default function Search() {
                         <Navbar.Collapse id="basic-navbar-nav" >
                             <Nav className="me-auto">
                                 <Nav.Link onClick={handleDashboardClick}>Dashboard</Nav.Link>
-                                <NavDropdown title="Account" id="basic-nav-dropdown">
-                                    <NavDropdown.Item >Account</NavDropdown.Item>
-                                    <NavDropdown.Item >Settings</NavDropdown.Item>
-                                    <NavDropdown.Divider />
-                                    <NavDropdown.Item >Log Out</NavDropdown.Item>
-                                </NavDropdown>
+
                             </Nav>
                         </Navbar.Collapse>
                         <Navbar.Collapse className="justify-content-end right-marg">
@@ -284,6 +291,42 @@ export default function Search() {
                                                         );
                                                     })}
                                                 </Accordion>
+                                            </div>
+                                            <div>
+                                                <Stack direction={"horizontal"} gap={2}>
+                                                    <div>
+                                                        <h5>Average Stock Per Warehouse</h5>
+                                                    </div>
+                                                    <div>
+                                                        <DropdownButton id="dropdown-basic-button3" title="Minimum Products" size={"sm"}>
+                                                            <Dropdown.Item onClick={()=>{updateAvgStock(1)} }>1</Dropdown.Item>
+                                                            <Dropdown.Item onClick={()=>{updateAvgStock(2)} }>2</Dropdown.Item>
+                                                            <Dropdown.Item onClick={()=>{updateAvgStock(3)} }>3</Dropdown.Item>
+                                                            <Dropdown.Item onClick={()=>{updateAvgStock(4)} }>4</Dropdown.Item>
+                                                            <Dropdown.Item onClick={()=>{updateAvgStock(5)} }>5</Dropdown.Item>
+                                                        </DropdownButton>
+                                                    </div>
+                                                </Stack>
+                                            </div>
+                                            <div>
+                                                <Table striped bordered hover>
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Avg Stock</th>
+                                                        <th>Warehouse #</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {AvgStock.map((val, key) => {
+                                                        return (
+                                                            <tr key={key}>
+                                                                <td>{val.avg}</td>
+                                                                <td>{val.warehouse_id}</td>
+                                                            </tr>
+                                                        );
+                                                    })}
+                                                    </tbody>
+                                                </Table>
                                             </div>
                                         </Stack>
                                     </Tab.Pane>

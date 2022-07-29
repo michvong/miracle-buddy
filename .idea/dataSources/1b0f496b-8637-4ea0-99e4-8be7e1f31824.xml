@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="miracle-buddy@localhost">
-  <database-model serializer="dbm" dbms="MARIADB" family-id="MARIADB" format-version="4.40">
+  <database-model serializer="dbm" dbms="MARIADB" family-id="MARIADB" format-version="4.39">
     <root id="1">
       <DefaultCasing>mixed/mixed</DefaultCasing>
       <DefaultEngine>InnoDB</DefaultEngine>
@@ -1175,5 +1175,641 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
     <user id="335" parent="1" name="root">
       <Host>localhost</Host>
     </user>
+    <table id="336" parent="325" name="AreaCode">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_general_ci</CollationName>
+    </table>
+    <table id="337" parent="325" name="Bookmarks">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_general_ci</CollationName>
+    </table>
+    <table id="338" parent="325" name="Company">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_general_ci</CollationName>
+    </table>
+    <table id="339" parent="325" name="CompanyUser">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_general_ci</CollationName>
+    </table>
+    <table id="340" parent="325" name="CompanyUserManages">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_general_ci</CollationName>
+    </table>
+    <table id="341" parent="325" name="Event">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_general_ci</CollationName>
+    </table>
+    <table id="342" parent="325" name="EventHost">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_general_ci</CollationName>
+    </table>
+    <table id="343" parent="325" name="Interests">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_general_ci</CollationName>
+    </table>
+    <table id="344" parent="325" name="Inventory">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_general_ci</CollationName>
+    </table>
+    <table id="345" parent="325" name="Location">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_general_ci</CollationName>
+    </table>
+    <table id="346" parent="325" name="Products">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_general_ci</CollationName>
+    </table>
+    <table id="347" parent="325" name="Provides">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_general_ci</CollationName>
+    </table>
+    <table id="348" parent="325" name="RegularUser">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_general_ci</CollationName>
+    </table>
+    <table id="349" parent="325" name="Requests">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_general_ci</CollationName>
+    </table>
+    <table id="350" parent="325" name="Service">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_general_ci</CollationName>
+    </table>
+    <table id="351" parent="325" name="ServiceType">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_general_ci</CollationName>
+    </table>
+    <table id="352" parent="325" name="Store">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_general_ci</CollationName>
+    </table>
+    <table id="353" parent="325" name="Warehouse">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_general_ci</CollationName>
+    </table>
+    <view id="354" parent="325" name="tmp_inventory">
+      <Definer>root@localhost</Definer>
+      <SourceTextLength>148</SourceTextLength>
+    </view>
+    <view id="355" parent="325" name="tmp_user">
+      <Definer>root@localhost</Definer>
+      <SourceTextLength>295</SourceTextLength>
+    </view>
+    <column id="356" parent="336" name="postal_code">
+      <DataType>char(6)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="357" parent="336" name="city">
+      <DataType>varchar(100)|0s</DataType>
+      <Position>2</Position>
+    </column>
+    <key id="358" parent="336" name="PRIMARY">
+      <ColNames>postal_code</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="359" parent="337" name="user_id">
+      <DataType>int(10)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="360" parent="337" name="company_id">
+      <DataType>int(10)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <foreign-key id="361" parent="337" name="bookmarks_ibfk_1">
+      <ColNames>user_id</ColNames>
+      <RefColNames>user_id</RefColNames>
+      <RefTableName>RegularUser</RefTableName>
+    </foreign-key>
+    <foreign-key id="362" parent="337" name="bookmarks_ibfk_2">
+      <ColNames>company_id</ColNames>
+      <RefColNames>company_id</RefColNames>
+      <RefTableName>Company</RefTableName>
+    </foreign-key>
+    <index id="363" parent="337" name="company_id">
+      <ColNames>company_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="364" parent="337" name="PRIMARY">
+      <ColNames>user_id
+company_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="365" parent="338" name="company_id">
+      <DataType>int(10)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="366" parent="338" name="name">
+      <DataType>varchar(100)|0s</DataType>
+      <Position>2</Position>
+    </column>
+    <column id="367" parent="338" name="phone_number">
+      <DataType>int(11)|0s</DataType>
+      <Position>3</Position>
+    </column>
+    <column id="368" parent="338" name="email">
+      <DataType>varchar(100)|0s</DataType>
+      <Position>4</Position>
+    </column>
+    <key id="369" parent="338" name="PRIMARY">
+      <ColNames>company_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="370" parent="339" name="user_id">
+      <AutoIncrement>6</AutoIncrement>
+      <DataType>int(10)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="371" parent="339" name="name">
+      <DataType>varchar(100)|0s</DataType>
+      <Position>2</Position>
+    </column>
+    <column id="372" parent="339" name="language">
+      <DataType>varchar(100)|0s</DataType>
+      <Position>3</Position>
+    </column>
+    <column id="373" parent="339" name="email">
+      <DataType>varchar(100)|0s</DataType>
+      <Position>4</Position>
+    </column>
+    <column id="374" parent="339" name="company_id">
+      <DataType>int(10)|0s</DataType>
+      <Position>5</Position>
+    </column>
+    <foreign-key id="375" parent="339" name="companyuser_ibfk_1">
+      <ColNames>company_id</ColNames>
+      <OnDelete>cascade</OnDelete>
+      <RefColNames>company_id</RefColNames>
+      <RefTableName>Company</RefTableName>
+    </foreign-key>
+    <index id="376" parent="339" name="company_id">
+      <ColNames>company_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="377" parent="339" name="PRIMARY">
+      <ColNames>user_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="378" parent="340" name="user_id">
+      <DataType>int(10)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="379" parent="340" name="employee_id">
+      <DataType>int(10)|0s</DataType>
+      <Position>2</Position>
+    </column>
+    <column id="380" parent="340" name="company_id">
+      <DataType>int(10)|0s</DataType>
+      <Position>3</Position>
+    </column>
+    <foreign-key id="381" parent="340" name="companyusermanages_ibfk_1">
+      <ColNames>company_id</ColNames>
+      <OnDelete>cascade</OnDelete>
+      <RefColNames>company_id</RefColNames>
+      <RefTableName>Company</RefTableName>
+    </foreign-key>
+    <index id="382" parent="340" name="company_id">
+      <ColNames>company_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="383" parent="340" name="PRIMARY">
+      <ColNames>user_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="384" parent="341" name="event_name">
+      <DataType>char(100)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="385" parent="341" name="date">
+      <DataType>char(100)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="386" parent="341" name="location">
+      <DataType>char(100)|0s</DataType>
+      <Position>3</Position>
+    </column>
+    <column id="387" parent="341" name="description">
+      <DataType>char(100)|0s</DataType>
+      <Position>4</Position>
+    </column>
+    <key id="388" parent="341" name="PRIMARY">
+      <ColNames>event_name
+date</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="389" parent="342" name="event_name">
+      <DataType>char(100)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="390" parent="342" name="date">
+      <DataType>char(100)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="391" parent="342" name="company_id">
+      <DataType>int(10)|0s</DataType>
+      <Position>3</Position>
+    </column>
+    <foreign-key id="392" parent="342" name="eventhost_ibfk_1">
+      <ColNames>event_name
+date</ColNames>
+      <OnDelete>cascade</OnDelete>
+      <RefColNames>event_name
+date</RefColNames>
+      <RefTableName>Event</RefTableName>
+    </foreign-key>
+    <foreign-key id="393" parent="342" name="eventhost_ibfk_2">
+      <ColNames>company_id</ColNames>
+      <OnDelete>cascade</OnDelete>
+      <RefColNames>company_id</RefColNames>
+      <RefTableName>Company</RefTableName>
+    </foreign-key>
+    <index id="394" parent="342" name="company_id">
+      <ColNames>company_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="395" parent="342" name="PRIMARY">
+      <ColNames>event_name
+date</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="396" parent="343" name="user_id">
+      <DataType>int(10)|0s</DataType>
+      <Position>1</Position>
+    </column>
+    <column id="397" parent="343" name="interests">
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <foreign-key id="398" parent="343" name="interests_ibfk_1">
+      <ColNames>user_id</ColNames>
+      <RefColNames>user_id</RefColNames>
+      <RefTableName>RegularUser</RefTableName>
+    </foreign-key>
+    <index id="399" parent="343" name="user_id">
+      <ColNames>user_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="400" parent="343" name="PRIMARY">
+      <ColNames>interests</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="401" parent="344" name="item_id">
+      <DataType>int(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="402" parent="344" name="stock">
+      <DataType>int(10)|0s</DataType>
+      <Position>2</Position>
+    </column>
+    <column id="403" parent="344" name="warehouse_id">
+      <DataType>int(10)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <foreign-key id="404" parent="344" name="inventory_ibfk_2">
+      <ColNames>item_id</ColNames>
+      <OnDelete>cascade</OnDelete>
+      <RefColNames>item_id</RefColNames>
+      <RefTableName>Products</RefTableName>
+    </foreign-key>
+    <foreign-key id="405" parent="344" name="inventory_ibfk_1">
+      <ColNames>warehouse_id</ColNames>
+      <OnDelete>cascade</OnDelete>
+      <RefColNames>warehouse_id</RefColNames>
+      <RefTableName>Warehouse</RefTableName>
+    </foreign-key>
+    <index id="406" parent="344" name="warehouse_id">
+      <ColNames>warehouse_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="407" parent="344" name="PRIMARY">
+      <ColNames>item_id
+warehouse_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="408" parent="345" name="address">
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="409" parent="345" name="postal_code">
+      <DataType>char(6)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="410" parent="345" name="hours_of_operation">
+      <DataType>varchar(100)|0s</DataType>
+      <Position>3</Position>
+    </column>
+    <column id="411" parent="345" name="name">
+      <DataType>varchar(100)|0s</DataType>
+      <Position>4</Position>
+    </column>
+    <column id="412" parent="345" name="company_id">
+      <DataType>int(10)|0s</DataType>
+      <Position>5</Position>
+    </column>
+    <column id="413" parent="345" name="service_id">
+      <DataType>int(10)|0s</DataType>
+      <Position>6</Position>
+    </column>
+    <foreign-key id="414" parent="345" name="location_ibfk_1">
+      <ColNames>company_id</ColNames>
+      <OnDelete>cascade</OnDelete>
+      <RefColNames>company_id</RefColNames>
+      <RefTableName>Company</RefTableName>
+    </foreign-key>
+    <foreign-key id="415" parent="345" name="location_ibfk_2">
+      <ColNames>service_id</ColNames>
+      <OnDelete>cascade</OnDelete>
+      <RefColNames>service_id</RefColNames>
+      <RefTableName>Service</RefTableName>
+    </foreign-key>
+    <index id="416" parent="345" name="company_id">
+      <ColNames>company_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="417" parent="345" name="service_id">
+      <ColNames>service_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="418" parent="345" name="PRIMARY">
+      <ColNames>address
+postal_code</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="419" parent="346" name="item_id">
+      <DataType>int(10)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="420" parent="346" name="name">
+      <DataType>varchar(20)|0s</DataType>
+      <Position>2</Position>
+    </column>
+    <column id="421" parent="346" name="description">
+      <DataType>varchar(250)|0s</DataType>
+      <Position>3</Position>
+    </column>
+    <key id="422" parent="346" name="PRIMARY">
+      <ColNames>item_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="423" parent="347" name="company_id">
+      <DataType>int(10)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="424" parent="347" name="SID">
+      <DataType>int(10)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <foreign-key id="425" parent="347" name="provides_ibfk_1">
+      <ColNames>company_id</ColNames>
+      <OnDelete>cascade</OnDelete>
+      <RefColNames>company_id</RefColNames>
+      <RefTableName>Company</RefTableName>
+    </foreign-key>
+    <foreign-key id="426" parent="347" name="provides_ibfk_2">
+      <ColNames>SID</ColNames>
+      <OnDelete>cascade</OnDelete>
+      <RefColNames>service_id</RefColNames>
+      <RefTableName>Service</RefTableName>
+    </foreign-key>
+    <index id="427" parent="347" name="SID">
+      <ColNames>SID</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="428" parent="347" name="PRIMARY">
+      <ColNames>company_id
+SID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="429" parent="348" name="user_id">
+      <AutoIncrement>6</AutoIncrement>
+      <DataType>int(10)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="430" parent="348" name="name">
+      <DataType>varchar(100)|0s</DataType>
+      <Position>2</Position>
+    </column>
+    <column id="431" parent="348" name="language">
+      <DataType>varchar(100)|0s</DataType>
+      <Position>3</Position>
+    </column>
+    <column id="432" parent="348" name="email">
+      <DataType>varchar(100)|0s</DataType>
+      <Position>4</Position>
+    </column>
+    <key id="433" parent="348" name="PRIMARY">
+      <ColNames>user_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="434" parent="349" name="user_id">
+      <DataType>int(10)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="435" parent="349" name="service_id">
+      <DataType>int(10)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <foreign-key id="436" parent="349" name="requests_ibfk_1">
+      <ColNames>user_id</ColNames>
+      <OnDelete>cascade</OnDelete>
+      <RefColNames>user_id</RefColNames>
+      <RefTableName>RegularUser</RefTableName>
+    </foreign-key>
+    <foreign-key id="437" parent="349" name="requests_ibfk_2">
+      <ColNames>service_id</ColNames>
+      <OnDelete>cascade</OnDelete>
+      <RefColNames>service_id</RefColNames>
+      <RefTableName>Service</RefTableName>
+    </foreign-key>
+    <index id="438" parent="349" name="service_id">
+      <ColNames>service_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="439" parent="349" name="PRIMARY">
+      <ColNames>user_id
+service_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="440" parent="350" name="service_id">
+      <DataType>int(10)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="441" parent="350" name="name">
+      <DataType>varchar(100)|0s</DataType>
+      <Position>2</Position>
+    </column>
+    <column id="442" parent="350" name="company_id">
+      <DataType>int(10)|0s</DataType>
+      <Position>3</Position>
+    </column>
+    <foreign-key id="443" parent="350" name="service_ibfk_2">
+      <ColNames>name</ColNames>
+      <OnDelete>cascade</OnDelete>
+      <RefColNames>name</RefColNames>
+      <RefTableName>ServiceType</RefTableName>
+    </foreign-key>
+    <foreign-key id="444" parent="350" name="service_ibfk_1">
+      <ColNames>company_id</ColNames>
+      <OnDelete>cascade</OnDelete>
+      <RefColNames>company_id</RefColNames>
+      <RefTableName>Company</RefTableName>
+    </foreign-key>
+    <index id="445" parent="350" name="name">
+      <ColNames>name</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="446" parent="350" name="company_id">
+      <ColNames>company_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="447" parent="350" name="PRIMARY">
+      <ColNames>service_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="448" parent="351" name="name">
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="449" parent="351" name="description">
+      <DataType>varchar(250)|0s</DataType>
+      <Position>2</Position>
+    </column>
+    <key id="450" parent="351" name="PRIMARY">
+      <ColNames>name</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="451" parent="352" name="warehouse_id">
+      <DataType>int(10)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="452" parent="352" name="item_id">
+      <DataType>int(10)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <foreign-key id="453" parent="352" name="store_ibfk_1">
+      <ColNames>warehouse_id</ColNames>
+      <OnDelete>cascade</OnDelete>
+      <RefColNames>warehouse_id</RefColNames>
+      <RefTableName>Warehouse</RefTableName>
+    </foreign-key>
+    <foreign-key id="454" parent="352" name="store_ibfk_2">
+      <ColNames>item_id</ColNames>
+      <OnDelete>cascade</OnDelete>
+      <RefColNames>item_id</RefColNames>
+      <RefTableName>Products</RefTableName>
+    </foreign-key>
+    <index id="455" parent="352" name="item_id">
+      <ColNames>item_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="456" parent="352" name="PRIMARY">
+      <ColNames>warehouse_id
+item_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="457" parent="353" name="warehouse_id">
+      <DataType>int(10)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="458" parent="353" name="company_id">
+      <DataType>int(10)|0s</DataType>
+      <Position>2</Position>
+    </column>
+    <column id="459" parent="353" name="address">
+      <DataType>varchar(100)|0s</DataType>
+      <Position>3</Position>
+    </column>
+    <column id="460" parent="353" name="postal_code">
+      <DataType>char(6)|0s</DataType>
+      <Position>4</Position>
+    </column>
+    <foreign-key id="461" parent="353" name="warehouse_ibfk_1">
+      <ColNames>company_id</ColNames>
+      <OnDelete>cascade</OnDelete>
+      <RefColNames>company_id</RefColNames>
+      <RefTableName>Company</RefTableName>
+    </foreign-key>
+    <foreign-key id="462" parent="353" name="warehouse_ibfk_2">
+      <ColNames>postal_code</ColNames>
+      <OnDelete>cascade</OnDelete>
+      <RefColNames>postal_code</RefColNames>
+      <RefTableName>AreaCode</RefTableName>
+    </foreign-key>
+    <index id="463" parent="353" name="company_id">
+      <ColNames>company_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="464" parent="353" name="postal_code">
+      <ColNames>postal_code</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="465" parent="353" name="PRIMARY">
+      <ColNames>warehouse_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="466" parent="354" name="AVG(stock)">
+      <DataType>decimal(14,4 digit)|0s</DataType>
+      <Position>1</Position>
+    </column>
+    <column id="467" parent="355" name="user_id">
+      <DataType>int(10)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="468" parent="355" name="name">
+      <DataType>varchar(100)|0s</DataType>
+      <Position>2</Position>
+    </column>
+    <column id="469" parent="355" name="language">
+      <DataType>varchar(100)|0s</DataType>
+      <Position>3</Position>
+    </column>
+    <column id="470" parent="355" name="email">
+      <DataType>varchar(100)|0s</DataType>
+      <Position>4</Position>
+    </column>
   </database-model>
 </dataSource>

@@ -21,7 +21,7 @@ export default function Dashboard() {
     }
 
     const handleSearchClick = () => {
-        navigate('/search', { state: {user_id: location.state.user_id } });
+        navigate('/search', { state: {user_id: location.state.user_id , name: location.state.name} });
     }
 
     const handleBackClick = () => {

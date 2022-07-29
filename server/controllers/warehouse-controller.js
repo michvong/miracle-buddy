@@ -25,6 +25,20 @@ exports.showBySortedProducts = (req, res) => {
     });
 };
 
+exports.getAvgStock = (req, res) => {
+    const count = req.body.count;
+
+    connection.query("SELECT AVG(S.stock) AS avg, warehouse_id\n" +
+        "FROM Inventory S\n" +
+        "GROUP BY S.warehouse_id\n" +
+        "HAVING (?)<=(SELECT COUNT(*) FROM Inventory S2 WHERE S2.warehouse_id=S.warehouse_id)",
+        [count],
+        (err, results) => {
+        if (err) throw err;
+        res.send(results);
+    });
+};
+
 // exports.showBySortedServices = (req, res) => {
 //     const service = req.body.service;
 //     const filter = req.body.filter;
