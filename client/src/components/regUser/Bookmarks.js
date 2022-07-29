@@ -23,30 +23,33 @@ export default function Bookmarks() {
     }
 
     useEffect(() => {
-        Axios.get(`http://localhost:3001/bookmark-bookmarked-companies/${fetch_user_id()}`)
+        Axios.get(`http://localhost:3001/user/${fetch_user_id()}`)
             .then((response) => {
                 if(response.status === 200) {
-                    setNumber(testNumber++);
-                    setBookmarks(response.data);
+                    // setNumber(testNumber++);
+                    // setBookmarks(response.data);
+                    setUser(response.data);
                 }
             })
     })
 
-    // useEffect(() => {
-    //     Axios.get(`http://localhost:3001/user/${fetch_user_id()}`)
-    //         .then((response) => {
-    //             if(response.status === 200) {
-    //                 setUser(response.data);
-    //             }
-    //         });
-    // });
+    const grab_company_ids = ((event) => {
+        event.preventDefault();
+        Axios.get(`http://localhost:3001/bookmark-bookmarked-companies/${fetch_user_id()}`)
+            .then((response) => {
+                if(response.status === 200) {
+                    setBookmarks(response.data);
+                }
+            });
+    });
 
 
     return (
-        <Accordion>
-            {currentBookmarks.map}
-            <h1>{testNumber}</h1>
-        </Accordion>
+        <div>
+            <h1>Hello {currentUser[0].name}</h1>
+            <form onSubmit={(e) => grab_company_ids(e)}>
+            </form>
+        </div>
 
     );
 }
