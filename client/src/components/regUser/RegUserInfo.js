@@ -41,7 +41,7 @@ const RegUserInfo = (props) => {
             return; //no action, just return
         }
         //otherwise, update value
-        Axios.put(`http://localhost:3001/user/edit-name/${props.user_id}/${nameTextField}`)
+        Axios.put(`http://localhost:3001/user/edit-name/${fetch_user_id()}/${nameTextField}`)
             .then((response) => {
                 if(response.status===200) {
                     setUser([{...currentUser[0], "name":nameTextField}]);
@@ -55,7 +55,7 @@ const RegUserInfo = (props) => {
         if(langTextField === ""){
             return; // no action, just return
         }
-        Axios.put(`http://localhost:3001/user/edit-lang/${props.user_id}/${langTextField}`)
+        Axios.put(`http://localhost:3001/user/edit-lang/${fetch_user_id()}/${langTextField}`)
             .then((response) => {
                 if(response.status === 200) {
                     setUser([{...currentUser[0], "language":langTextField}]);
@@ -69,7 +69,7 @@ const RegUserInfo = (props) => {
         if(emailTextField ==="") {
             return; //no action
         }
-        Axios.put(`http://localhost:3001/user/edit-email/${props.user_id}/${emailTextField}`)
+        Axios.put(`http://localhost:3001/user/edit-email/${fetch_user_id()}/${emailTextField}`)
             .then((response) => {
                 if(response.status === 200) {
                     setUser([{...currentUser[0], "email":emailTextField}]);
