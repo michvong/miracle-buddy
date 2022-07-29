@@ -10,11 +10,11 @@ INSERT INTO Company VALUES (103,'Saving Bite',604289292,'bb_food@igrace.ca');
 INSERT INTO Company VALUES (104,'Infantile Grace',604238291,'med.st@stjohns.ca');
 INSERT INTO Company VALUES (105,'Peace of Mind',604867397,'therapy@pom.ca');
 
-INSERT INTO CompanyUser VALUES (0001,'Sebastian','Spanish','sbh301@hotmail.com',101);
-INSERT INTO CompanyUser VALUES (0002,'Kelly','Cantonese','kelly_088@outlook.com',102);
-INSERT INTO CompanyUser VALUES (0003,'Frederic','German','frf0194@gmail.com',103);
-INSERT INTO CompanyUser VALUES (0004,'Linda','English','linsn001@outlook.com',104);
-INSERT INTO CompanyUser VALUES (0005,'Alphonse','German','allphn81x@gmail.com',105);
+INSERT INTO CompanyUser VALUES (2000,'Sebastian','Spanish','sbh301@hotmail.com',101);
+INSERT INTO CompanyUser VALUES (2001,'Kelly','Cantonese','kelly_088@outlook.com',102);
+INSERT INTO CompanyUser VALUES (2002,'Frederic','German','frf0194@gmail.com',103);
+INSERT INTO CompanyUser VALUES (2003,'Linda','English','linsn001@outlook.com',104);
+INSERT INTO CompanyUser VALUES (2004,'Alphonse','German','allphn81x@gmail.com',105);
 
 INSERT INTO Interests VALUES (0004, 'Shelter');
 INSERT INTO Interests VALUES (0003, 'Food');
