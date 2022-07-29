@@ -4,6 +4,7 @@ const router = express.Router();
 
 router.post('/bookmark-set', controllers.setBookmark);
 router.post('/bookmark-delete', controllers.deleteBookmark);
+
 // router.post('/locations', controllers.updateLocationAddress);
 
 

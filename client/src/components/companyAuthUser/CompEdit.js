@@ -43,6 +43,10 @@ export default function CompEdit() {
     let [inventoryItemID, setInventoryItemID] = useState("");
     let [inventoryWarehouseID, setInventoryWarehouseID] = useState("");
 
+    let [addressInvalid, setAddressInvalid] = useState(false);
+    let [warehouseInvalid, setWarehouseInvalid] = useState(false);
+    let [cityValid, setCityValid] = useState(false);
+
     // Events
     let [eventName, setEventName] = useState("");
     let [eventDate, setEventDate] = useState("");
@@ -80,7 +84,7 @@ export default function CompEdit() {
     const navigate = useNavigate();
 
     const handleDashboardClick = () => {
-        navigate('/compdashboard');
+        navigate('/compdashboard', { state: { company_id: info.state.company_id, name: info.state.name } });
     }
 
     const info = useLocation();
@@ -282,6 +286,7 @@ export default function CompEdit() {
         Axios.get('http://localhost:3001/services')
             .then((response) => {
                 setService(response.data);
+                console.log(JSON.parse(JSON.stringify(response.data))[0].name);
             });
 
     }, []);
@@ -308,6 +313,48 @@ export default function CompEdit() {
         return bool
     }
 
+    const checkWarehouseEmpty = (str) => {
+        Axios.post('http://localhost:3001/verify-warehouse', {
+            company_id: fetchInput(), warehouse_id: str
+        }).then((response) => {
+            const count = JSON.parse(JSON.stringify(response.data))[0].count;
+            console.log(count);
+            if (count > 0){
+                setWarehouseInvalid(true)
+            } else {
+                setWarehouseInvalid(false)
+            }
+        });
+    }
+
+    const checkLocationEmpty = (str) => {
+        Axios.post('http://localhost:3001/verify-location', {
+            address: locationAddress, postal_code: str
+        }).then((response) => {
+            const count = JSON.parse(JSON.stringify(response.data))[0].count;
+            console.log(count);
+            if (count > 0){
+                setAddressInvalid(true)
+            } else {
+                setAddressInvalid(false)
+            }
+        });
+    }
+
+    const checkCityValid = (str) => {
+        Axios.post('http://localhost:3001/verify-city', {
+            postal_code: str
+        }).then((response) => {
+            const count = JSON.parse(JSON.stringify(response.data))[0].count;
+            if (count > 0){
+                setCityValid(true)
+            } else {
+                setCityValid(false)
+            }
+        });
+    }
+
+
     return (
         <Container fluid="xxl" >
             <Stack gap={3}>
@@ -318,12 +365,7 @@ export default function CompEdit() {
                         <Navbar.Collapse id="basic-navbar-nav" >
                             <Nav className="me-auto">
                                 <Nav.Link onClick={handleDashboardClick}>Dashboard</Nav.Link>
-                                <NavDropdown title="Account" id="basic-nav-dropdown">
-                                    <NavDropdown.Item >Account</NavDropdown.Item>
-                                    <NavDropdown.Item >Settings</NavDropdown.Item>
-                                    <NavDropdown.Divider />
-                                    <NavDropdown.Item >Log Out</NavDropdown.Item>
-                                </NavDropdown>
+
                             </Nav>
                         </Navbar.Collapse>
                         <Navbar.Collapse className="justify-content-end right-marg">
@@ -575,6 +617,7 @@ export default function CompEdit() {
                                                             defaultValue={locationAddress}
                                                             onChange={(e)=>{ setAddress(e.target.value)} }
                                                         />
+                                                        <Form.Control.Feedback type="invalid">Please provide a valid location.</Form.Control.Feedback>
                                                     </Form.Group>
                                                     <Form.Group as={Col} md="6" controlId="validationCustom02">
                                                         <Form.Label>Postal Code</Form.Label>
@@ -583,8 +626,10 @@ export default function CompEdit() {
                                                             type="text"
                                                             placeholder="Last name"
                                                             defaultValue={locationPostal}
-                                                            onChange={(e)=>{ setPostal(e.target.value)} }
+                                                            onChange={(e)=>{ setPostal(e.target.value); checkLocationEmpty(e.target.value); checkCityValid(e.target.value)} }
+                                                            isInvalid={addressInvalid}
                                                         />
+                                                        <Form.Control.Feedback type="invalid">Location has already been taken.</Form.Control.Feedback>
                                                     </Form.Group>
 
                                                 </Row>
@@ -614,8 +659,9 @@ export default function CompEdit() {
                                                             placeholder="First name"
                                                             defaultValue={locationCity}
                                                             onChange={(e)=> { setLocationCity(e.target.value)}}
+                                                            isValid={cityValid}
                                                         />
-                                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                        <Form.Control.Feedback type="valid">City Detected</Form.Control.Feedback>
                                                     </Form.Group>
                                                     <Form.Group as={Col} md="6" controlId="validationCustom02">
                                                         <Form.Label>Service</Form.Label>
@@ -724,13 +770,20 @@ export default function CompEdit() {
                                                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                                     </Form.Group>
 
+
                                                     <Form.Group as={Col} md="6" controlId="validationCustom03">
                                                         <Form.Label>WarehouseID</Form.Label>
-                                                        <Form.Control type="text" placeholder="Name" required onChange={(e)=> { setInventoryWarehouseID(e.target.value); }}/>
+                                                        <Form.Control
+                                                            required
+                                                            placeholder="Warehouse#"
+                                                            onChange={(e)=> { setInventoryWarehouseID(e.target.value); checkWarehouseEmpty(e.target.value)}}
+                                                            isInvalid = {warehouseInvalid}
+                                                        />
                                                         <Form.Control.Feedback type="invalid">
-                                                            Please provide a valid id number.
+                                                            Warehouse ID has been taken by another organization.
                                                         </Form.Control.Feedback>
                                                     </Form.Group>
+
                                                 </Row>
                                                 <Row className="mb-3">
                                                     <Form.Group as={Col} md="6" controlId="validationCustom03">

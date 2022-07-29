@@ -147,6 +147,30 @@ exports.deleteEvent = (req, res) => {
     connection.query("DELETE FROM Event WHERE event_name = (?) AND date = (?)",
         [event_name, date],
         (err, results) => { res.send(results); });
+};
 
+exports.verifyWarehouse = (req, res) => {
+    const company_id = req.body.company_id;
+    const warehouse_id = req.body.warehouse_id;
 
+    connection.query("SELECT (SELECT COUNT(warehouse_id) from Warehouse WHERE warehouse_id=(?)) - (SELECT COUNT(warehouse_id) FROM Warehouse WHERE company_id=(?) AND warehouse_id=(?)) AS count",
+        [warehouse_id, company_id, warehouse_id],
+        (err, results) => { res.send(results); });
+};
+
+exports.verifyLocation = (req, res) => {
+    const address = req.body.address;
+    const postalCode = req.body.postal_code;
+
+    connection.query("SELECT (SELECT COUNT(address) from Location WHERE address=(?) AND postal_code=(?)) AS count",
+        [address, postalCode],
+        (err, results) => { res.send(results); });
+};
+
+exports.verifyCity = (req, res) => {
+    const postalCode = req.body.postal_code;
+    console.log(postalCode)
+    connection.query("SELECT COUNT(postal_code) AS count FROM AreaCode WHERE postal_code=(?)",
+        [postalCode],
+        (err, results) => { res.send(results); });
 };
