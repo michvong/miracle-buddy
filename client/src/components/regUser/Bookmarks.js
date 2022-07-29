@@ -27,6 +27,7 @@ export default function Bookmarks() {
             .then((response) => {
                 if(response.status === 200) {
                     setNumber(testNumber++);
+                    setBookmarks(response.data);
                 }
             })
     })
