@@ -34,12 +34,15 @@ exports.getBookmarked = (req, res) => {
         [user_id],
         (err, results_view) => {
             // if (err) throw err;
-            connection.query("SELECT DISTINCT x.company_id FROM Bookmarks AS x " +
+            connection.query("SELECT Company.company_id, Company.name, Company.phone_number, Company.email " +
+            "FROM Company INNER JOIN( " +
+                "SELECT DISTINCT x.company_id FROM Bookmarks AS x " +
                 "WHERE NOT EXISTS (" +
                     "SELECT * FROM tmp_user AS y " +
                     "WHERE NOT EXISTS(" +
                         "SELECT * FROM Bookmarks AS z " +
-                        "WHERE (z.company_id = x.company_id) AND (z.user_id = y.user_id)))",
+                        "WHERE (z.company_id = x.company_id) AND (z.user_id = y.user_id))) ) AS a ON " +
+                            "a.company_id = Company.company_id",
                 (err, results_division) => {
                     if (err) throw err;
                     connection.query("DROP VIEW tmp_user",
