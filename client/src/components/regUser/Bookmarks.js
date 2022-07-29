@@ -2,7 +2,7 @@ import React , { Component } from 'react';
 import { useEffect, useState } from 'react';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import {Accordion, Button} from 'react-bootstrap';
+import {Accordion, Button, Navbar} from 'react-bootstrap';
 import Axios from 'axios';
 import Dashboard from './Dashboard';
 
@@ -45,11 +45,18 @@ export default function Bookmarks() {
 
 
     return (
-        <div>
-            <h1>Hello {currentUser[0].name}</h1>
-            <form onSubmit={(e) => grab_company_ids(e)}>
-            </form>
-        </div>
+        <Navbar>
+            {currentUser.map((val, key) => {
+                return (
+                    <div key={key}>
+                        <h1>Hello {val.name}</h1>
+                        <form onSubmit={(e) => grab_company_ids(e)}>
+                            <Button color="blue" type="submit">List Bookmarks</Button>
+                        </form>
+                    </div>
+                );
+            })};
+        </Navbar>
 
     );
 }
