@@ -11,8 +11,8 @@ export default function Bookmarks() {
     const info = useLocation();
 
     let [currentUser, setUser] = useState([]);
-    let [testNumber, setNumber] = useState(0);
-    let [currentBookmarks, setBookmarks] = useState([]);
+    let [company, setCompany] = useState(0);
+    let [bookmarks, setBookmarks] = useState([]);
 
     const fetch_user_id = () => {
         try{
@@ -43,6 +43,17 @@ export default function Bookmarks() {
             });
     });
 
+    const grab_company = ((company_id, key) => {
+        Axios.get(`http://localhost:3001/company/${company_id}`)
+            .then((response) => {
+                if(response.status === 200) {
+                    // setCompany(response.data);
+                    // setCompany(...company, company[key] = response.data[0]);
+                    setCompany({company : company.concat(response.data)})
+                }
+            });
+    });
+
 
     return (
         <Navbar>
@@ -53,6 +64,14 @@ export default function Bookmarks() {
                         <form onSubmit={(e) => grab_company_ids(e)}>
                             <Button color="blue" type="submit">List Bookmarks</Button>
                         </form>
+                        {bookmarks.map((val, key) => {
+                            // grab_company(val.company_id);
+                            return(
+                                <div key={key}>
+
+                                </div>
+                            );
+                        })};
                     </div>
                 );
             })};
