@@ -4,36 +4,43 @@ import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import {Accordion, Button} from 'react-bootstrap';
 import Axios from 'axios';
-import Dashboard from './Dashboard';
 
 
 
-// class RegUserInfo extends Component {
-const RegUserInfo = (props) => {
+// class CompanyInfo extends Component {
+const CompanyInfo = (props) => {
 
     const info = useLocation();
 
     let [currentUser, setUser] = useState([]);
+    let [currentCompany, setCompany] = useState([]);
     let [nameTextField, setName] = useState("");
-    let [langTextField, setLang] = useState("");
+    let [phoneTextField, setPhone] = useState("");
     let [emailTextField, setEmail] = useState("");
-
+    
     const fetch_user_id = () => {
         try{
             return info.state.user_id
         } catch (e) {
-            Navigate('/reguserLogin')
+            Navigate('/companyauthLogin')
         }
     }
 
+    //user user_id of company auth user to get company_id
     useEffect(() => {
-        Axios.get(`http://localhost:3001/user/${fetch_user_id()}`)
+        Axios.get(`http://localhost:3001/compuser/${fetch_user_id()}`)
             .then((response) => {
                 if(response.status === 200) {
-                    setUser(response.data);
+                    // setUser(response.data);
+                    Axios.get(`http://localhost:3001/company/${response.data[0].company_id}`)
+                        .then((response) => {
+                            if(response.status ===200){
+                                setCompany(response.data);
+                            }
+                        });
                 }
             });
-    });
+    }, []);
 
     const handleSubmitName= ((event, nameTextField) => {
         event.preventDefault();
@@ -41,25 +48,25 @@ const RegUserInfo = (props) => {
             return; //no action, just return
         }
         //otherwise, update value
-        Axios.put(`http://localhost:3001/user/edit-name/${fetch_user_id()}/${nameTextField}`)
+        Axios.put(`http://localhost:3001/company/edit-name/${currentCompany.company_id}/${nameTextField}`)
             .then((response) => {
                 if(response.status===200) {
-                    setUser([{...currentUser[0], "name":nameTextField}]);
+                    setCompany([{...currentCompany[0], "name":nameTextField}]);
                     setName("");
                 }
             });
     });
 
-    const handleSubmitLang = ((event, langTextField) => {
+    const handleSubmitPhone = ((event, phoneTextField) => {
         event.preventDefault();
-        if(langTextField === ""){
+        if(phoneTextField === ""){
             return; // no action, just return
         }
-        Axios.put(`http://localhost:3001/user/edit-lang/${fetch_user_id()}/${langTextField}`)
+        Axios.put(`http://localhost:3001/company/edit-phone/${currentCompany.company_id}/${phoneTextField}`)
             .then((response) => {
                 if(response.status === 200) {
-                    setUser([{...currentUser[0], "language":langTextField}]);
-                    setLang("");
+                    setCompany([{...currentCompany[0], "phone_number":phoneTextField}]);
+                    setPhone("");
                 }
             });
     });
@@ -69,10 +76,10 @@ const RegUserInfo = (props) => {
         if(emailTextField ==="") {
             return; //no action
         }
-        Axios.put(`http://localhost:3001/user/edit-email/${fetch_user_id()}/${emailTextField}`)
+        Axios.put(`http://localhost:3001/company/edit-email/${currentCompany.company_id}/${emailTextField}`)
             .then((response) => {
                 if(response.status === 200) {
-                    setUser([{...currentUser[0], "email":emailTextField}]);
+                    setCompany([{...currentCompany[0], "email":emailTextField}]);
                     setEmail("");
                 }
             });
@@ -80,7 +87,7 @@ const RegUserInfo = (props) => {
 
     return (
         <Accordion>
-            {currentUser.map((val, key) => {
+            {currentCompany.map((val, key) => {
                 return(
                     <div key={key}>
                         <Accordion.Item eventKey='0'>
@@ -99,14 +106,14 @@ const RegUserInfo = (props) => {
                             </Accordion.Body>
                         </Accordion.Item>
                         <Accordion.Item eventKey='1'>
-                            <Accordion.Header>Current Language: {val.language}</Accordion.Header>
+                            <Accordion.Header>Current Phone Number: {val.phone_number}</Accordion.Header>
                             <Accordion.Body>
-                                <form onSubmit={(e) => handleSubmitLang(e,langTextField)}>
+                                <form onSubmit={(e) => handleSubmitPhone(e,phoneTextField)}>
                                     <label>
-                                        Enter new Language:
+                                        Enter new Phone Number:
                                         <input type="text"
-                                        value={langTextField}
-                                        onChange={(e) => setLang(e.target.value)}
+                                        value={phoneTextField}
+                                        onChange={(e) => setPhone(e.target.value)}
                                         />
                                     </label>
                                     <Button color= "blue" type="submit">Submit</Button>
@@ -135,4 +142,4 @@ const RegUserInfo = (props) => {
     );
 }
 
-export default RegUserInfo;
+export default CompanyInfo;
