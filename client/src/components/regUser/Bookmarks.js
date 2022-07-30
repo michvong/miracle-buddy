@@ -43,6 +43,18 @@ export default function Bookmarks() {
             });
     });
 
+    const remove_bookmark = ((event, companyID) => {
+        event.preventDefault();
+        console.log("Removing bookmark");
+        Axios.post('http://localhost:3001/bookmark-delete', {
+            company_id: companyID, user_id: fetch_user_id(),
+        }).then((response) => {
+            if(response.status ===200) {
+                grab_companies(event);
+            }
+        })
+    });
+
     return (
         <Accordion>
             {currentUser.map((val, key) => {
@@ -72,7 +84,7 @@ export default function Bookmarks() {
                                                     <td>{val.name}</td>
                                                     <td>{val.phone_number}</td>
                                                     <td>{val.email}</td>
-                                                    <td><Button ></Button></td>
+                                                    <td><Button onClick={(e) => remove_bookmark(e, val.company_id)} >Remove</Button></td>
                                                 </tr>
                                             );
                                         })}
