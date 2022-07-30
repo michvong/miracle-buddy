@@ -1,8 +1,7 @@
 import React , { Component } from 'react';
 import { useEffect, useState } from 'react';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
-import Card from 'react-bootstrap/Card';
-import {Accordion, Button, Navbar, Table, Stack, Container} from 'react-bootstrap';
+import {Accordion, Button, Navbar, Table, Stack, Container, Col, Row} from 'react-bootstrap';
 import Axios from 'axios';
 import Dashboard from './Dashboard';
 
@@ -69,29 +68,26 @@ export default function Bookmarks() {
                                 <form onSubmit={(e) => grab_companies(e)}>
                                     <Button type="submit">Click to load Bookmarks</Button>
                                 </form>
-                                <Stack gap={5}>
-                                    <Table striped bordered hover responsive>
-                                        <thread>
-                                            <tr>
-                                                <th scope="col">Company Name</th>
-                                                <th scope="col">Company Phone</th>
-                                                <th scope="col">Company Email</th>
-                                                <th scope="col">Remove Bookmark</th>
-                                            </tr>
-                                        </thread>
-                                        <tbody>
-                                            {bookmarks.map((val, key) => {
-                                                return (
-                                                    <tr key={key}>
-                                                        <td>{val.name}</td>
-                                                        <td>{val.phone_number}</td>
-                                                        <td>{val.email}</td>
-                                                        <td><Button onClick={(e) => remove_bookmark(e, val.company_id)} >Remove</Button></td>
-                                                    </tr>
-                                                );
-                                            })}
-                                        </tbody>
-                                    </Table>
+                                <Stack gap={3}>
+                                    <div></div>
+                                    <Container fluid>
+                                        <Row>
+                                            <Col><h3>Company Name</h3></Col>
+                                            <Col><h3>Company Phone</h3></Col>
+                                            <Col><h3>Company Email</h3></Col>
+                                            <Col><h3>Remove Bookmark</h3></Col>
+                                        </Row>
+                                        {bookmarks.map((val, key) => {
+                                            return (
+                                                <Row key={key}>
+                                                    <Col>{val.name}</Col>
+                                                    <Col>{val.phone_number}</Col>
+                                                    <Col>{val.email}</Col>
+                                                    <Col><Button onClick={(e) => remove_bookmark(e, val.company_id)} >Remove</Button></Col>
+                                                </Row>
+                                            );
+                                        })}
+                                    </Container>
                                 </Stack>
                             </Accordion.Body>
                         </Accordion.Item>
