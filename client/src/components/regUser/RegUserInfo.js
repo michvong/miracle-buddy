@@ -2,7 +2,7 @@ import React , { Component } from 'react';
 import { useEffect, useState } from 'react';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import {Accordion, Button} from 'react-bootstrap';
+import {Accordion, Button, Container} from 'react-bootstrap';
 import Axios from 'axios';
 import Dashboard from './Dashboard';
 
@@ -11,7 +11,8 @@ import Dashboard from './Dashboard';
 // class RegUserInfo extends Component {
 const RegUserInfo = (props) => {
 
-    const info = useLocation();
+    const navigate = useNavigate();
+    const location = useLocation();
 
     let [currentUser, setUser] = useState([]);
     let [nameTextField, setName] = useState("");
@@ -20,10 +21,14 @@ const RegUserInfo = (props) => {
 
     const fetch_user_id = () => {
         try{
-            return info.state.user_id
+            return location.state.user_id
         } catch (e) {
             Navigate('/reguserLogin')
         }
+    }
+
+    const handleBackClick = () => {
+        navigate('/reguserLogin', { state: {name: location.state.name, user_id: location.state.user_id } });
     }
 
     useEffect(() => {
@@ -79,59 +84,66 @@ const RegUserInfo = (props) => {
     });
 
     return (
-        <Accordion>
-            {currentUser.map((val, key) => {
-                return(
-                    <div key={key}>
-                        <Accordion.Item eventKey='0'>
-                            <Accordion.Header>Current Name: {val.name}</Accordion.Header>
-                            <Accordion.Body>
-                                <form onSubmit={(e) => handleSubmitName(e, nameTextField)}>
-                                    <label>
-                                        Enter new Name:
-                                        <input type="text"
-                                        value={nameTextField}
-                                        onChange={(e) => setName(e.target.value)}
-                                        />
-                                    </label>
-                                    <Button color= "blue" type="submit">Submit</Button>
-                                </form>
-                            </Accordion.Body>
-                        </Accordion.Item>
-                        <Accordion.Item eventKey='1'>
-                            <Accordion.Header>Current Language: {val.language}</Accordion.Header>
-                            <Accordion.Body>
-                                <form onSubmit={(e) => handleSubmitLang(e,langTextField)}>
-                                    <label>
-                                        Enter new Language:
-                                        <input type="text"
-                                        value={langTextField}
-                                        onChange={(e) => setLang(e.target.value)}
-                                        />
-                                    </label>
-                                    <Button color= "blue" type="submit">Submit</Button>
-                                </form>
-                            </Accordion.Body>
-                        </Accordion.Item>
-                        <Accordion.Item eventKey='2'>
-                            <Accordion.Header>Current email: {val.email}</Accordion.Header>
-                            <Accordion.Body>
-                                <form onSubmit={(e) => handleSubmitEmail(e, emailTextField)}>
-                                    <label>
-                                        Enter new Email:
-                                        <input type="text"
-                                        value={emailTextField}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        />
-                                    </label>
-                                    <Button color= "blue" type="submit">Submit</Button>
-                                </form>
-                            </Accordion.Body>
-                        </Accordion.Item>
-                    </div>
-                );
-            })}
-        </Accordion>
+        <Container>
+            <button className="p-2 hover:opacity-70" onClick={handleBackClick}>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clipRule="evenodd" />
+                </svg>
+            </button>
+            <Accordion>
+                {currentUser.map((val, key) => {
+                    return (
+                        <div key={key}>
+                            <Accordion.Item eventKey='0'>
+                                <Accordion.Header>Current Name: {val.name}</Accordion.Header>
+                                <Accordion.Body>
+                                    <form onSubmit={(e) => handleSubmitName(e, nameTextField)}>
+                                        <label>
+                                            Enter new Name:
+                                            <input type="text"
+                                                value={nameTextField}
+                                                onChange={(e) => setName(e.target.value)}
+                                            />
+                                        </label>
+                                        <Button color="blue" type="submit">Submit</Button>
+                                    </form>
+                                </Accordion.Body>
+                            </Accordion.Item>
+                            <Accordion.Item eventKey='1'>
+                                <Accordion.Header>Current Language: {val.language}</Accordion.Header>
+                                <Accordion.Body>
+                                    <form onSubmit={(e) => handleSubmitLang(e, langTextField)}>
+                                        <label>
+                                            Enter new Language:
+                                            <input type="text"
+                                                value={langTextField}
+                                                onChange={(e) => setLang(e.target.value)}
+                                            />
+                                        </label>
+                                        <Button color="blue" type="submit">Submit</Button>
+                                    </form>
+                                </Accordion.Body>
+                            </Accordion.Item>
+                            <Accordion.Item eventKey='2'>
+                                <Accordion.Header>Current email: {val.email}</Accordion.Header>
+                                <Accordion.Body>
+                                    <form onSubmit={(e) => handleSubmitEmail(e, emailTextField)}>
+                                        <label>
+                                            Enter new Email:
+                                            <input type="text"
+                                                value={emailTextField}
+                                                onChange={(e) => setEmail(e.target.value)}
+                                            />
+                                        </label>
+                                        <Button color="blue" type="submit">Submit</Button>
+                                    </form>
+                                </Accordion.Body>
+                            </Accordion.Item>
+                        </div>
+                    );
+                })}
+            </Accordion>
+        </Container>
     );
 }
 

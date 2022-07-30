@@ -2,7 +2,7 @@ import React , { Component } from 'react';
 import { useEffect, useState } from 'react';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import {Accordion, Button} from 'react-bootstrap';
+import {Accordion, Button, Container} from 'react-bootstrap';
 import Axios from 'axios';
 
 
@@ -10,7 +10,8 @@ import Axios from 'axios';
 // class CompanyInfo extends Component {
 const CompanyInfo = (props) => {
 
-    const info = useLocation();
+    const navigate = useNavigate();
+    const location = useLocation();
 
     let [currentUser, setUser] = useState([]);
     let [currentCompany, setCompany] = useState([]);
@@ -20,7 +21,7 @@ const CompanyInfo = (props) => {
     
     const fetch_user_id = () => {
         try{
-            return info.state.user_id
+            return location.state.user_id
         } catch (e) {
             Navigate('/companyauthLogin')
         }
@@ -85,7 +86,18 @@ const CompanyInfo = (props) => {
             });
     });
 
+    const handleBackClick = () => {
+        navigate('/companyauthLogin', { state: {name: location.state.name, user_id: location.state.user_id } });
+    }
+
+
     return (
+        <Container fluid="xxl" >
+            <button className="p-2 hover:opacity-70" onClick={handleBackClick}>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clipRule="evenodd" />
+                </svg>
+            </button>
         <Accordion>
             {currentCompany.map((val, key) => {
                 return(
@@ -139,6 +151,7 @@ const CompanyInfo = (props) => {
                 );
             })}
         </Accordion>
+        </Container>
     );
 }
 
