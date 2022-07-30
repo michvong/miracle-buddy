@@ -19,6 +19,8 @@ import Search from './components/regUser/Search'
 import Forward from './components/regUser/Forward'
 
 import CompDashboard from './components/companyAuthUser/CompDashboard'
+import CompUserInfo from './components/companyAuthUser/CompUserInfo'
+import CompanyInfo from './components/companyAuthUser/CompanyInfo'
 import CompEdit from './components/companyAuthUser/CompEdit'
 
 function App() {
@@ -38,7 +40,7 @@ function App() {
         {/* regUser pages */}
         <Route path="/dashboard" element={<Dashboard />}>
         </Route>
-        <Route path="/reguserinfo" element={<RegUserInfo user_id="2"/>}>
+        <Route path="/reguserinfo" element={<RegUserInfo />}>
         </Route>
         <Route path="/bookmarks" element={<Bookmarks />}>
         </Route>
@@ -49,6 +51,10 @@ function App() {
 
         {/* companyAuthUser pages */}
         <Route path="/compdashboard" element={<CompDashboard />}>
+        </Route>
+        <Route path="/compuserinfo" element={<CompUserInfo />}>
+        </Route>
+        <Route path="/companyinfo" element={<CompanyInfo  />}>
         </Route>
         <Route path="/compedit" element={<CompEdit />}>
         </Route>
