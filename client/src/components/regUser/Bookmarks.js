@@ -2,7 +2,7 @@ import React , { Component } from 'react';
 import { useEffect, useState } from 'react';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import {Accordion, Button, Navbar, Table} from 'react-bootstrap';
+import {Accordion, Button, Navbar, Table, Stack, Container} from 'react-bootstrap';
 import Axios from 'axios';
 import Dashboard from './Dashboard';
 
@@ -56,7 +56,8 @@ export default function Bookmarks() {
     });
 
     return (
-        <Accordion>
+        <Container fluid="xxl" >
+        <Accordion >
             {currentUser.map((val, key) => {
                 return(
                     <div key={key}>
@@ -68,34 +69,36 @@ export default function Bookmarks() {
                                 <form onSubmit={(e) => grab_companies(e)}>
                                     <Button type="submit">Click to load Bookmarks</Button>
                                 </form>
-                                <Table striped bordered hover>
-                                    <thread>
-                                        <tr>
-                                            <th>Company Name</th>
-                                            <th>Company Phone</th>
-                                            <th>Company Email</th>
-                                            <th>Remove Bookmark</th>
-                                        </tr>
-                                    </thread>
-                                    <tbody>
-                                        {bookmarks.map((val, key) => {
-                                            return (
-                                                <tr key={key}>
-                                                    <td>{val.name}</td>
-                                                    <td>{val.phone_number}</td>
-                                                    <td>{val.email}</td>
-                                                    <td><Button onClick={(e) => remove_bookmark(e, val.company_id)} >Remove</Button></td>
-                                                </tr>
-                                            );
-                                        })}
-                                    </tbody>
-                                </Table>
+                                <Stack gap={5}>
+                                    <Table striped bordered hover responsive>
+                                        <thread>
+                                            <tr>
+                                                <th scope="col">Company Name</th>
+                                                <th scope="col">Company Phone</th>
+                                                <th scope="col">Company Email</th>
+                                                <th scope="col">Remove Bookmark</th>
+                                            </tr>
+                                        </thread>
+                                        <tbody>
+                                            {bookmarks.map((val, key) => {
+                                                return (
+                                                    <tr key={key}>
+                                                        <td>{val.name}</td>
+                                                        <td>{val.phone_number}</td>
+                                                        <td>{val.email}</td>
+                                                        <td><Button onClick={(e) => remove_bookmark(e, val.company_id)} >Remove</Button></td>
+                                                    </tr>
+                                                );
+                                            })}
+                                        </tbody>
+                                    </Table>
+                                </Stack>
                             </Accordion.Body>
                         </Accordion.Item>
-
                     </div>
                 );
             })}
         </Accordion>
+        </Container>
     );
 }
