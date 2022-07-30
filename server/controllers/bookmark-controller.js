@@ -53,17 +53,3 @@ exports.getBookmarked = (req, res) => {
                 });
         });
 };
-
-//get bookmarks of user with id = user_id
-exports.getAllBookmark = (req, res) => {
-    const user_id = req.params.user_id;
-
-    connection.query("SELECT * FROM Bookmarks WHERE user_id = ?",
-        [user_id],
-        (err, results) => {
-            if(err) throw err;
-            res.send(results);
-        });
-};
-
-
