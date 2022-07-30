@@ -249,7 +249,6 @@ export default function Search() {
                                                         <th>City</th>
                                                         <th>Hours of Operation</th>
                                                         <th>Service</th>
-                                                        <th>Actions</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
@@ -261,8 +260,6 @@ export default function Search() {
                                                                 <td>{val.city}</td>
                                                                 <td>{val.hours_of_operation}</td>
                                                                 <td>{val.service_name}</td>
-                                                                <td><Button variant="secondary" size="sm"> {updateBookmarkButton(val.relation)}</Button>
-                                                                </td>
                                                             </tr>
                                                         );
                                                     })}
