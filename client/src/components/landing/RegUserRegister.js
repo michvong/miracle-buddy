@@ -63,7 +63,7 @@ export default function RegUserLogin() {
 
             <div className="flex justify-center">
                 <div className="top-18 w-80 pb-40 max-w-sm mx-auto">
-                    <form>
+                    <form onSubmit={handleSignUpClick}>
                         <div className="flex flex-wrap -mx-3 mb-4">
                             <div className="w-full px-3">
                                 <label className="text-sm font-medium mb-1" htmlFor="name">Name</label>
@@ -87,7 +87,7 @@ export default function RegUserLogin() {
 
                         <div className="flex flex-wrap -mx-3 mt-6">
                             <div className="flex justify-center w-full px-3 pb-2">
-                                <button onClick={handleSignUpClick} className="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-full px-5 py-2.5 text-center dark:bg-blue-100 dark:hover:bg-blue-300 dark:focus:ring-blue-500">Sign up</button>
+                                <button className="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-full px-5 py-2.5 text-center dark:bg-blue-100 dark:hover:bg-blue-300 dark:focus:ring-blue-500">Sign up</button>
                             </div>
                         </div>
                     </form>
