@@ -30,8 +30,14 @@ export default function Bookmarks() {
                     // setBookmarks(response.data);
                     setUser(response.data);
                 }
-            })
-    })
+            });
+        Axios.get(`http://localhost:3001/bookmark-bookmarked-companies/${fetch_user_id()}`)
+            .then((response) => {
+                if(response.status === 200) {
+                    setBookmarks(response.data);
+                }
+            });
+    });
 
     const grab_companies = ((event) => {
         event.preventDefault();
@@ -55,8 +61,12 @@ export default function Bookmarks() {
         })
     });
 
+    const handleSearchClick = () => {
+        navigate('/search', { state: {name: currentUser[0].name, user_id: currentUser[0].user_id } });
+    }
+
     const handleBackClick = () => {
-        navigate('/reguserLogin', { state: {name: location.state.name, user_id: location.state.user_id } });
+        navigate('/dashboard', { state: {name: currentUser[0].name, user_id: currentUser[0].user_id } });
     }
 
     return (
@@ -75,8 +85,8 @@ export default function Bookmarks() {
                                 Hello {val.name}
                             </Accordion.Header>
                             <Accordion.Body>
-                                <form onSubmit={(e) => grab_companies(e)}>
-                                    <Button type="submit">Click to load Bookmarks</Button>
+                                <form onSubmit={() => handleSearchClick()}>
+                                    <Button type="submit">Click to Search for more Bookmarks</Button>
                                 </form>
                                 <Stack gap={3}>
                                     <div></div>

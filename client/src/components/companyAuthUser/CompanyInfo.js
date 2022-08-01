@@ -32,7 +32,7 @@ const CompanyInfo = (props) => {
         Axios.get(`http://localhost:3001/compuser/${fetch_user_id()}`)
             .then((response) => {
                 if(response.status === 200) {
-                    // setUser(response.data);
+                    setUser(response.data);
                     Axios.get(`http://localhost:3001/company/${response.data[0].company_id}`)
                         .then((response) => {
                             if(response.status ===200){
@@ -87,7 +87,7 @@ const CompanyInfo = (props) => {
     });
 
     const handleBackClick = () => {
-        navigate('/companyauthLogin', { state: {name: location.state.name, user_id: location.state.user_id } });
+        navigate('/compdashboard', { state: {name: currentUser[0].name, user_id: currentUser[0].user_id, company_id: currentUser[0].company_id } });
     }
 
 
@@ -98,59 +98,65 @@ const CompanyInfo = (props) => {
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clipRule="evenodd" />
                 </svg>
             </button>
-        <Accordion>
             {currentCompany.map((val, key) => {
-                return(
+                return (
                     <div key={key}>
-                        <Accordion.Item eventKey='0'>
-                            <Accordion.Header>Current Name: {val.name}</Accordion.Header>
-                            <Accordion.Body>
-                                <form onSubmit={(e) => handleSubmitName(e, nameTextField)}>
-                                    <label>
-                                        Enter new Name:
-                                        <input type="text"
-                                        value={nameTextField}
-                                        onChange={(e) => setName(e.target.value)}
-                                        />
-                                    </label>
-                                    <Button color= "blue" type="submit">Submit</Button>
-                                </form>
-                            </Accordion.Body>
-                        </Accordion.Item>
-                        <Accordion.Item eventKey='1'>
-                            <Accordion.Header>Current Phone Number: {val.phone_number}</Accordion.Header>
-                            <Accordion.Body>
-                                <form onSubmit={(e) => handleSubmitPhone(e,phoneTextField)}>
-                                    <label>
-                                        Enter new Phone Number:
-                                        <input type="text"
-                                        value={phoneTextField}
-                                        onChange={(e) => setPhone(e.target.value)}
-                                        />
-                                    </label>
-                                    <Button color= "blue" type="submit">Submit</Button>
-                                </form>
-                            </Accordion.Body>
-                        </Accordion.Item>
-                        <Accordion.Item eventKey='2'>
-                            <Accordion.Header>Current email: {val.email}</Accordion.Header>
-                            <Accordion.Body>
-                                <form onSubmit={(e) => handleSubmitEmail(e, emailTextField)}>
-                                    <label>
-                                        Enter new Email:
-                                        <input type="text"
-                                        value={emailTextField}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        />
-                                    </label>
-                                    <Button color= "blue" type="submit">Submit</Button>
-                                </form>
-                            </Accordion.Body>
-                        </Accordion.Item>
+                        <Card>
+                            <Card.Header>Account information for {val.name}</Card.Header>
+                            <Card.Body>
+                                <Card.Subtitle>Click on information that you would like to change</Card.Subtitle>
+                            </Card.Body>
+                            <Accordion>
+                                <Accordion.Item eventKey='0'>
+                                    <Accordion.Header>Current Name: {val.name}</Accordion.Header>
+                                    <Accordion.Body>
+                                        <form onSubmit={(e) => handleSubmitName(e, nameTextField)}>
+                                            <label>
+                                                Enter new Name:
+                                                <input type="text"
+                                                    value={nameTextField}
+                                                    onChange={(e) => setName(e.target.value)}
+                                                />
+                                            </label>
+                                            <Button color="blue" type="submit">Submit</Button>
+                                        </form>
+                                    </Accordion.Body>
+                                </Accordion.Item>
+                                <Accordion.Item eventKey='1'>
+                                    <Accordion.Header>Current Phone Number: {val.phone_number}</Accordion.Header>
+                                    <Accordion.Body>
+                                        <form onSubmit={(e) => handleSubmitPhone(e, phoneTextField)}>
+                                            <label>
+                                                Enter new Phone Number:
+                                                <input type="text"
+                                                    value={phoneTextField}
+                                                    onChange={(e) => setPhone(e.target.value)}
+                                                />
+                                            </label>
+                                            <Button color="blue" type="submit">Submit</Button>
+                                        </form>
+                                    </Accordion.Body>
+                                </Accordion.Item>
+                                <Accordion.Item eventKey='2'>
+                                    <Accordion.Header>Current email: {val.email}</Accordion.Header>
+                                    <Accordion.Body>
+                                        <form onSubmit={(e) => handleSubmitEmail(e, emailTextField)}>
+                                            <label>
+                                                Enter new Email:
+                                                <input type="text"
+                                                    value={emailTextField}
+                                                    onChange={(e) => setEmail(e.target.value)}
+                                                />
+                                            </label>
+                                            <Button color="blue" type="submit">Submit</Button>
+                                        </form>
+                                    </Accordion.Body>
+                                </Accordion.Item>
+                            </Accordion>
+                        </Card>
                     </div>
                 );
             })}
-        </Accordion>
         </Container>
     );
 }
