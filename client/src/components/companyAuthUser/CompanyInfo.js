@@ -65,7 +65,7 @@ const CompanyInfo = (props) => {
         if(phoneTextField === ""){
             return; // no action, just return
         }
-        Axios.put(`http://localhost:3001/company/edit-phone/${currentCompany.company_id}/${phoneTextField}`)
+        Axios.put(`http://localhost:3001/company/edit-phone/${fetch_company_id()}/${phoneTextField}`)
             .then((response) => {
                 if(response.status === 200) {
                     setCompany([{...currentCompany[0], "phone_number":phoneTextField}]);
@@ -79,7 +79,7 @@ const CompanyInfo = (props) => {
         if(emailTextField ==="") {
             return; //no action
         }
-        Axios.put(`http://localhost:3001/company/edit-email/${currentCompany.company_id}/${emailTextField}`)
+        Axios.put(`http://localhost:3001/company/edit-email/${fetch_company_id()}/${emailTextField}`)
             .then((response) => {
                 if(response.status === 200) {
                     setCompany([{...currentCompany[0], "email":emailTextField}]);
@@ -89,7 +89,7 @@ const CompanyInfo = (props) => {
     });
 
     const handleBackClick = () => {
-        navigate('/compdashboard', { state: {name: currentUser[0].name, user_id: currentUser[0].user_id, company_id: currentUser[0].company_id } });
+        navigate('/compdashboard', { state: {user_id: location.state.user_id, name: location.state.name, company_id: location.state.company_id  } });
     }
 
 
