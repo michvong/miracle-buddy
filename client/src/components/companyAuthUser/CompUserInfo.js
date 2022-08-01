@@ -91,61 +91,61 @@ const CompUserInfo = (props) => {
                 </svg>
             </button>
             {currentUser.map((val, key) => {
-                return(
+                return (
                     <div key={key}>
-        <Card>
-                <Card.Header>{val.name}'s account information</Card.Header>
-                <Card.Body>
-                    <Card.Subtitle>Click on information that you would like to change</Card.Subtitle>
-                </Card.Body>
-        <Accordion>
-                        <Accordion.Item eventKey='0'>
-                            <Accordion.Header>Current Name: {val.name}</Accordion.Header>
-                            <Accordion.Body>
-                                <form onSubmit={(e) => handleSubmitName(e, nameTextField)}>
-                                    <label>
-                                        Enter new Name:
-                                        <input type="text"
-                                        value={nameTextField}
-                                        onChange={(e) => setName(e.target.value)}
-                                        />
-                                    </label>
-                                    <Button color= "blue" type="submit">Submit</Button>
-                                </form>
-                            </Accordion.Body>
-                        </Accordion.Item>
-                        <Accordion.Item eventKey='1'>
-                            <Accordion.Header>Current Language: {val.language}</Accordion.Header>
-                            <Accordion.Body>
-                                <form onSubmit={(e) => handleSubmitLang(e,langTextField)}>
-                                    <label>
-                                        Enter new Language:
-                                        <input type="text"
-                                        value={langTextField}
-                                        onChange={(e) => setLang(e.target.value)}
-                                        />
-                                    </label>
-                                    <Button color= "blue" type="submit">Submit</Button>
-                                </form>
-                            </Accordion.Body>
-                        </Accordion.Item>
-                        <Accordion.Item eventKey='2'>
-                            <Accordion.Header>Current email: {val.email}</Accordion.Header>
-                            <Accordion.Body>
-                                <form onSubmit={(e) => handleSubmitEmail(e, emailTextField)}>
-                                    <label>
-                                        Enter new Email:
-                                        <input type="text"
-                                        value={emailTextField}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        />
-                                    </label>
-                                    <Button color= "blue" type="submit">Submit</Button>
-                                </form>
-                            </Accordion.Body>
-                        </Accordion.Item>
-        </Accordion>
-        </Card>
+                        <Card>
+                            <Card.Header>{val.name}'s account information</Card.Header>
+                            <Card.Body>
+                                <Card.Subtitle>Click on information that you would like to change</Card.Subtitle>
+                            </Card.Body>
+                            <Accordion>
+                                <Accordion.Item eventKey='0'>
+                                    <Accordion.Header>Current Name: {val.name}</Accordion.Header>
+                                    <Accordion.Body>
+                                        <form onSubmit={(e) => handleSubmitName(e, nameTextField)}>
+                                            <label>
+                                                Enter new Name:
+                                                <input type="text"
+                                                    value={nameTextField}
+                                                    onChange={(e) => setName(e.target.value)}
+                                                />
+                                            </label>
+                                            <Button color="blue" type="submit">Submit</Button>
+                                        </form>
+                                    </Accordion.Body>
+                                </Accordion.Item>
+                                <Accordion.Item eventKey='1'>
+                                    <Accordion.Header>Current Language: {val.language}</Accordion.Header>
+                                    <Accordion.Body>
+                                        <form onSubmit={(e) => handleSubmitLang(e, langTextField)}>
+                                            <label>
+                                                Enter new Language:
+                                                <input type="text"
+                                                    value={langTextField}
+                                                    onChange={(e) => setLang(e.target.value)}
+                                                />
+                                            </label>
+                                            <Button color="blue" type="submit">Submit</Button>
+                                        </form>
+                                    </Accordion.Body>
+                                </Accordion.Item>
+                                <Accordion.Item eventKey='2'>
+                                    <Accordion.Header>Current email: {val.email}</Accordion.Header>
+                                    <Accordion.Body>
+                                        <form onSubmit={(e) => handleSubmitEmail(e, emailTextField)}>
+                                            <label>
+                                                Enter new Email:
+                                                <input type="text"
+                                                    value={emailTextField}
+                                                    onChange={(e) => setEmail(e.target.value)}
+                                                />
+                                            </label>
+                                            <Button color="blue" type="submit">Submit</Button>
+                                        </form>
+                                    </Accordion.Body>
+                                </Accordion.Item>
+                            </Accordion>
+                        </Card>
                     </div>
                 );
             })}
