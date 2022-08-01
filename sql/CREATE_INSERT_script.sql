@@ -9,7 +9,7 @@ CREATE TABLE RegularUser (
 CREATE TABLE Company(
     company_id INT(10),
     name VARCHAR(100),
-    phone_number INT(11),
+    phone_number VARCHAR(11),
     email VARCHAR(100),
     PRIMARY KEY (company_id)
 );
@@ -152,11 +152,11 @@ INSERT INTO RegularUser VALUES (0003,'Sam','Cantonese','smm3@gmail.com');
 INSERT INTO RegularUser VALUES (0004,'Juan','Spanish','JSeb@hotmail.com');
 INSERT INTO RegularUser VALUES (0005,'Xixi','English','xi.l33@gmail.com');
 
-INSERT INTO Company VALUES (101,'St. Johns',604382189,'med.st@stjohns.ca');
-INSERT INTO Company VALUES (102,'Thrift Care',604287283,'clothes@thriftcare.ca');
-INSERT INTO Company VALUES (103,'Saving Bite',604289292,'bb_food@igrace.ca');
-INSERT INTO Company VALUES (104,'Infantile Grace',604238291,'med.st@stjohns.ca');
-INSERT INTO Company VALUES (105,'Peace of Mind',604867397,'therapy@pom.ca');
+INSERT INTO Company VALUES (101,'St. Johns','604382189','med.st@stjohns.ca');
+INSERT INTO Company VALUES (102,'Thrift Care','604287283','clothes@thriftcare.ca');
+INSERT INTO Company VALUES (103,'Saving Bite','604289292','bb_food@igrace.ca');
+INSERT INTO Company VALUES (104,'Infantile Grace','604238291','med.st@stjohns.ca');
+INSERT INTO Company VALUES (105,'Peace of Mind','604867397','therapy@pom.ca');
 
 INSERT INTO CompanyUser VALUES (2000,'Sebastian','Spanish','sbh301@hotmail.com',101);
 INSERT INTO CompanyUser VALUES (2001,'Kelly','Cantonese','kelly_088@outlook.com',102);
