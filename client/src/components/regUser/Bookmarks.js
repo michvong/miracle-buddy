@@ -30,8 +30,14 @@ export default function Bookmarks() {
                     // setBookmarks(response.data);
                     setUser(response.data);
                 }
-            })
-    })
+            });
+        Axios.get(`http://localhost:3001/bookmark-bookmarked-companies/${fetch_user_id()}`)
+            .then((response) => {
+                if(response.status === 200) {
+                    setBookmarks(response.data);
+                }
+            });
+    });
 
     const grab_companies = ((event) => {
         event.preventDefault();
