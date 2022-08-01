@@ -61,6 +61,10 @@ export default function Bookmarks() {
         })
     });
 
+    const handleSearchClick = () => {
+        navigate('/search', { state: {name: currentUser[0].name, user_id: currentUser[0].user_id } });
+    }
+
     const handleBackClick = () => {
         navigate('/dashboard', { state: {name: currentUser[0].name, user_id: currentUser[0].user_id } });
     }
@@ -81,8 +85,8 @@ export default function Bookmarks() {
                                 Hello {val.name}
                             </Accordion.Header>
                             <Accordion.Body>
-                                <form onSubmit={(e) => grab_companies(e)}>
-                                    <Button type="submit">Click to load Bookmarks</Button>
+                                <form onSubmit={() => handleSearchClick()}>
+                                    <Button type="submit">Click to Search for more Bookmarks</Button>
                                 </form>
                                 <Stack gap={3}>
                                     <div></div>
