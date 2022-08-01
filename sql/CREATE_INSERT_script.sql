@@ -256,3 +256,21 @@ INSERT INTO Requests VALUES (0002, 0001);
 INSERT INTO Requests VALUES (0003, 0004);
 INSERT INTO Requests VALUES (0004, 0002);
 INSERT INTO Requests VALUES (0005, 0005);
+
+CREATE TRIGGER emptyWarehouse
+AFTER DELETE
+ON Inventory FOR EACH ROW
+BEGIN
+    DECLARE rowcount INT;
+
+    SELECT COUNT(*)
+    INTO rowcount
+    FROM Inventory
+    WHERE warehouse_id=OLD.warehouse_id;
+
+    IF rowcount = 0 THEN
+        DELETE FROM Warehouse
+        WHERE Warehouse.warehouse_id=OLD.warehouse_id;
+    END IF;
+
+END
