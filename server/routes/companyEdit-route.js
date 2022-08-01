@@ -17,5 +17,6 @@ router.post('/delete-event', controllers.deleteEvent);
 router.post('/verify-warehouse', controllers.verifyWarehouse);
 router.post('/verify-location', controllers.verifyLocation);
 router.post('/verify-city', controllers.verifyCity);
+router.post('/verify-name-date', controllers.verifyNameDate);
 
 module.exports = router;

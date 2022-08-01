@@ -52,6 +52,7 @@ export default function CompEdit() {
     let [eventDate, setEventDate] = useState("");
     let [eventLocation, setEventLocation] = useState("");
     let [eventDescription, setEventDescription] = useState("");
+    let [eventInvalid, setEventInvalid] = useState(false);
 
     const [show, setShow] = useState(false);
     const [show2, setShow2] = useState(false);
@@ -351,6 +352,19 @@ export default function CompEdit() {
                 setLocationCity(JSON.parse(JSON.stringify(response.data))[0].city)
             } else {
                 setCityValid(false)
+            }
+        });
+    }
+
+    const checkEventValid = (str) => {
+        Axios.post('http://localhost:3001/verify-name-date', {
+            date: str, name: eventName
+        }).then((response) => {
+            const count = JSON.parse(JSON.stringify(response.data))[0].count;
+            if (count > 0){
+                setEventInvalid(true)
+            } else {
+                setEventInvalid(false)
             }
         });
     }
@@ -898,7 +912,7 @@ export default function CompEdit() {
                                                         <Form.Label>Event Name</Form.Label>
                                                         <Form.Control
                                                             required
-                                                            isInvalid={returnBoolean(false)}
+                                                            isInvalid={eventInvalid}
                                                             placeholder="Event Name"
                                                             defaultValue={eventName}
                                                             onChange={(e)=> { setEventName(e.target.value); }}
@@ -912,7 +926,7 @@ export default function CompEdit() {
                                                             type="text"
                                                             placeholder="YYYY-MM-DD HH:MM:SS"
                                                             defaultValue={eventDate}
-                                                            onChange={(e)=> { setEventDate(e.target.value); }}
+                                                            onChange={(e)=> { setEventDate(e.target.value); checkEventValid(e.target.value)}}
                                                         />
                                                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                                     </Form.Group>

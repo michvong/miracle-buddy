@@ -181,3 +181,11 @@ exports.verifyCity = (req, res) => {
         [postalCode],
         (err, results) => { res.send(results); });
 };
+
+exports.verifyNameDate = (req, res) => {
+    const name = req.body.name;
+    const date = req.body.date;
+    connection.query("SELECT COUNT(event_name) AS count FROM Event WHERE event_name=(?) AND date=(?)",
+        [name, date],
+        (err, results) => { res.send(results); });
+};
