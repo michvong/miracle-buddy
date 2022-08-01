@@ -116,6 +116,7 @@ const CompanyInfo = (props) => {
                                             <label>
                                                 Enter new Name:
                                                 <input type="text"
+                                                    maxlength="99"
                                                     value={nameTextField}
                                                     onChange={(e) => setName(e.target.value)}
                                                 />
@@ -131,6 +132,7 @@ const CompanyInfo = (props) => {
                                             <label>
                                                 Enter new Phone Number:
                                                 <input type="text"
+                                                    maxlength="10"
                                                     value={phoneTextField}
                                                     onChange={(e) => setPhone(e.target.value)}
                                                 />
@@ -146,6 +148,7 @@ const CompanyInfo = (props) => {
                                             <label>
                                                 Enter new Email:
                                                 <input type="text"
+                                                    maxlength="99"
                                                     value={emailTextField}
                                                     onChange={(e) => setEmail(e.target.value)}
                                                 />
