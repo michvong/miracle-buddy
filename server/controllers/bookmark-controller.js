@@ -26,7 +26,6 @@ exports.deleteBookmark = (req, res) => {
 
 //added by Adri
 
-
 //get company id's of all bookmarked companies
 exports.getBookmarked = (req, res) => {
     const user_id = req.params.user_id;
