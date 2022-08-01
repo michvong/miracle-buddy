@@ -343,11 +343,12 @@ export default function CompEdit() {
 
     const checkCityValid = (str) => {
         Axios.post('http://localhost:3001/verify-city', {
-            postal_code: str
+            postal_code: str,
         }).then((response) => {
             const count = JSON.parse(JSON.stringify(response.data))[0].count;
             if (count > 0){
                 setCityValid(true)
+                setLocationCity(JSON.parse(JSON.stringify(response.data))[0].city)
             } else {
                 setCityValid(false)
             }

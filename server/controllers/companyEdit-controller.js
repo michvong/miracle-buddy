@@ -7,12 +7,19 @@ exports.updateService = (req, res) => {
     const name = req.body.name;
     const company_id = req.body.company_id;
     const service_id = req.body.service_id;
+    const city = req.body.city;
 
     console.log(address, postal_code, hours_of_operation, name, service_id);
 
     connection.query("UPDATE Location SET name = (?), hours_of_operation = (?), service_id = (?) WHERE address = (?) AND postal_code = (?)",
         [name, hours_of_operation, service_id, address, postal_code],
-        (err, results) => { res.send(results); });
+        (err, results) => {
+            connection.query("UPDATE AreaCode SET city = (?) WHERE postal_code = (?)",
+                [city, postal_code],
+                (err, results) => {
+                    res.send(results);
+                });
+        });
 };
 
 exports.addService = (req, res) => {
@@ -170,7 +177,7 @@ exports.verifyLocation = (req, res) => {
 exports.verifyCity = (req, res) => {
     const postalCode = req.body.postal_code;
     console.log(postalCode)
-    connection.query("SELECT COUNT(postal_code) AS count FROM AreaCode WHERE postal_code=(?)",
+    connection.query("SELECT COUNT(postal_code) AS count, city FROM AreaCode WHERE postal_code=(?)",
         [postalCode],
         (err, results) => { res.send(results); });
 };
