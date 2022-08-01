@@ -28,7 +28,7 @@ exports.changeCompUserName = (req, res) => {
     const user_id = req.params.user_id;
     const new_name =  req.params.new_name;
 
-    connection.query("UPDATE CompanyUser SET name=? WHERE user_id=?",
+    connection.query("UPDATE CompanyUser SET name=(?) WHERE user_id=?",
         [new_name, user_id],
         (err, results) => {
             console.log(err);
@@ -41,7 +41,7 @@ exports.changeCompUserLang = (req, res) => {
     const user_id = req.params.user_id;
     const new_lang = req.params.new_lang;
 
-    connection.query("UPDATE CompanyUser SET language=? WHERE user_id=?",
+    connection.query("UPDATE CompanyUser SET language=(?) WHERE user_id=?",
         [new_lang, user_id],
         (err, results) => {
             console.log(err);
@@ -54,7 +54,7 @@ exports.changeCompUserEmail = (req, res) => {
     const user_id = req.params.user_id;
     const new_email = req.params.new_email;
 
-    connection.query("UPDATE CompanyUser SET email=? WHERE user_id=?",
+    connection.query("UPDATE CompanyUser SET email=(?) WHERE user_id=?",
         [new_email, user_id],
         (err, results) => {
             console.log(err);

@@ -27,18 +27,20 @@ const CompanyInfo = (props) => {
         }
     }
 
+     const fetch_company_id = () => {
+        try{
+            return location.state.company_id
+        } catch (e) {
+            Navigate('/companyauthLogin')
+        }
+    }
+
     //user user_id of company auth user to get company_id
     useEffect(() => {
-        Axios.get(`http://localhost:3001/compuser/${fetch_user_id()}`)
+        Axios.get(`http://localhost:3001/company/${fetch_company_id()}`)
             .then((response) => {
                 if(response.status === 200) {
-                    setUser(response.data);
-                    Axios.get(`http://localhost:3001/company/${response.data[0].company_id}`)
-                        .then((response) => {
-                            if(response.status ===200){
-                                setCompany(response.data);
-                            }
-                        });
+                    setCompany(response.data);
                 }
             });
     }, []);
@@ -49,7 +51,7 @@ const CompanyInfo = (props) => {
             return; //no action, just return
         }
         //otherwise, update value
-        Axios.put(`http://localhost:3001/company/edit-name/${currentCompany.company_id}/${nameTextField}`)
+        Axios.put(`http://localhost:3001/company/edit-name/${fetch_company_id()}/${nameTextField}`)
             .then((response) => {
                 if(response.status===200) {
                     setCompany([{...currentCompany[0], "name":nameTextField}]);
