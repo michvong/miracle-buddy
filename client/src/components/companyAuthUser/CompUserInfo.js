@@ -79,7 +79,7 @@ const CompUserInfo = (props) => {
     });
 
     const handleBackClick = () => {
-        navigate('/companyauthLogin', { state: {name: location.state.name, user_id: location.state.user_id } });
+        navigate('/compdashboard', { state: {name: currentUser[0].name, user_id: currentUser[0].user_id, company_id: currentUser[0].company_id } });
     }
 
 
