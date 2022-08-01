@@ -106,6 +106,7 @@ const CompUserInfo = (props) => {
                                             <label>
                                                 Enter new Name:
                                                 <input type="text"
+                                                    maxlength="99"
                                                     value={nameTextField}
                                                     onChange={(e) => setName(e.target.value)}
                                                 />
@@ -121,6 +122,7 @@ const CompUserInfo = (props) => {
                                             <label>
                                                 Enter new Language:
                                                 <input type="text"
+                                                    maxlength="99"
                                                     value={langTextField}
                                                     onChange={(e) => setLang(e.target.value)}
                                                 />
@@ -136,6 +138,7 @@ const CompUserInfo = (props) => {
                                             <label>
                                                 Enter new Email:
                                                 <input type="text"
+                                                    maxlength="99"
                                                     value={emailTextField}
                                                     onChange={(e) => setEmail(e.target.value)}
                                                 />
