@@ -28,7 +28,7 @@ const RegUserInfo = (props) => {
     }
 
     const handleBackClick = () => {
-        navigate('/reguserLogin', { state: {name: location.state.name, user_id: location.state.user_id } });
+        navigate('/dashboard', { state: {name: currentUser[0].name, user_id: currentUser[0].user_id } });
     }
 
     useEffect(() => {

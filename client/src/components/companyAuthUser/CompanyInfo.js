@@ -32,7 +32,7 @@ const CompanyInfo = (props) => {
         Axios.get(`http://localhost:3001/compuser/${fetch_user_id()}`)
             .then((response) => {
                 if(response.status === 200) {
-                    // setUser(response.data);
+                    setUser(response.data);
                     Axios.get(`http://localhost:3001/company/${response.data[0].company_id}`)
                         .then((response) => {
                             if(response.status ===200){
@@ -87,7 +87,7 @@ const CompanyInfo = (props) => {
     });
 
     const handleBackClick = () => {
-        navigate('/companyauthLogin', { state: {name: location.state.name, user_id: location.state.user_id } });
+        navigate('/compdashboard', { state: {name: currentUser[0].name, user_id: currentUser[0].user_id, company_id: currentUser[0].company_id } });
     }
 
 
