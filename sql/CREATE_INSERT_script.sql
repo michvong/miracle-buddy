@@ -257,20 +257,31 @@ INSERT INTO Requests VALUES (0003, 0004);
 INSERT INTO Requests VALUES (0004, 0002);
 INSERT INTO Requests VALUES (0005, 0005);
 
+DELIMITER //
+
 CREATE TRIGGER emptyWarehouse
 AFTER DELETE
 ON Inventory FOR EACH ROW
 BEGIN
     DECLARE rowcount INT;
-
     SELECT COUNT(*)
     INTO rowcount
     FROM Inventory
     WHERE warehouse_id=OLD.warehouse_id;
-
     IF rowcount = 0 THEN
         DELETE FROM Warehouse
         WHERE Warehouse.warehouse_id=OLD.warehouse_id;
     END IF;
+END //
 
-END
+DELIMITER ;
+DELIMITER //
+
+CREATE TRIGGER capitalizeCity
+BEFORE UPDATE
+ON AreaCode FOR EACH ROW
+BEGIN
+    SET NEW.city = CONCAT(UPPER(LEFT(NEW.city,1)), LOWER(SUBSTR(NEW.city,2)));
+END //
+
+DELIMITER ;
