@@ -13,7 +13,6 @@ router.put('/company/edit-email/:company_id/:new_email', controllers.changeCompa
 
 router.get('/company', controllers.getAllCompany);
 router.post('/org', controllers.getCompany);
-// router.post('/locations', controllers.updateLocationAddress);
 
 
 module.exports = router;
